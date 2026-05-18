@@ -97,21 +97,24 @@
             border-bottom: 1px solid rgba(6, 182, 212, 0.4);
         }
 
-        /* === Phase 1 Life-Context Theme (Overlay-based) === */
-        .s1-base-overlay, .s1-side-overlay {
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Highlight States */
+        .highlight-base .base {
+            background: rgba(6, 182, 212, 0.5) !important;
+            box-shadow: 0 0 40px 15px rgba(6, 182, 212, 0.7), inset 0 0 20px rgba(255, 255, 255, 0.5) !important;
+            border: 2px solid #a5f3fc !important;
+            backdrop-filter: blur(0px) !important; /* remove blur for pure light */
+            -webkit-backdrop-filter: blur(0px) !important;
         }
-        .highlight-s1-base .s1-base-overlay {
-            opacity: 1 !important;
-            border-color: #06b6d4 !important;
-            box-shadow: 0 0 20px #06b6d4, inset 0 0 10px rgba(6,182,212,0.4) !important;
+        .highlight-side .side {
+            background: rgba(168, 85, 247, 0.4) !important;
+            box-shadow: inset 0 0 30px rgba(168, 85, 247, 0.8) !important;
+            border-color: #d8b4fe !important;
+            backdrop-filter: blur(0px) !important;
+            -webkit-backdrop-filter: blur(0px) !important;
         }
-        .highlight-s1-side .s1-side-overlay {
-            opacity: 1 !important;
-            border-color: #a855f7 !important;
-            box-shadow: 0 0 20px #a855f7, inset 0 0 10px rgba(168,85,247,0.4) !important;
+        .highlight-side .cylinder .side {
+            border-top: 1px solid #d8b4fe !important;
+            border-bottom: 1px solid #d8b4fe !important;
         }
         
         /* Phase 3 Styles */
@@ -208,9 +211,14 @@
                         </div>
                         
                         <nav class="space-y-3" id="nav-group">
-                            <button onclick="setActiveNav(1)" id="btn-nav-1" class="w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500/15 to-transparent border border-cyan-500/40 text-left transition-all duration-300 neon-glow group">
-                                <span class="tech-font text-xs font-bold text-cyber-cyan bg-cyan-500/10 w-6 h-6 flex items-center justify-center rounded-lg border border-cyan-500/30">01</span>
-                                <span class="text-sm font-medium tracking-wide text-cyan-300" data-i18n="step1">直觀感知：生活物體的幾何抽象</span>
+                            <button onclick="setActiveNav(0)" id="btn-nav-0" class="w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500/15 to-transparent border border-cyan-500/40 text-left transition-all duration-300 neon-glow group">
+                                <span class="tech-font text-xs font-bold text-cyber-cyan bg-cyan-500/10 w-6 h-6 flex items-center justify-center rounded-lg border border-cyan-500/30">00</span>
+                                <span class="text-sm font-medium tracking-wide text-cyan-300" data-i18n="step0">生活實物：茶葉罐與奶粉罐</span>
+                            </button>
+
+                            <button onclick="setActiveNav(1)" id="btn-nav-1" class="w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl bg-slate-950/40 border border-transparent hover:border-slate-700/50 text-left transition-all duration-300 group">
+                                <span class="tech-font text-xs font-bold text-slate-500 bg-slate-900 w-6 h-6 flex items-center justify-center rounded-lg border border-slate-800 group-hover:text-slate-300">01</span>
+                                <span class="text-sm font-medium tracking-wide text-slate-400 group-hover:text-slate-200" data-i18n="step1">直觀感知：生活物體的幾何抽象</span>
                             </button>
                             
                             <button onclick="setActiveNav(2)" id="btn-nav-2" class="w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl bg-slate-950/40 border border-transparent hover:border-slate-700/50 text-left transition-all duration-300 group">
@@ -246,8 +254,66 @@
                 <div class="absolute bottom-4 right-4 w-4 h-4 border-b-2 border-r-2 border-cyan-500/40 z-20 pointer-events-none"></div>
 
                 <div class="w-full h-full relative z-10">
+                    <!-- Step 0 View (Real-world Intro) -->
+                    <div id="view-step0" class="w-full h-full flex flex-col absolute top-0 left-0 transition-opacity duration-500">
+                        <div class="p-6 flex flex-col justify-center items-center h-full gap-6">
+                            <div class="text-center max-w-2xl mb-2">
+                                <h2 class="text-2xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 mb-2" data-i18n="step0Header">
+                                    生活實物：旋轉體的幾何直觀
+                                </h2>
+                                <p class="text-xs text-slate-400 leading-relaxed" data-i18n="step0Intro">
+                                    在日常生活中，許多常見的包裝與容器都採用了經典的旋轉體結構。觀察下面的實物，思考它們在幾何學中對應著什麼形狀？
+                                </p>
+                            </div>
+                            
+                            <div class="flex gap-8 w-full max-w-4xl justify-center items-stretch flex-1 min-h-0 overflow-y-auto p-2">
+                                <!-- Card 1: 茶葉罐 -->
+                                <div class="glass-panel rounded-2xl border border-cyan-500/20 p-6 flex flex-col items-center justify-between w-1/2 max-w-sm hover:border-cyan-500/40 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition-all duration-500 group relative overflow-hidden">
+                                    <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/5 rounded-full blur-2xl -mr-16 -mt-16 pointer-events-none group-hover:bg-cyan-500/10 transition-all"></div>
+                                    <div class="w-full aspect-[4/3] rounded-xl overflow-hidden bg-slate-950/80 border border-cyan-500/10 flex items-center justify-center relative p-4 mb-4">
+                                        <img src="茶葉罐.png" alt="茶葉罐" class="max-h-full max-w-full object-contain filter drop-shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-transform duration-500 group-hover:scale-105" />
+                                    </div>
+                                    <div class="text-center flex-1 flex flex-col justify-between w-full">
+                                        <div>
+                                            <h3 class="text-lg font-bold text-cyan-400 mb-2 flex items-center justify-center gap-2">
+                                                <span class="w-1.5 h-4 bg-cyan-400 rounded-full"></span>精緻茶葉罐
+                                            </h3>
+                                            <p class="text-xs text-slate-300 leading-relaxed mb-4" data-i18n="step0TeaDesc">
+                                                茶葉罐的設計往往採用正圓柱體，保證了結構的對稱性與美觀度。它的上下底面是相互平行的圓形，側面則是由一條直段（母線）繞軸旋轉一週所圍成的曲面。
+                                            </p>
+                                        </div>
+                                        <div class="p-3 bg-cyan-950/30 rounded-xl border border-cyan-500/20 text-[11px] text-cyan-300">
+                                            🔍 <span data-i18n="step0Geometry">幾何抽象：</span><strong>圓柱 (Cylinder)</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Card 2: 奶粉罐 -->
+                                <div class="glass-panel rounded-2xl border border-purple-500/20 p-6 flex flex-col items-center justify-between w-1/2 max-w-sm hover:border-purple-500/40 hover:shadow-[0_0_25px_rgba(168,85,247,0.15)] transition-all duration-500 group relative overflow-hidden">
+                                    <div class="absolute top-0 right-0 w-32 h-32 bg-purple-500/5 rounded-full blur-2xl -mr-16 -mt-16 pointer-events-none group-hover:bg-purple-500/10 transition-all"></div>
+                                    <div class="w-full aspect-[4/3] rounded-xl overflow-hidden bg-slate-950/80 border border-purple-500/10 flex items-center justify-center relative p-4 mb-4">
+                                        <img src="奶粉罐.png" alt="奶粉罐" class="max-h-full max-w-full object-contain filter drop-shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-transform duration-500 group-hover:scale-105" />
+                                    </div>
+                                    <div class="text-center flex-1 flex flex-col justify-between w-full">
+                                        <div>
+                                            <h3 class="text-lg font-bold text-purple-400 mb-2 flex items-center justify-center gap-2">
+                                                <span class="w-1.5 h-4 bg-purple-400 rounded-full"></span>經典奶粉罐
+                                            </h3>
+                                            <p class="text-xs text-slate-300 leading-relaxed mb-4" data-i18n="step0MilkDesc">
+                                                奶粉罐是生活中最標準的圓柱狀容器。這種形狀能提供最大化的容量效率和出色的結構強度，是包裝工業中極為實用且普及的幾何應用。
+                                            </p>
+                                        </div>
+                                        <div class="p-3 bg-purple-950/30 rounded-xl border border-purple-500/20 text-[11px] text-purple-300">
+                                            🔍 <span data-i18n="step0Geometry">幾何抽象：</span><strong>圓柱 (Cylinder)</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Step 1 View -->
-                    <div id="view-step1" class="w-full h-full flex flex-col absolute top-0 left-0 transition-opacity duration-500">
+                    <div id="view-step1" class="w-full h-full flex flex-col absolute top-0 left-0 transition-opacity duration-500 opacity-0 pointer-events-none hidden">
                         <!-- Top/Middle Area (Two Columns) -->
                         <div class="flex-1 flex overflow-hidden">
                             <!-- Left Column: Cards -->
@@ -276,64 +342,24 @@
                                 </div>
                             </div>
                             
-                            <!-- Right Column: Premium Multimedia Cards -->
-                            <div id="s1-scene-area" class="flex-1 flex items-center justify-center relative cursor-grab select-none" style="perspective: 1200px;">
-                                <div class="scene-step1 w-full flex justify-center items-center gap-12 sm:gap-16 transition-transform duration-75" style="transform-style: preserve-3d; transform: rotateX(-10deg) rotateY(15deg);">
-
-                                    <!-- Tea Box (Cuboid) -->
-                                    <div class="model-wrapper" style="transform-style: preserve-3d;">
-                                        <div class="model-label-top">
-                                            <div class="model-label-life">
-                                                <span style="font-size:13px">🍵</span>
-                                                <span data-i18n="s1LabelCuboidLife">生活實物：茶葉盒</span>
-                                            </div>
-                                            <div class="model-label-geo" style="color:#6ee7b7">
-                                                <span class="model-label-arrow">➔</span>
-                                                <span data-i18n="s1LabelCuboidGeo" style="text-shadow:0 0 12px rgba(52,211,153,0.8)">長方體</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- Card Container with Images and Overlays -->
-                                        <div id="card-tea-box" class="relative w-[200px] h-[200px] rounded-2xl overflow-hidden border border-cyan-500/30 glass-panel shadow-[0_0_20px_rgba(6,182,212,0.15)] flex items-center justify-center p-1 bg-slate-950/40">
-                                            <img src="tea_box.png" alt="Tea Box" class="w-full h-full object-cover rounded-xl">
-                                            <!-- Top Base Overlay -->
-                                            <div class="absolute s1-base-overlay border-2 border-transparent transition-all duration-300 pointer-events-none rounded-full" style="top: 15px; left: 15px; width: 170px; height: 42px; transform: rotate(-8deg);"></div>
-                                            <!-- Bottom Base Overlay -->
-                                            <div class="absolute s1-base-overlay border-2 border-transparent transition-all duration-300 pointer-events-none rounded-full" style="bottom: 12px; left: 15px; width: 170px; height: 42px; transform: rotate(-8deg);"></div>
-                                            <!-- Side Body Overlay -->
-                                            <div class="absolute s1-side-overlay border-2 border-transparent transition-all duration-300 pointer-events-none rounded-xl" style="top: 30px; bottom: 25px; left: 18px; width: 164px; transform: skewX(-5deg);"></div>
-                                        </div>
-
-                                        <div class="text-[10px] text-emerald-400/60 tech-font tracking-widest mt-2" data-i18n="s1LabelCuboidTag">POLYHEDRON</div>
+                            <!-- Right Column: 3D Scene Area -->
+                            <div id="s1-scene-area" class="flex-1 flex items-center justify-center relative perspective-1000 cursor-pointer select-none">
+                                <div class="scene w-full flex justify-center items-center gap-16 sm:gap-24">
+                                    <!-- Cuboid -->
+                                    <div id="model-cuboid" class="shape cuboid">
+                                        <div class="face side front"></div>
+                                        <div class="face side back"></div>
+                                        <div class="face side right"></div>
+                                        <div class="face side left"></div>
+                                        <div class="face base top"></div>
+                                        <div class="face base bottom"></div>
                                     </div>
-
-                                    <!-- Milk Can (Cylinder) -->
-                                    <div class="model-wrapper" style="transform-style: preserve-3d;">
-                                        <div class="model-label-top">
-                                            <div class="model-label-life">
-                                                <span style="font-size:13px">🥛</span>
-                                                <span data-i18n="s1LabelCylLife">生活實物：奶粉罐</span>
-                                            </div>
-                                            <div class="model-label-geo" style="color:#cbd5e1">
-                                                <span class="model-label-arrow">➔</span>
-                                                <span data-i18n="s1LabelCylGeo" style="text-shadow:0 0 12px rgba(203,213,225,0.7)">圓柱體</span>
-                                            </div>
-                                        </div>
-
-                                        <!-- Card Container with Images and Overlays -->
-                                        <div id="card-milk-can" class="relative w-[200px] h-[200px] rounded-2xl overflow-hidden border border-cyan-500/30 glass-panel shadow-[0_0_20px_rgba(6,182,212,0.15)] flex items-center justify-center p-1 bg-slate-950/40">
-                                            <img src="milk_can.png" alt="Milk Can" class="w-full h-full object-cover rounded-xl">
-                                            <!-- Top Base Overlay -->
-                                            <div class="absolute s1-base-overlay border-2 border-transparent transition-all duration-300 pointer-events-none rounded-full" style="top: 18px; left: 25px; width: 150px; height: 45px;"></div>
-                                            <!-- Bottom Base Overlay -->
-                                            <div class="absolute s1-base-overlay border-2 border-transparent transition-all duration-300 pointer-events-none rounded-full" style="bottom: 12px; left: 25px; width: 150px; height: 45px;"></div>
-                                            <!-- Side Body Overlay -->
-                                            <div class="absolute s1-side-overlay border-2 border-transparent transition-all duration-300 pointer-events-none rounded-xl" style="top: 40px; bottom: 30px; left: 25px; width: 150px;"></div>
-                                        </div>
-
-                                        <div class="text-[10px] text-slate-400/60 tech-font tracking-widest mt-2" data-i18n="s1LabelCylTag">SOLID OF REVOLUTION</div>
+                                    <!-- Cylinder -->
+                                    <div id="model-cylinder" class="shape cylinder">
+                                        <div class="face base top"></div>
+                                        <div class="face base bottom"></div>
+                                        <div id="cylinder-sides" class="absolute w-full h-full" style="transform-style: preserve-3d;"></div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -551,23 +577,17 @@
     </div>
 
     <script>
-        const i18n = {
             'zh-TW': {
                 mainTitle: '立體幾何初步',
                 subTitle: '空間幾何體 · 動態視覺化探究系統',
                 menuTitle: '課堂核心任務導覽',
+                step0: '生活實物：茶葉罐與奶粉罐',
                 step1: '直觀感知：生活物體的幾何抽象',
                 step2: '動態生成：旋轉體的構造奧秘',
                 step3: '概念思辨：多面體與視覺反例',
                 step4: '交互挑戰：空間圖形的連續轉化',
                 pmTip: '側邊欄收合邏輯已建置。系統正式更名為課本核心主題。',
                 viewportInit: '等待初始化第一階段：3D 幾何模型載入中...',
-                s1LabelCuboidLife: '生活實物：茶葉盒',
-                s1LabelCuboidGeo: '抽象為：長方體',
-                s1LabelCuboidTag: 'POLYHEDRON',
-                s1LabelCylLife: '生活實物：奶粉罐',
-                s1LabelCylGeo: '抽象為：圓柱體',
-                s1LabelCylTag: 'SOLID OF REVOLUTION',
                 axis: '旋轉軸',
                 generator: '母線',
                 modeCylinder: '圓柱生成模式',
@@ -595,13 +615,7 @@
                 base: '底面'
             },
             'zh-CN': {
-// ...
-                s1LabelCuboidLife: '生活实物：茶叶盒',
-                s1LabelCuboidGeo: '抽象为：长方体',
-                s1LabelCuboidTag: 'POLYHEDRON',
-                s1LabelCylLife: '生活实物：奶粉罐',
-                s1LabelCylGeo: '抽象为：圆柱体',
-                s1LabelCylTag: 'SOLID OF REVOLUTION',
+                step0: '生活实物：茶叶罐与奶粉罐',
                 step3Question: '有两个面互相平行，其余各面都是平行四边形的多面体，一定是棱柱吗？',
                 btnS3Std: '标准棱柱',
                 btnS3Fake: '伪棱柱反例',
@@ -617,13 +631,7 @@
                 base: '底面'
             },
             'en': {
-// ...
-                s1LabelCuboidLife: 'Real Object: Tea Tin',
-                s1LabelCuboidGeo: 'Abstract: Cuboid',
-                s1LabelCuboidTag: 'POLYHEDRON',
-                s1LabelCylLife: 'Real Object: Milk Can',
-                s1LabelCylGeo: 'Abstract: Cylinder',
-                s1LabelCylTag: 'SOLID OF REVOLUTION',
+                step0: 'Real-world Objects: Tea & Milk Canisters',
                 step3Question: 'Is a polyhedron with two parallel faces and all other faces as parallelograms necessarily a prism?',
                 btnS3Std: 'Standard Prism',
                 btnS3Fake: 'Counterexample',
@@ -673,7 +681,7 @@
 
         function setActiveNav(stepId) {
             // Update Buttons UI
-            for(let i=1; i<=4; i++) {
+            for(let i=0; i<=4; i++) {
                 const btn = document.getElementById(`btn-nav-${i}`);
                 if (!btn) continue;
                 const spanNum = btn.querySelector('span:first-child');
@@ -691,7 +699,8 @@
             }
             
             // Router logic
-            if (stepId === 1) renderStep1();
+            if (stepId === 0) renderStep0();
+            else if (stepId === 1) renderStep1();
             else if (stepId === 2) renderStep2();
             else if (stepId === 3) renderStep3();
             else if (stepId === 4) renderStep4();
@@ -716,7 +725,7 @@
         }
 
         function showView(stepId) {
-            for(let i=1; i<=4; i++) {
+            for(let i=0; i<=4; i++) {
                 const view = document.getElementById(`view-step${i}`);
                 if(!view) continue;
                 if(i === stepId) {
@@ -735,6 +744,10 @@
                     }, 500);
                 }
             }
+        }
+
+        function renderStep0() {
+            showView(0);
         }
 
         function renderStep1() {
@@ -932,15 +945,12 @@
             }
         }
 
-        // ============================================================
-        // Phase 1 — Stable Premium Image-based Renderer
-        // ============================================================
         function highlightBase() {
-            const scene = document.querySelector('.scene-step1');
-            if (scene) {
-                scene.classList.add('highlight-s1-base');
-                scene.classList.remove('highlight-s1-side');
-            }
+            document.getElementById('model-cuboid').classList.add('highlight-base');
+            document.getElementById('model-cuboid').classList.remove('highlight-side');
+            document.getElementById('model-cylinder').classList.add('highlight-base');
+            document.getElementById('model-cylinder').classList.remove('highlight-side');
+            
             const tf = document.getElementById('txt-face');
             if(tf) tf.className = 'text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.8)] font-bold transition-all duration-300';
             const ta = document.getElementById('txt-axis');
@@ -948,11 +958,11 @@
         }
 
         function highlightSides() {
-            const scene = document.querySelector('.scene-step1');
-            if (scene) {
-                scene.classList.add('highlight-s1-side');
-                scene.classList.remove('highlight-s1-base');
-            }
+            document.getElementById('model-cuboid').classList.add('highlight-side');
+            document.getElementById('model-cuboid').classList.remove('highlight-base');
+            document.getElementById('model-cylinder').classList.add('highlight-side');
+            document.getElementById('model-cylinder').classList.remove('highlight-base');
+            
             const tf = document.getElementById('txt-face');
             if(tf) tf.className = 'text-purple-400 drop-shadow-[0_0_8px_rgba(168,85,247,0.8)] font-bold transition-all duration-300';
             const ta = document.getElementById('txt-axis');
@@ -960,10 +970,9 @@
         }
 
         function resetVisuals() {
-            const scene = document.querySelector('.scene-step1');
-            if (scene) {
-                scene.classList.remove('highlight-s1-base', 'highlight-s1-side');
-            }
+            document.getElementById('model-cuboid').classList.remove('highlight-base', 'highlight-side');
+            document.getElementById('model-cylinder').classList.remove('highlight-base', 'highlight-side');
+            
             const tf = document.getElementById('txt-face');
             if(tf) tf.className = 'transition-all duration-300';
             const ta = document.getElementById('txt-axis');
@@ -1298,9 +1307,9 @@
             };
 
             const updateS1 = () => {
-                const scene = document.querySelector('.scene-step1');
-                if(!scene) return;
-                scene.style.transform = `scale(${window.orbitState.step1.scale}) rotateX(${window.orbitState.step1.rx}deg) rotateY(${window.orbitState.step1.ry}deg)`;
+                const area = document.getElementById('s1-scene-area');
+                if(!area) return;
+                area.querySelectorAll('.shape').forEach(s => s.style.transform = `scale(${window.orbitState.step1.scale}) rotateX(${window.orbitState.step1.rx}deg) rotateY(${window.orbitState.step1.ry}deg)`);
             };
 
             const updateS2 = () => {
@@ -1324,7 +1333,7 @@
             const renderLoop = () => {
                 const s1Area = document.getElementById('s1-scene-area');
                 if (s1Area && !window.orbitState.step1.isDragging && !s1Area.classList.contains('is-paused')) {
-                    window.orbitState.step1.ry += 0.4;
+                    window.orbitState.step1.ry += 0.5;
                     updateS1();
                 }
                 const s3Area = document.getElementById('s3-scene-area');
@@ -1337,7 +1346,7 @@
             renderLoop();
 
             updateStep4Visuals();
-            setActiveNav(1); // Default initialization "Phase 1"
+            setActiveNav(0); // Default initialization "Phase 0 (Intro)"
         });
     </script>
 </body>
