@@ -211,14 +211,9 @@
                         </div>
                         
                         <nav class="space-y-3" id="nav-group">
-                            <button onclick="setActiveNav(0)" id="btn-nav-0" class="w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500/15 to-transparent border border-cyan-500/40 text-left transition-all duration-300 neon-glow group">
-                                <span class="tech-font text-xs font-bold text-cyber-cyan bg-cyan-500/10 w-6 h-6 flex items-center justify-center rounded-lg border border-cyan-500/30">00</span>
-                                <span class="text-sm font-medium tracking-wide text-cyan-300" data-i18n="step0">生活實物：茶葉罐與奶粉罐</span>
-                            </button>
-
-                            <button onclick="setActiveNav(1)" id="btn-nav-1" class="w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl bg-slate-950/40 border border-transparent hover:border-slate-700/50 text-left transition-all duration-300 group">
-                                <span class="tech-font text-xs font-bold text-slate-500 bg-slate-900 w-6 h-6 flex items-center justify-center rounded-lg border border-slate-800 group-hover:text-slate-300">01</span>
-                                <span class="text-sm font-medium tracking-wide text-slate-400 group-hover:text-slate-200" data-i18n="step1">直觀感知：生活物體的幾何抽象</span>
+                            <button onclick="setActiveNav(1)" id="btn-nav-1" class="w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500/15 to-transparent border border-cyan-500/40 text-left transition-all duration-300 neon-glow group">
+                                <span class="tech-font text-xs font-bold text-cyber-cyan bg-cyan-500/10 w-6 h-6 flex items-center justify-center rounded-lg border border-cyan-500/30">01</span>
+                                <span class="text-sm font-medium tracking-wide text-cyan-300" data-i18n="step1">直觀感知：生活物體的幾何抽象</span>
                             </button>
                             
                             <button onclick="setActiveNav(2)" id="btn-nav-2" class="w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl bg-slate-950/40 border border-transparent hover:border-slate-700/50 text-left transition-all duration-300 group">
@@ -254,77 +249,6 @@
                 <div class="absolute bottom-4 right-4 w-4 h-4 border-b-2 border-r-2 border-cyan-500/40 z-20 pointer-events-none"></div>
 
                 <div class="w-full h-full relative z-10">
-                    <!-- Step 0 View (Real-world Intro) -->
-                    <div id="view-step0" class="w-full h-full flex absolute top-0 left-0 transition-opacity duration-500">
-                        <!-- Left Column: Intro Info -->
-                        <div class="w-1/3 min-w-[260px] max-w-[320px] p-6 flex flex-col gap-6 justify-center border-r border-cyan-500/10 bg-slate-900/30 z-20">
-                            <div class="glass-panel p-5 rounded-xl border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.05)] relative overflow-hidden group">
-                                <div class="absolute top-0 right-0 w-24 h-24 bg-cyan-500/10 rounded-full blur-xl -mr-10 -mt-10 pointer-events-none"></div>
-                                <div class="text-sm font-bold text-cyan-400 mb-3 flex items-center gap-2">
-                                    <span class="w-1.5 h-4 bg-cyan-400 rounded-full"></span>生活實物引入
-                                </div>
-                                <h2 class="text-lg font-bold text-white mb-2 leading-snug" data-i18n="step0Header">旋轉體的幾何直觀</h2>
-                                <p class="text-xs text-slate-300 leading-relaxed mb-4" data-i18n="step0Intro">
-                                    在日常生活中，許多常見的包裝與容器都採用了經典的旋轉體結構。
-                                </p>
-                                <div class="p-3 bg-slate-950/60 rounded-lg border border-cyan-500/20">
-                                    <p class="text-[11px] text-slate-400 leading-relaxed">
-                                        💡 <strong>探索指引：</strong>請將滑鼠移到右側的實物圖卡片上。卡片會自動在右半頁面內動態擴展示意，讓您能以超大視角觀察其細節與幾何特徵。
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Right Column: Interactive Expanding Panels -->
-                        <div class="flex-1 flex gap-6 p-6 items-stretch h-full relative overflow-hidden z-10 bg-slate-950/20">
-                            <!-- Tea Panel -->
-                            <div class="flex-1 hover:flex-[10] focus:flex-[10] flex flex-col items-center justify-center transition-all duration-700 ease-in-out glass-panel rounded-2xl border border-cyan-500/20 p-6 relative overflow-hidden group/panel cursor-zoom-in">
-                                <div class="absolute inset-0 bg-gradient-to-t from-cyan-500/5 via-transparent to-transparent opacity-60 pointer-events-none"></div>
-                                
-                                <!-- Large Centered Image -->
-                                <div class="w-full h-full flex items-center justify-center relative max-h-[85%]">
-                                    <img src="茶葉罐.png" alt="茶葉罐" class="max-h-full max-w-full object-contain filter drop-shadow-[0_0_20px_rgba(6,182,212,0.25)] transition-all duration-700 ease-in-out group-hover/panel:scale-125 group-hover/panel:drop-shadow-[0_0_45px_rgba(6,182,212,0.5)]" />
-                                </div>
-                                
-                                <!-- Bottom Bar Info -->
-                                <div class="absolute bottom-6 left-6 right-6 flex justify-between items-center transition-all duration-500 border-t border-cyan-500/10 pt-4">
-                                    <div class="min-w-0 pr-4">
-                                        <h3 class="text-sm font-bold text-cyan-400 flex items-center gap-2">
-                                            <span class="w-1.5 h-3 bg-cyan-400 rounded-full"></span>精緻茶葉罐
-                                        </h3>
-                                        <p class="text-[10px] text-slate-400 mt-1 opacity-0 group-hover/panel:opacity-100 transition-opacity duration-500 max-w-md leading-relaxed" data-i18n="step0TeaDesc">
-                                            設計採用直四角柱（長方體）結構，保證了包裝的方正收納與平面貼合。它由六個矩形面圍成，具有極佳的空間利用率與簡約美感。
-                                        </p>
-                                    </div>
-                                    <span class="text-[10px] px-2.5 py-1 rounded bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 tech-font shrink-0" data-i18n="step0TeaGeometry">四角柱 (Rectangular Prism)</span>
-                                </div>
-                            </div>
-
-                            <!-- Milk Panel -->
-                            <div class="flex-1 hover:flex-[10] focus:flex-[10] flex flex-col items-center justify-center transition-all duration-700 ease-in-out glass-panel rounded-2xl border border-purple-500/20 p-6 relative overflow-hidden group/panel cursor-zoom-in">
-                                <div class="absolute inset-0 bg-gradient-to-t from-purple-500/5 via-transparent to-transparent opacity-60 pointer-events-none"></div>
-                                
-                                <!-- Large Centered Image -->
-                                <div class="w-full h-full flex items-center justify-center relative max-h-[85%]">
-                                    <img src="奶粉罐.png" alt="奶粉罐" class="max-h-full max-w-full object-contain filter drop-shadow-[0_0_20px_rgba(168,85,247,0.25)] transition-all duration-700 ease-in-out group-hover/panel:scale-125 group-hover/panel:drop-shadow-[0_0_45px_rgba(168,85,247,0.5)]" />
-                                </div>
-                                
-                                <!-- Bottom Bar Info -->
-                                <div class="absolute bottom-6 left-6 right-6 flex justify-between items-center transition-all duration-500 border-t border-purple-500/10 pt-4">
-                                    <div class="min-w-0 pr-4">
-                                        <h3 class="text-sm font-bold text-purple-400 flex items-center gap-2">
-                                            <span class="w-1.5 h-3 bg-purple-400 rounded-full"></span>經典奶粉罐
-                                        </h3>
-                                        <p class="text-[10px] text-slate-400 mt-1 opacity-0 group-hover/panel:opacity-100 transition-opacity duration-500 max-w-md leading-relaxed" data-i18n="step0MilkDesc">
-                                            最標準的圓柱狀容器。提供最大容量效率與強度，是包裝工業中極為普及的幾何應用。
-                                        </p>
-                                    </div>
-                                    <span class="text-[10px] px-2.5 py-1 rounded bg-purple-950/80 border border-purple-500/30 text-purple-300 tech-font shrink-0" data-i18n="step0MilkGeometry">圓柱 (Cylinder)</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- Step 1 View -->
                     <div id="view-step1" class="w-full h-full flex flex-col absolute top-0 left-0 transition-opacity duration-500 opacity-0 pointer-events-none hidden">
                         <!-- Top/Middle Area (Two Columns) -->
@@ -339,7 +263,7 @@
                                     </div>
                                     <p class="text-xs text-slate-300 leading-relaxed mb-4" data-i18n="polyDef">多面体：由若干个平面多边形围成的几何体。</p>
                                     <div class="p-3 bg-slate-950/60 rounded-lg border border-cyan-500/20">
-                                        <p class="text-[11px] text-slate-400 leading-relaxed" data-i18n="polyElements">核心要素：<span id="txt-face" class="transition-all duration-300">面</span>（各个多边形）、<span id="txt-edge" class="transition-all duration-300">棱</span>（相邻面的公共边）、顶点（棱与棱的公共点）。</p>
+                                        <p class="text-[11px] text-slate-400 leading-relaxed" data-i18n="polyElements">核心要素：面（各个多边形）、棱（相邻面的公共边）、顶点（棱与棱的公共点）。</p>
                                     </div>
                                 </div>
                                 <!-- Solid of Revolution Card -->
@@ -350,28 +274,71 @@
                                     </div>
                                     <p class="text-xs text-slate-300 leading-relaxed mb-4" data-i18n="rotDef">旋转体：一条平面曲线绕它同一平面内的一条定直线旋转一周所成的封闭曲面所围成的几何体。</p>
                                     <div class="p-3 bg-slate-950/60 rounded-lg border border-purple-500/20">
-                                        <p class="text-[11px] text-slate-400 leading-relaxed" data-i18n="rotElements">核心要素：<span id="txt-axis" class="transition-all duration-300">轴</span>（这条定直线）。</p>
+                                        <p class="text-[11px] text-slate-400 leading-relaxed" data-i18n="rotElements">核心要素：轴（这条定直线）。</p>
                                     </div>
                                 </div>
                             </div>
                             
-                            <!-- Right Column: 3D Scene Area -->
-                            <div id="s1-scene-area" class="flex-1 flex items-center justify-center relative perspective-1000 cursor-pointer select-none">
-                                <div class="scene w-full flex justify-center items-center gap-16 sm:gap-24">
-                                    <!-- Cuboid -->
-                                    <div id="model-cuboid" class="shape cuboid">
-                                        <div class="face side front"></div>
-                                        <div class="face side back"></div>
-                                        <div class="face side right"></div>
-                                        <div class="face side left"></div>
-                                        <div class="face base top"></div>
-                                        <div class="face base bottom"></div>
+                            <!-- Right Column: Interactive Image Panels -->
+                            <div class="flex-1 flex gap-6 p-6 items-stretch h-full relative overflow-hidden z-10 bg-slate-950/20">
+                                <!-- Tea Box Card -->
+                                <div class="flex-1 flex flex-col items-center justify-between glass-panel rounded-2xl border border-cyan-500/20 p-5 relative overflow-hidden group/panel">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-cyan-500/5 via-transparent to-transparent opacity-60 pointer-events-none"></div>
+                                    
+                                    <!-- Image Box with absolute highlights -->
+                                    <div class="w-full aspect-[4/3] rounded-xl overflow-hidden bg-slate-950/80 border border-cyan-500/10 flex items-center justify-center relative p-4 mb-4">
+                                        <img src="tea_box.png" alt="茶叶盒" class="max-h-full max-w-full object-contain filter drop-shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-transform duration-500 group-hover/panel:scale-105" />
+                                        
+                                        <!-- Neon Base Highlight Overlay -->
+                                        <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-0 transition-opacity duration-300 z-10 s1-highlight-base" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                            <!-- Top Base rectangular outline -->
+                                            <polygon points="12,25 38,23 35,38 9,40" fill="rgba(6,182,212,0.15)" stroke="#06b6d4" stroke-width="2.5" stroke-dasharray="4,2" class="animate-pulse" style="filter: drop-shadow(0 0 8px #06b6d4);" />
+                                            <!-- Bottom Base rectangular outline -->
+                                            <polygon points="11,73 37,71 34,83 8,85" fill="rgba(6,182,212,0.15)" stroke="#06b6d4" stroke-width="2.5" stroke-dasharray="4,2" class="animate-pulse" style="filter: drop-shadow(0 0 8px #06b6d4);" />
+                                        </svg>
+                                        
+                                        <!-- Neon Side Highlight Overlay -->
+                                        <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-0 transition-opacity duration-300 z-10 s1-highlight-sides" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                            <!-- Front / side vertical faces bboxes -->
+                                            <polygon points="9,40 35,38 34,83 8,85" fill="rgba(168,85,247,0.15)" stroke="#a855f7" stroke-width="2.5" class="animate-pulse" style="filter: drop-shadow(0 0 8px #a855f7);" />
+                                            <polygon points="35,38 38,23 37,71 34,83" fill="rgba(168,85,247,0.1)" stroke="#a855f7" stroke-width="2.5" class="animate-pulse" style="filter: drop-shadow(0 0 8px #a855f7);" />
+                                        </svg>
                                     </div>
-                                    <!-- Cylinder -->
-                                    <div id="model-cylinder" class="shape cylinder">
-                                        <div class="face base top"></div>
-                                        <div class="face base bottom"></div>
-                                        <div id="cylinder-sides" class="absolute w-full h-full" style="transform-style: preserve-3d;"></div>
+                                    
+                                    <div class="text-center w-full">
+                                        <div class="p-3 bg-cyan-950/30 rounded-xl border border-cyan-500/20 text-xs text-cyan-300 font-bold tracking-wide">
+                                            <span data-i18n="step1TeaLabel">生活实物：茶叶盒 ➔ 几何抽象：长方体（多面体）</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Milk Can Card -->
+                                <div class="flex-1 flex flex-col items-center justify-between glass-panel rounded-2xl border border-purple-500/20 p-5 relative overflow-hidden group/panel">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-purple-500/5 via-transparent to-transparent opacity-60 pointer-events-none"></div>
+                                    
+                                    <!-- Image Box with absolute highlights -->
+                                    <div class="w-full aspect-[4/3] rounded-xl overflow-hidden bg-slate-950/80 border border-purple-500/10 flex items-center justify-center relative p-4 mb-4">
+                                        <img src="milk_can.png" alt="奶粉罐" class="max-h-full max-w-full object-contain filter drop-shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-transform duration-500 group-hover/panel:scale-105" />
+                                        
+                                        <!-- Neon Base Highlight Overlay -->
+                                        <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-0 transition-opacity duration-300 z-10 s1-highlight-base" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                            <!-- Top base circle/ellipse -->
+                                            <ellipse cx="23" cy="27" rx="14" ry="5.5" fill="rgba(6,182,212,0.15)" stroke="#06b6d4" stroke-width="2.5" stroke-dasharray="4,2" class="animate-pulse" style="filter: drop-shadow(0 0 8px #06b6d4);" />
+                                            <!-- Bottom base circle/ellipse -->
+                                            <ellipse cx="23" cy="79" rx="14" ry="5.5" fill="rgba(6,182,212,0.15)" stroke="#06b6d4" stroke-width="2.5" stroke-dasharray="4,2" class="animate-pulse" style="filter: drop-shadow(0 0 8px #06b6d4);" />
+                                        </svg>
+                                        
+                                        <!-- Neon Side Highlight Overlay -->
+                                        <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-0 transition-opacity duration-300 z-10 s1-highlight-sides" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                            <!-- Side curved cylinder bounding -->
+                                            <path d="M9,27 L9,79 A14,5.5 0 0,0 37,79 L37,27 A14,5.5 0 0,0 9,27 Z" fill="rgba(168,85,247,0.15)" stroke="#a855f7" stroke-width="2.5" class="animate-pulse" style="filter: drop-shadow(0 0 8px #a855f7);" />
+                                        </svg>
+                                    </div>
+                                    
+                                    <div class="text-center w-full">
+                                        <div class="p-3 bg-purple-950/30 rounded-xl border border-purple-500/20 text-xs text-purple-300 font-bold tracking-wide">
+                                            <span data-i18n="step1MilkLabel">生活实物：奶粉罐 ➔ 几何抽象：圆柱体（旋转体）</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -382,17 +349,14 @@
                             <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_10px_rgba(6,182,212,0.8)]"></div>
                             <div class="text-xs text-cyan-500/70 mb-3 tech-font tracking-[0.2em]">TEACHER CONTROL CONSOLE</div>
                             <div class="flex gap-4 sm:gap-6">
-                                <button id="btn-playpause-s1" onclick="togglePlayPause('s1-scene-area', this)" class="px-5 py-2.5 rounded-lg bg-slate-900 border border-slate-500/40 text-slate-300 hover:bg-slate-800 hover:border-slate-400 hover:shadow-[0_0_15px_rgba(148,163,184,0.4)] transition-all flex items-center gap-2 text-sm font-medium">
-                                    <span class="text-lg">⏸</span> 暫停旋轉
-                                </button>
                                 <button onclick="highlightBase()" class="px-5 py-2.5 rounded-lg bg-slate-900 border border-cyan-500/40 text-cyan-300 hover:bg-cyan-900/40 hover:border-cyan-400 hover:shadow-[0_0_20px_rgba(6,182,212,0.5)] transition-all flex items-center gap-2 text-sm font-medium">
-                                    <span class="text-lg">⚡</span> 高亮底面
+                                    <span class="text-lg">⚡</span> <span data-i18n="btnHighlightBase">高亮底面</span>
                                 </button>
                                 <button onclick="highlightSides()" class="px-5 py-2.5 rounded-lg bg-slate-900 border border-purple-500/40 text-purple-300 hover:bg-purple-900/40 hover:border-purple-400 hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] transition-all flex items-center gap-2 text-sm font-medium">
-                                    <span class="text-lg">🔮</span> 高亮側面
+                                    <span class="text-lg">🔮</span> <span data-i18n="btnHighlightSides">高亮側面</span>
                                 </button>
                                 <button onclick="resetVisuals()" class="px-5 py-2.5 rounded-lg bg-slate-900 border border-slate-500/40 text-slate-300 hover:bg-slate-800 hover:border-slate-400 hover:shadow-[0_0_15px_rgba(148,163,184,0.4)] transition-all flex items-center gap-2 text-sm font-medium">
-                                    <span class="text-lg">🔄</span> 重置視覺
+                                    <span class="text-lg">🔄</span> <span data-i18n="btnResetVisuals">重置視覺</span>
                                 </button>
                             </div>
                         </div>
@@ -712,7 +676,7 @@
 
         function setActiveNav(stepId) {
             // Update Buttons UI
-            for(let i=0; i<=4; i++) {
+            for(let i=1; i<=4; i++) {
                 const btn = document.getElementById(`btn-nav-${i}`);
                 if (!btn) continue;
                 const spanNum = btn.querySelector('span:first-child');
@@ -730,8 +694,7 @@
             }
             
             // Router logic
-            if (stepId === 0) renderStep0();
-            else if (stepId === 1) renderStep1();
+            if (stepId === 1) renderStep1();
             else if (stepId === 2) renderStep2();
             else if (stepId === 3) renderStep3();
             else if (stepId === 4) renderStep4();
@@ -755,8 +718,29 @@
             }
         }
 
+        function highlightBase() {
+            const bases = document.querySelectorAll('.s1-highlight-base');
+            const sides = document.querySelectorAll('.s1-highlight-sides');
+            sides.forEach(el => el.classList.add('opacity-0'));
+            bases.forEach(el => el.classList.toggle('opacity-0'));
+        }
+
+        function highlightSides() {
+            const bases = document.querySelectorAll('.s1-highlight-base');
+            const sides = document.querySelectorAll('.s1-highlight-sides');
+            bases.forEach(el => el.classList.add('opacity-0'));
+            sides.forEach(el => el.classList.toggle('opacity-0'));
+        }
+
+        function resetVisuals() {
+            const bases = document.querySelectorAll('.s1-highlight-base');
+            const sides = document.querySelectorAll('.s1-highlight-sides');
+            bases.forEach(el => el.classList.add('opacity-0'));
+            sides.forEach(el => el.classList.add('opacity-0'));
+        }
+
         function showView(stepId) {
-            for(let i=0; i<=4; i++) {
+            for(let i=1; i<=4; i++) {
                 const view = document.getElementById(`view-step${i}`);
                 if(!view) continue;
                 if(i === stepId) {
@@ -775,10 +759,6 @@
                     }, 500);
                 }
             }
-        }
-
-        function renderStep0() {
-            showView(0);
         }
 
         function renderStep1() {
@@ -1344,12 +1324,6 @@
                 area.style.cursor = 'grab';
             };
 
-            const updateS1 = () => {
-                const area = document.getElementById('s1-scene-area');
-                if(!area) return;
-                area.querySelectorAll('.shape').forEach(s => s.style.transform = `scale(${window.orbitState.step1.scale}) rotateX(${window.orbitState.step1.rx}deg) rotateY(${window.orbitState.step1.ry}deg)`);
-            };
-
             const updateS2 = () => {
                 const scene = document.querySelector('.scene-step2');
                 if(!scene) return;
@@ -1362,18 +1336,12 @@
                 area.querySelectorAll('.shape').forEach(s => s.style.transform = `scale(${window.orbitState.step3.scale}) rotateX(${window.orbitState.step3.rx}deg) rotateY(${window.orbitState.step3.ry}deg)`);
             };
 
-            bindOrbitControls('s1-scene-area', window.orbitState.step1, updateS1);
             bindOrbitControls('s2-scene-area', window.orbitState.step2, updateS2);
             bindOrbitControls('s3-scene-area', window.orbitState.step3, updateS3);
             bindOrbitControls('s4-scene-area', window.orbitState.step4, () => updateStep4Visuals());
 
-            // Auto-rotate loop for Step 1 and 3 (replaces CSS animation)
+            // Auto-rotate loop for Step 3 (replaces CSS animation)
             const renderLoop = () => {
-                const s1Area = document.getElementById('s1-scene-area');
-                if (s1Area && !window.orbitState.step1.isDragging && !s1Area.classList.contains('is-paused')) {
-                    window.orbitState.step1.ry += 0.5;
-                    updateS1();
-                }
                 const s3Area = document.getElementById('s3-scene-area');
                 if (s3Area && !window.orbitState.step3.isDragging && !s3Area.classList.contains('is-paused')) {
                     window.orbitState.step3.ry += 0.5;
@@ -1384,14 +1352,13 @@
             renderLoop();
 
             window.addEventListener('resize', () => {
-                updateS1();
                 updateS2();
                 updateS3();
                 updateStep4Visuals();
             });
 
             updateStep4Visuals();
-            setActiveNav(0); // Default initialization "Phase 0 (Intro)"
+            setActiveNav(1); // Default initialization "Phase 1 (Direct Perception)"
         });
     </script>
 </body>
