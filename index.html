@@ -155,6 +155,14 @@
             border-right: 3px solid #ef4444 !important;
             box-shadow: inset 10px 0 20px -10px rgba(239,68,68,0.8), inset -10px 0 20px -10px rgba(239,68,68,0.8) !important;
         }
+        
+        /* Expanding Panels on Hover for Step 1 */
+        .interactive-panel {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+        .interactive-panel:hover {
+            flex: 4.5 !important;
+        }
 
 
     </style>
@@ -282,27 +290,12 @@
                             <!-- Right Column: Interactive Image Panels -->
                             <div class="flex-1 flex gap-6 p-6 items-stretch h-full relative overflow-hidden z-10 bg-slate-950/20">
                                 <!-- Tea Box Card -->
-                                <div class="flex-1 flex flex-col items-center justify-between glass-panel rounded-2xl border border-cyan-500/20 p-5 relative overflow-hidden group/panel">
+                                <div class="flex-1 flex flex-col items-center justify-between glass-panel rounded-2xl border border-cyan-500/20 p-5 relative overflow-hidden group/panel interactive-panel cursor-zoom-in">
                                     <div class="absolute inset-0 bg-gradient-to-t from-cyan-500/5 via-transparent to-transparent opacity-60 pointer-events-none"></div>
                                     
-                                    <!-- Image Box with absolute highlights -->
+                                    <!-- Image Box -->
                                     <div class="w-full aspect-[4/3] rounded-xl overflow-hidden bg-slate-950/80 border border-cyan-500/10 flex items-center justify-center relative p-4 mb-4">
-                                        <img src="tea_box.png?v=2" alt="茶叶盒" class="max-h-full max-w-full object-contain filter drop-shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-transform duration-500 group-hover/panel:scale-105" />
-                                        
-                                        <!-- Neon Base Highlight Overlay -->
-                                        <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-0 transition-opacity duration-300 z-10 s1-highlight-base" viewBox="0 0 100 100" preserveAspectRatio="none">
-                                            <!-- Top Base rectangular outline -->
-                                            <polygon points="12,25 38,23 35,38 9,40" fill="rgba(6,182,212,0.15)" stroke="#06b6d4" stroke-width="2.5" stroke-dasharray="4,2" class="animate-pulse" style="filter: drop-shadow(0 0 8px #06b6d4);" />
-                                            <!-- Bottom Base rectangular outline -->
-                                            <polygon points="11,73 37,71 34,83 8,85" fill="rgba(6,182,212,0.15)" stroke="#06b6d4" stroke-width="2.5" stroke-dasharray="4,2" class="animate-pulse" style="filter: drop-shadow(0 0 8px #06b6d4);" />
-                                        </svg>
-                                        
-                                        <!-- Neon Side Highlight Overlay -->
-                                        <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-0 transition-opacity duration-300 z-10 s1-highlight-sides" viewBox="0 0 100 100" preserveAspectRatio="none">
-                                            <!-- Front / side vertical faces bboxes -->
-                                            <polygon points="9,40 35,38 34,83 8,85" fill="rgba(168,85,247,0.15)" stroke="#a855f7" stroke-width="2.5" class="animate-pulse" style="filter: drop-shadow(0 0 8px #a855f7);" />
-                                            <polygon points="35,38 38,23 37,71 34,83" fill="rgba(168,85,247,0.1)" stroke="#a855f7" stroke-width="2.5" class="animate-pulse" style="filter: drop-shadow(0 0 8px #a855f7);" />
-                                        </svg>
+                                        <img src="tea_box.png?v=2" alt="茶叶盒" class="max-h-full max-w-full object-contain filter drop-shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-transform duration-500 group-hover/panel:scale-120" />
                                     </div>
                                     
                                     <div class="text-center w-full">
@@ -313,26 +306,12 @@
                                 </div>
 
                                 <!-- Milk Can Card -->
-                                <div class="flex-1 flex flex-col items-center justify-between glass-panel rounded-2xl border border-purple-500/20 p-5 relative overflow-hidden group/panel">
+                                <div class="flex-1 flex flex-col items-center justify-between glass-panel rounded-2xl border border-purple-500/20 p-5 relative overflow-hidden group/panel interactive-panel cursor-zoom-in">
                                     <div class="absolute inset-0 bg-gradient-to-t from-purple-500/5 via-transparent to-transparent opacity-60 pointer-events-none"></div>
                                     
-                                    <!-- Image Box with absolute highlights -->
+                                    <!-- Image Box -->
                                     <div class="w-full aspect-[4/3] rounded-xl overflow-hidden bg-slate-950/80 border border-purple-500/10 flex items-center justify-center relative p-4 mb-4">
-                                        <img src="milk_can.png?v=2" alt="奶粉罐" class="max-h-full max-w-full object-contain filter drop-shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-transform duration-500 group-hover/panel:scale-105" />
-                                        
-                                        <!-- Neon Base Highlight Overlay -->
-                                        <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-0 transition-opacity duration-300 z-10 s1-highlight-base" viewBox="0 0 100 100" preserveAspectRatio="none">
-                                            <!-- Top base circle/ellipse -->
-                                            <ellipse cx="23" cy="27" rx="14" ry="5.5" fill="rgba(6,182,212,0.15)" stroke="#06b6d4" stroke-width="2.5" stroke-dasharray="4,2" class="animate-pulse" style="filter: drop-shadow(0 0 8px #06b6d4);" />
-                                            <!-- Bottom base circle/ellipse -->
-                                            <ellipse cx="23" cy="79" rx="14" ry="5.5" fill="rgba(6,182,212,0.15)" stroke="#06b6d4" stroke-width="2.5" stroke-dasharray="4,2" class="animate-pulse" style="filter: drop-shadow(0 0 8px #06b6d4);" />
-                                        </svg>
-                                        
-                                        <!-- Neon Side Highlight Overlay -->
-                                        <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-0 transition-opacity duration-300 z-10 s1-highlight-sides" viewBox="0 0 100 100" preserveAspectRatio="none">
-                                            <!-- Side curved cylinder bounding -->
-                                            <path d="M9,27 L9,79 A14,5.5 0 0,0 37,79 L37,27 A14,5.5 0 0,0 9,27 Z" fill="rgba(168,85,247,0.15)" stroke="#a855f7" stroke-width="2.5" class="animate-pulse" style="filter: drop-shadow(0 0 8px #a855f7);" />
-                                        </svg>
+                                        <img src="milk_can.png?v=2" alt="奶粉罐" class="max-h-full max-w-full object-contain filter drop-shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-transform duration-500 group-hover/panel:scale-120" />
                                     </div>
                                     
                                     <div class="text-center w-full">
@@ -344,22 +323,7 @@
                             </div>
                         </div>
                         
-                        <!-- Teacher Control Panel -->
-                        <div class="h-28 border-t border-cyan-500/20 bg-slate-950/80 backdrop-blur-md flex flex-col justify-center items-center rounded-b-2xl relative z-20">
-                            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_10px_rgba(6,182,212,0.8)]"></div>
-                            <div class="text-xs text-cyan-500/70 mb-3 tech-font tracking-[0.2em]">TEACHER CONTROL CONSOLE</div>
-                            <div class="flex gap-4 sm:gap-6">
-                                <button onclick="highlightBase()" class="px-5 py-2.5 rounded-lg bg-slate-900 border border-cyan-500/40 text-cyan-300 hover:bg-cyan-900/40 hover:border-cyan-400 hover:shadow-[0_0_20px_rgba(6,182,212,0.5)] transition-all flex items-center gap-2 text-sm font-medium">
-                                    <span class="text-lg">⚡</span> <span data-i18n="btnHighlightBase">高亮底面</span>
-                                </button>
-                                <button onclick="highlightSides()" class="px-5 py-2.5 rounded-lg bg-slate-900 border border-purple-500/40 text-purple-300 hover:bg-purple-900/40 hover:border-purple-400 hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] transition-all flex items-center gap-2 text-sm font-medium">
-                                    <span class="text-lg">🔮</span> <span data-i18n="btnHighlightSides">高亮側面</span>
-                                </button>
-                                <button onclick="resetVisuals()" class="px-5 py-2.5 rounded-lg bg-slate-900 border border-slate-500/40 text-slate-300 hover:bg-slate-800 hover:border-slate-400 hover:shadow-[0_0_15px_rgba(148,163,184,0.4)] transition-all flex items-center gap-2 text-sm font-medium">
-                                    <span class="text-lg">🔄</span> <span data-i18n="btnResetVisuals">重置視覺</span>
-                                </button>
-                            </div>
-                        </div>
+
                     </div>
 
                     <!-- Step 2 View -->
