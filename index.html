@@ -239,6 +239,17 @@
                                 <span class="text-sm font-medium tracking-wide text-slate-400 group-hover:text-slate-200" data-i18n="step4">交互挑戰：空間圖形的連續轉化</span>
                             </button>
                         </nav>
+                        
+                        <div class="mt-4 pt-4 border-t border-cyan-500/10 flex flex-col gap-3">
+                            <button onclick="toggleTermModal()" class="w-full flex items-center justify-center space-x-2 px-4 py-3 rounded-xl bg-purple-500/10 border border-purple-500/30 hover:bg-purple-500/20 text-purple-300 transition-all duration-300 text-sm font-medium shadow-[0_0_15px_rgba(168,85,247,0.15)] group">
+                                <span class="text-lg group-hover:scale-110 transition-transform">🌐</span>
+                                <span data-i18n="termBtn" class="tracking-wide">兩岸數學名詞對照</span>
+                            </button>
+                            <a href="https://valerieyu55.github.io/3-1-geometry/platonic.html" target="_blank" class="w-full flex items-center justify-center space-x-2 px-4 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 hover:bg-emerald-500/20 text-emerald-300 transition-all duration-300 text-sm font-medium shadow-[0_0_15px_rgba(16,185,129,0.15)] group">
+                                <span class="text-lg group-hover:scale-110 transition-transform">🕵️</span>
+                                <span class="tracking-wide">正多面體偵探室</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 
@@ -560,7 +571,9 @@
                 pyramid: '棱錐',
                 frustum: '棱台 / 圓台',
                 frustumDef: '用一個平行於棱錐（或圓錐）底面的平面去截棱錐（或圓錐），底面和截面之間的部分。',
-                base: '底面'
+                base: '底面',
+                termBtn: '兩岸數學名詞對照',
+                termTitle: '兩岸數學名詞對照表'
             },
             'zh-CN': {
                 step0: '生活实物：茶叶罐与奶粉罐',
@@ -582,7 +595,9 @@
                 pyramid: '棱锥',
                 frustum: '棱台 / 圆台',
                 frustumDef: '用一个平行于棱锥（或圆锥）底面的平面去截棱锥（或圆锥），底面和截面之间的部分。',
-                base: '底面'
+                base: '底面',
+                termBtn: '两岸数学名词对照',
+                termTitle: '两岸数学名词对照表'
             },
             'en': {
                 step0: 'Real-world Objects: Tea & Milk Canisters',
@@ -604,7 +619,9 @@
                 pyramid: 'Pyramid',
                 frustum: 'Frustum',
                 frustumDef: 'The part of a pyramid or cone between the base and a cross-section parallel to the base.',
-                base: 'Base'
+                base: 'Base',
+                termBtn: 'Cross-Strait Terminology',
+                termTitle: 'Cross-Strait Mathematics Terminology Comparison'
             }
         };
 
@@ -1330,6 +1347,122 @@
             updateStep4Visuals();
             setActiveNav(1); // Default initialization "Phase 1 (Direct Perception)"
         });
+    </script>
+
+    <!-- Terminology Modal -->
+    <div id="termModal" class="fixed inset-0 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300 bg-slate-950/80 backdrop-blur-sm" onclick="toggleTermModal()">
+        <div class="bg-slate-900 border border-purple-500/30 rounded-2xl p-6 w-11/12 max-w-2xl shadow-[0_0_30px_rgba(168,85,247,0.15)] relative max-h-[85vh] flex flex-col" onclick="event.stopPropagation()">
+            <button onclick="toggleTermModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-800 transition-colors">&times;</button>
+            <h3 class="text-lg font-bold text-purple-400 mb-4 flex items-center gap-2 shrink-0">
+                <span>🌐</span> <span data-i18n="termTitle">兩岸數學名詞對照表</span>
+            </h3>
+            <div class="overflow-y-auto rounded-xl border border-slate-700/50 relative">
+                <table class="w-full text-sm text-left text-slate-300">
+                    <thead class="bg-slate-800/80 text-xs text-slate-400 border-b border-slate-700/50 sticky top-0 backdrop-blur-sm">
+                        <tr>
+                            <th class="px-5 py-3 font-medium">台灣名詞 (TW)</th>
+                            <th class="px-5 py-3 font-medium">大陸名詞 (CN)</th>
+                            <th class="px-5 py-3 font-medium">英文 (EN)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-700/50">
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50 transition-colors">
+                            <td class="px-5 py-3 font-medium text-cyan-300">立體幾何</td>
+                            <td class="px-5 py-3 text-emerald-300">立体几何</td>
+                            <td class="px-5 py-3 text-slate-400">Solid Geometry</td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50 transition-colors">
+                            <td class="px-5 py-3 font-medium text-cyan-300">多面體</td>
+                            <td class="px-5 py-3 text-emerald-300">多面体</td>
+                            <td class="px-5 py-3 text-slate-400">Polyhedron</td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50 transition-colors">
+                            <td class="px-5 py-3 font-medium text-cyan-300">面 / 邊(稜) / 頂點</td>
+                            <td class="px-5 py-3 text-emerald-300">面 / 棱 / 顶点</td>
+                            <td class="px-5 py-3 text-slate-400">Face / Edge / Vertex</td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50 transition-colors">
+                            <td class="px-5 py-3 font-medium text-cyan-300">角柱</td>
+                            <td class="px-5 py-3 text-emerald-300">棱柱</td>
+                            <td class="px-5 py-3 text-slate-400">Prism</td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50 transition-colors">
+                            <td class="px-5 py-3 font-medium text-cyan-300">角錐</td>
+                            <td class="px-5 py-3 text-emerald-300">棱锥</td>
+                            <td class="px-5 py-3 text-slate-400">Pyramid</td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50 transition-colors">
+                            <td class="px-5 py-3 font-medium text-cyan-300">角錐台 / 截角錐</td>
+                            <td class="px-5 py-3 text-emerald-300">棱台</td>
+                            <td class="px-5 py-3 text-slate-400">Frustum of a pyramid</td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50 transition-colors">
+                            <td class="px-5 py-3 font-medium text-cyan-300">圓錐台 / 截頭圓錐</td>
+                            <td class="px-5 py-3 text-emerald-300">圆台</td>
+                            <td class="px-5 py-3 text-slate-400">Frustum of a cone</td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50 transition-colors">
+                            <td class="px-5 py-3 font-medium text-cyan-300">歪斜線</td>
+                            <td class="px-5 py-3 text-emerald-300">异面直线</td>
+                            <td class="px-5 py-3 text-slate-400">Skew lines</td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50 transition-colors">
+                            <td class="px-5 py-3 font-medium text-cyan-300">兩面角</td>
+                            <td class="px-5 py-3 text-emerald-300">二面角</td>
+                            <td class="px-5 py-3 text-slate-400">Dihedral angle</td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50 transition-colors">
+                            <td class="px-5 py-3 font-medium text-cyan-300">立體圖 / 示意圖</td>
+                            <td class="px-5 py-3 text-emerald-300">直观图</td>
+                            <td class="px-5 py-3 text-slate-400">Perspective drawing</td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50 transition-colors">
+                            <td class="px-5 py-3 font-medium text-cyan-300">投影</td>
+                            <td class="px-5 py-3 text-emerald-300">射影</td>
+                            <td class="px-5 py-3 text-slate-400">Projection</td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50 transition-colors">
+                            <td class="px-5 py-3 font-medium text-cyan-300">旋轉體</td>
+                            <td class="px-5 py-3 text-emerald-300">旋转体</td>
+                            <td class="px-5 py-3 text-slate-400">Solid of revolution</td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50 transition-colors">
+                            <td class="px-5 py-3 font-medium text-cyan-300">圓柱</td>
+                            <td class="px-5 py-3 text-emerald-300">圆柱</td>
+                            <td class="px-5 py-3 text-slate-400">Cylinder</td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50 transition-colors">
+                            <td class="px-5 py-3 font-medium text-cyan-300">圓錐</td>
+                            <td class="px-5 py-3 text-emerald-300">圆锥</td>
+                            <td class="px-5 py-3 text-slate-400">Cone</td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50 transition-colors">
+                            <td class="px-5 py-3 font-medium text-cyan-300">母線</td>
+                            <td class="px-5 py-3 text-emerald-300">母线</td>
+                            <td class="px-5 py-3 text-slate-400">Generatrix</td>
+                        </tr>
+                        <tr class="bg-slate-900/50 hover:bg-slate-800/50 transition-colors">
+                            <td class="px-5 py-3 font-medium text-cyan-300">球體</td>
+                            <td class="px-5 py-3 text-emerald-300">球体</td>
+                            <td class="px-5 py-3 text-slate-400">Sphere</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleTermModal() {
+            const modal = document.getElementById('termModal');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                setTimeout(() => modal.classList.remove('opacity-0'), 10);
+            } else {
+                modal.classList.add('opacity-0');
+                setTimeout(() => modal.classList.add('hidden'), 300);
+            }
+        }
     </script>
 </body>
 </html>
