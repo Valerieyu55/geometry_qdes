@@ -312,6 +312,18 @@
                     }
                     isDragging = false;
                 };
+                // Resize Observer to handle sidebar toggling and window resize
+                const handleResize = () => {
+                    if (!containerRef.current) return;
+                    const w = containerRef.current.clientWidth;
+                    const h = containerRef.current.clientHeight;
+                    renderer.setSize(w, h);
+                    camera.aspect = w / h;
+                    camera.updateProjectionMatrix();
+                };
+                const resizeObserver = new ResizeObserver(handleResize);
+                resizeObserver.observe(containerRef.current);
+                window.addEventListener('resize', handleResize);
 
                 containerRef.current.addEventListener('pointerdown', handleDown);
                 containerRef.current.addEventListener('pointerup', handleUp);
@@ -325,12 +337,14 @@
                         containerRef.current.removeChild(renderer.domElement);
                     }
                     window.removeEventListener('pointermove', handleMove);
+                    window.removeEventListener('resize', handleResize);
+                    resizeObserver.disconnect();
                     geom.dispose();
                     material.dispose();
                 };
             }, [solid, isSpinning, isPenActive, markerPoints]);
 
-            return <div ref={containerRef} className="w-full h-full cursor-grab active:cursor-grabbing" />;
+            return <div ref={containerRef} className="w-full h-full overflow-hidden cursor-grab active:cursor-grabbing" style={{ minHeight: '240px' }} />;
         };
 
         // ─── Euler Check ─────────────────────────────────────────
@@ -737,6 +751,27 @@
                                 <p className="text-slate-400 text-sm font-bold mt-1">觀察 → 猜測 → 發現 → 深入思考</p>
                             </div>
                             <div className="flex items-center gap-4">
+                                {completed.size < SOLIDS.length ? (
+                                    <div className="hidden md:flex bg-amber-500/10 border border-amber-500/30 px-4 py-2 rounded-xl items-center gap-3 shadow-[0_0_15px_rgba(245,158,11,0.15)]">
+                                        <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center border border-amber-400/50">
+                                            <i className="fa-solid fa-lock text-amber-400"></i>
+                                        </div>
+                                        <div className="text-xs">
+                                            <div className="font-black text-amber-300 tracking-wide mb-0.5">神秘知識點</div>
+                                            <div className="text-slate-300 font-medium">完成<span className="text-amber-400 font-bold mx-1">全部解鎖</span>即可開啟！</div>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="hidden md:flex bg-emerald-500/10 border border-emerald-500/30 px-4 py-2 rounded-xl items-center gap-3 shadow-[0_0_15px_rgba(16,185,129,0.15)] fade-in">
+                                        <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-400/50">
+                                            <i className="fa-solid fa-unlock text-emerald-400"></i>
+                                        </div>
+                                        <div className="text-xs">
+                                            <div className="font-black text-emerald-300 tracking-wide mb-0.5">解鎖成功</div>
+                                            <div className="text-slate-300 font-medium">柏拉圖立體的奧秘已在下方開啟</div>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </header>
 

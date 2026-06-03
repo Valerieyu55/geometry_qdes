@@ -252,7 +252,7 @@
 
                             <button onclick="setActiveNav(8)" id="btn-nav-8" class="w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl bg-slate-950/40 border border-transparent hover:border-slate-700/50 text-left transition-all duration-300 group">
                                 <span class="tech-font text-xs font-bold text-slate-500 bg-slate-900 w-6 h-6 flex items-center justify-center rounded-lg border border-slate-800 group-hover:text-slate-300">06</span>
-                                <span class="text-sm font-medium tracking-wide text-slate-400 group-hover:text-slate-200">歐拉 Euler 定理</span>
+                                <span class="text-sm font-medium tracking-wide text-slate-400 group-hover:text-slate-200">凸多面體的歐拉定理</span>
                             </button>
                             
                             <button onclick="openExternalView('./platonic.html')" id="btn-nav-7" class="w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl bg-slate-950/40 border border-transparent hover:border-slate-700/50 text-left transition-all duration-300 group">
@@ -606,7 +606,7 @@
                                         <tr class="hover:bg-slate-800/30 transition-colors group">
                                             <td class="p-4 font-bold text-slate-200" data-i18n="tPrism">角柱</td>
                                             <td class="p-4 leading-loose">
-                                                <span class="inline-block border-b-2 border-slate-500 px-2 text-cyan-400 font-bold mx-1">2</span>個平行的<span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">多邊</span></span>形
+                                                <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-cyan-400 font-bold px-2">2</span></span>個平行的<span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">多邊</span></span>形
                                             </td>
                                             <td class="p-4 leading-loose">
                                                 皆為<span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">平行四邊</span></span>形
@@ -620,7 +620,7 @@
                                         <tr class="hover:bg-slate-800/30 transition-colors group">
                                             <td class="p-4 font-bold text-slate-200" data-i18n="tPyramid">角錐</td>
                                             <td class="p-4 leading-loose">
-                                                <span class="inline-block border-b-2 border-slate-500 px-2 text-cyan-400 font-bold mx-1">1</span>個<span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">多邊</span></span>形
+                                                <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-cyan-400 font-bold px-2">1</span></span>個<span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">多邊</span></span>形
                                             </td>
                                             <td class="p-4 leading-loose">
                                                 皆為<span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">三角</span></span>形
@@ -634,7 +634,7 @@
                                         <tr class="bg-amber-900/10 hover:bg-amber-900/20 transition-colors group">
                                             <td class="p-4 font-bold text-slate-200" data-i18n="tCylinder">圓柱</td>
                                             <td class="p-4 leading-loose">
-                                                <span class="inline-block border-b-2 border-slate-500 px-2 text-cyan-400 font-bold mx-1">2</span>個平行的<span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">圓</span></span>形
+                                                <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-cyan-400 font-bold px-2">2</span></span>個平行的<span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">圓</span></span>形
                                             </td>
                                             <td class="p-4 leading-loose">
                                                 平滑的曲面<br>（展開為<span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">矩</span></span>形）
@@ -648,7 +648,7 @@
                                         <tr class="bg-amber-900/10 hover:bg-amber-900/20 transition-colors group">
                                             <td class="p-4 font-bold text-slate-200" data-i18n="tCone">圓錐</td>
                                             <td class="p-4 leading-loose">
-                                                <span class="inline-block border-b-2 border-slate-500 px-2 text-cyan-400 font-bold mx-1">1</span>個<span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">圓</span></span>形
+                                                <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-cyan-400 font-bold px-2">1</span></span>個<span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">圓</span></span>形
                                             </td>
                                             <td class="p-4 leading-loose">
                                                 平滑的曲面<br>（展開為<span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">扇</span></span>形）
@@ -819,13 +819,11 @@
                                         <p data-i18n="s6d1Q2">但在現實物流中，絕大多數的快遞紙箱、海運貨櫃卻全部採用長方體（四角柱）。</p>
                                         <p class="font-bold text-blue-200" data-i18n="s6d1Q3">請嘗試用數學中的「表面積/體積比」，解釋這個商業決策中的矛盾與權衡：</p>
                                     </div>
-                                    <div class="mt-auto z-10 flex flex-col items-center">
-                                        <button onclick="toggleReveal('s6-ans-1', this)" class="px-6 py-2.5 rounded-full bg-blue-500/20 border border-blue-500/40 text-blue-300 hover:bg-blue-500/30 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-all font-medium text-sm flex items-center gap-2">
-                                            <span data-i18n="s6d1Btn">💡 顯示思辨解析</span>
+                                    <div class="mt-auto z-10 flex flex-col items-center w-full">
+                                        <button onclick="openPkgModal()" class="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600/80 to-indigo-600/80 hover:from-blue-500 hover:to-indigo-500 text-white font-bold shadow-[0_0_20px_rgba(79,70,229,0.3)] hover:shadow-[0_0_30px_rgba(79,70,229,0.6)] transition-all flex justify-center items-center gap-2 border border-indigo-400/30 group">
+                                            <span class="text-xl group-hover:rotate-12 transition-transform duration-300">📦</span>
+                                            <span>開啟引導：包裝的幾何悖論</span>
                                         </button>
-                                        <div id="s6-ans-1" class="w-full mt-4 p-4 rounded-xl border border-red-500/30 bg-red-950/20 text-red-300 text-sm leading-relaxed overflow-hidden transition-all duration-500 max-h-0 opacity-0">
-                                            <p data-i18n="s6d1A">雖然圓柱節省包裝材料，但在物流運輸中「空間利用率」更為重要。長方體可以達到 100% 的空間密鋪（無縫拼接疊放），而圓柱體堆疊會產生大量無效的縫隙，浪費運輸成本。</p>
-                                        </div>
                                     </div>
                                 </div>
                                 <!-- Debate 2 -->
@@ -837,13 +835,11 @@
                                         <p class="font-bold text-emerald-200" data-i18n="s6d2Q2">請以數學邏輯論證：為什麼無論你怎麼切，都絕對不可能切出一個「正五邊形」？</p>
                                         <p class="text-slate-400 italic" data-i18n="s6d2Q3">（提示：如果一個平面去截兩個相互平行的平面，它的交線互相 ________。）</p>
                                     </div>
-                                    <div class="mt-auto z-10 flex flex-col items-center">
-                                        <button onclick="toggleReveal('s6-ans-2', this)" class="px-6 py-2.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/30 hover:shadow-[0_0_15px_rgba(16,185,129,0.3)] transition-all font-medium text-sm flex items-center gap-2">
-                                            <span data-i18n="s6d2Btn">💡 顯示論證解析</span>
+                                    <div class="mt-auto z-10 flex flex-col items-center w-full">
+                                        <button onclick="openD2Modal()" class="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-600/80 to-teal-600/80 hover:from-emerald-500 hover:to-teal-500 text-white font-bold shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)] transition-all flex justify-center items-center gap-2 border border-emerald-400/30 group">
+                                            <span class="text-xl group-hover:rotate-12 transition-transform duration-300">🤔</span>
+                                            <span>顯示論證解析：邏輯推導</span>
                                         </button>
-                                        <div id="s6-ans-2" class="w-full mt-4 p-4 rounded-xl border border-red-500/30 bg-red-950/20 text-red-300 text-sm leading-relaxed overflow-hidden transition-all duration-500 max-h-0 opacity-0">
-                                            <p data-i18n="s6d2A">正方體有 3 對互相平行的面。根據定理「平面與兩平行平面相交，交線必平行」，若切出五邊形，必定至少會切過一對平行面，因此截出的五邊形「必定存在至少一對平行的邊」。但「正五邊形」的任意兩邊都沒有平行，產生矛盾。</p>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -860,7 +856,7 @@
                     <!-- Step 8: Euler Theorem -->
                     <div id="view-step8" class="w-full h-full flex flex-col absolute top-0 left-0 transition-opacity duration-500 opacity-0 pointer-events-none hidden p-6 overflow-y-auto">
                         <div class="flex items-center gap-4 border-b border-amber-500/30 pb-4 mb-6">
-                            <h2 class="text-2xl font-bold text-amber-300 tracking-wide">歐拉 Euler 定理</h2>
+                            <h2 class="text-2xl font-bold text-amber-300 tracking-wide">凸多面體的歐拉定理</h2>
                             <span class="tech-font text-xs text-amber-500/70 border border-amber-500/30 px-2 py-0.5 rounded">V − E + F = 2</span>
                         </div>
 
@@ -893,32 +889,46 @@
                                             </tr>
                                         </thead>
                                         <tbody id="euler-table-body">
-                                            <tr class="border-b border-slate-800/60 hover:bg-slate-800/30 transition-colors" data-v="8" data-e="12" data-f="6">
-                                                <td class="px-5 py-3.5 font-medium text-slate-200">四角柱</td>
-                                                <td class="px-5 py-3.5 text-center text-cyan-300 font-mono">8</td>
-                                                <td class="px-5 py-3.5 text-center text-purple-300 font-mono">12</td>
-                                                <td class="px-5 py-3.5 text-center text-emerald-300 font-mono">6</td>
-                                                <td class="px-5 py-3.5 text-center euler-result font-mono font-bold"><span class="text-slate-500">?</span></td>
-                                            </tr>
-                                            <tr class="border-b border-slate-800/60 hover:bg-slate-800/30 transition-colors" data-v="5" data-e="8" data-f="5">
-                                                <td class="px-5 py-3.5 font-medium text-slate-200">四角錐</td>
-                                                <td class="px-5 py-3.5 text-center text-cyan-300 font-mono">5</td>
-                                                <td class="px-5 py-3.5 text-center text-purple-300 font-mono">8</td>
-                                                <td class="px-5 py-3.5 text-center text-emerald-300 font-mono">5</td>
-                                                <td class="px-5 py-3.5 text-center euler-result font-mono font-bold"><span class="text-slate-500">?</span></td>
-                                            </tr>
-                                            <tr class="border-b border-slate-800/60 hover:bg-slate-800/30 transition-colors" data-v="6" data-e="9" data-f="5">
+                                            <tr class="border-b border-slate-800/60 hover:bg-slate-800/30 transition-colors">
                                                 <td class="px-5 py-3.5 font-medium text-slate-200">三角柱</td>
                                                 <td class="px-5 py-3.5 text-center text-cyan-300 font-mono">6</td>
                                                 <td class="px-5 py-3.5 text-center text-purple-300 font-mono">9</td>
                                                 <td class="px-5 py-3.5 text-center text-emerald-300 font-mono">5</td>
                                                 <td class="px-5 py-3.5 text-center euler-result font-mono font-bold"><span class="text-slate-500">?</span></td>
                                             </tr>
-                                            <tr class="hover:bg-slate-800/30 transition-colors" data-v="4" data-e="6" data-f="4">
-                                                <td class="px-5 py-3.5 font-medium text-slate-200">正四面體（三角錐）</td>
+                                            <tr class="border-b border-slate-800/60 hover:bg-slate-800/30 transition-colors">
+                                                <td class="px-5 py-3.5 font-medium text-slate-200">四角柱</td>
+                                                <td class="px-5 py-3.5 text-center text-cyan-300 font-mono">8</td>
+                                                <td class="px-5 py-3.5 text-center text-purple-300 font-mono">12</td>
+                                                <td class="px-5 py-3.5 text-center text-emerald-300 font-mono">6</td>
+                                                <td class="px-5 py-3.5 text-center euler-result font-mono font-bold"><span class="text-slate-500">?</span></td>
+                                            </tr>
+                                            <tr class="border-b border-slate-800/60 hover:bg-slate-800/30 transition-colors">
+                                                <td class="px-5 py-3.5 font-medium text-slate-200">n角柱</td>
+                                                <td class="px-5 py-3.5 text-center text-cyan-300 font-mono">2n</td>
+                                                <td class="px-5 py-3.5 text-center text-purple-300 font-mono">3n</td>
+                                                <td class="px-5 py-3.5 text-center text-emerald-300 font-mono">n+2</td>
+                                                <td class="px-5 py-3.5 text-center euler-result font-mono font-bold"><span class="text-slate-500">?</span></td>
+                                            </tr>
+                                            <tr class="border-b border-slate-800/60 hover:bg-slate-800/30 transition-colors">
+                                                <td class="px-5 py-3.5 font-medium text-slate-200">三角錐</td>
                                                 <td class="px-5 py-3.5 text-center text-cyan-300 font-mono">4</td>
                                                 <td class="px-5 py-3.5 text-center text-purple-300 font-mono">6</td>
                                                 <td class="px-5 py-3.5 text-center text-emerald-300 font-mono">4</td>
+                                                <td class="px-5 py-3.5 text-center euler-result font-mono font-bold"><span class="text-slate-500">?</span></td>
+                                            </tr>
+                                            <tr class="border-b border-slate-800/60 hover:bg-slate-800/30 transition-colors">
+                                                <td class="px-5 py-3.5 font-medium text-slate-200">四角錐</td>
+                                                <td class="px-5 py-3.5 text-center text-cyan-300 font-mono">5</td>
+                                                <td class="px-5 py-3.5 text-center text-purple-300 font-mono">8</td>
+                                                <td class="px-5 py-3.5 text-center text-emerald-300 font-mono">5</td>
+                                                <td class="px-5 py-3.5 text-center euler-result font-mono font-bold"><span class="text-slate-500">?</span></td>
+                                            </tr>
+                                            <tr class="hover:bg-slate-800/30 transition-colors">
+                                                <td class="px-5 py-3.5 font-medium text-slate-200">n角錐</td>
+                                                <td class="px-5 py-3.5 text-center text-cyan-300 font-mono">n+1</td>
+                                                <td class="px-5 py-3.5 text-center text-purple-300 font-mono">2n</td>
+                                                <td class="px-5 py-3.5 text-center text-emerald-300 font-mono">n+1</td>
                                                 <td class="px-5 py-3.5 text-center euler-result font-mono font-bold"><span class="text-slate-500">?</span></td>
                                             </tr>
                                         </tbody>
@@ -1355,13 +1365,9 @@
         function revealEuler() {
             const rows = document.querySelectorAll('#euler-table-body tr');
             rows.forEach(row => {
-                const v = parseInt(row.dataset.v);
-                const e = parseInt(row.dataset.e);
-                const f = parseInt(row.dataset.f);
-                const result = v - e + f;
                 const cell = row.querySelector('.euler-result');
                 if (cell) {
-                    cell.innerHTML = `<span class="text-amber-300 text-lg">${result}</span>`;
+                    cell.innerHTML = `<span class="text-amber-300 text-lg">2</span>`;
                 }
             });
             // Animate discovery box open
@@ -2301,7 +2307,599 @@
             document.getElementById('s2-nets-scene').innerHTML = renderNetsHTML(currentNetShape, currentFoldPercent);
         }
         
+        // --- Course Package Modal Logic ---
+        let pkgCurrentSlide = 0;
+        const pkgTotalSlides = 7;
+        let pkgSlides, pkgDotsContainer, pkgPrevBtn, pkgNextBtn;
+
+        function initPkgModal() {
+            if(pkgSlides) return;
+            pkgSlides = document.querySelectorAll('.pkg-slide');
+            pkgDotsContainer = document.getElementById('pkg-dots');
+            pkgPrevBtn = document.getElementById('pkg-prevBtn');
+            pkgNextBtn = document.getElementById('pkg-nextBtn');
+
+            pkgDotsContainer.innerHTML = '';
+            for(let i=0; i<pkgTotalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'w-2.5 h-2.5 rounded-full bg-slate-700 transition-colors duration-300 shadow-[inset_0_1px_3px_rgba(0,0,0,0.5)]';
+                pkgDotsContainer.appendChild(dot);
+            }
+        }
+
+        function updatePkgSlide() {
+            pkgSlides.forEach((slide, index) => {
+                if (index === pkgCurrentSlide) {
+                    slide.classList.add('active');
+                    slide.parentElement.scrollTop = 0;
+                    
+                    // reset animations for slides 2 and 3
+                    if(index === 2 || index === 3) {
+                        const animatedElements = slide.querySelectorAll('.pkg-box-drop, .pkg-circle-drop, .pkg-hex-pop, .pkg-pent-pop, .pkg-puzzle-piece, .pkg-gap-alert');
+                        animatedElements.forEach(el => {
+                            el.style.animation = 'none';
+                            el.offsetHeight; /* trigger reflow */
+                            el.style.animation = null; 
+                        });
+                    }
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+
+            const dots = pkgDotsContainer.children;
+            Array.from(dots).forEach((dot, index) => {
+                dot.className = index === pkgCurrentSlide ? 'w-2.5 h-2.5 rounded-full bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.8)]' : 'w-2.5 h-2.5 rounded-full bg-slate-700 transition-colors duration-300 shadow-[inset_0_1px_3px_rgba(0,0,0,0.5)]';
+            });
+
+            pkgPrevBtn.disabled = pkgCurrentSlide === 0;
+            pkgNextBtn.innerHTML = pkgCurrentSlide === pkgTotalSlides - 1 ? '<span>完成導覽</span> <i class="fa-solid fa-check"></i>' : '<span>下一步</span> <i class="fa-solid fa-arrow-right"></i>';
+            if (pkgCurrentSlide === pkgTotalSlides - 1) {
+                pkgNextBtn.onclick = closePkgModal;
+            } else {
+                pkgNextBtn.onclick = pkgNextSlide;
+            }
+        }
+
+        function pkgNextSlide() {
+            if (pkgCurrentSlide < pkgTotalSlides - 1) {
+                pkgCurrentSlide++;
+                updatePkgSlide();
+            }
+        }
+
+        function pkgPrevSlide() {
+            if (pkgCurrentSlide > 0) {
+                pkgCurrentSlide--;
+                updatePkgSlide();
+            }
+        }
+
+        function openPkgModal() {
+            initPkgModal();
+            pkgCurrentSlide = 0;
+            updatePkgSlide();
+            const modal = document.getElementById('pkg-modal');
+            const content = document.getElementById('pkg-modal-content');
+            modal.classList.remove('pointer-events-none', 'opacity-0');
+            modal.classList.add('opacity-100');
+            setTimeout(() => {
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            }, 50);
+        }
+
+        function closePkgModal() {
+            const modal = document.getElementById('pkg-modal');
+            const content = document.getElementById('pkg-modal-content');
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('pointer-events-none');
+            }, 500);
+        }
     </script>
 
+    <style id="pkg-styles">
+        .pkg-slide { display: none; opacity: 0; transition: opacity 0.5s ease-in-out; }
+        .pkg-slide.active { display: flex; opacity: 1; }
+        
+        .pkg-box-drop { animation: pkgDropIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; opacity: 0; transform: translateY(-50px); }
+        .pkg-circle-drop { animation: pkgDropIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; opacity: 0; transform: translateY(-50px); }
+        .pkg-hex-pop { animation: pkgPopIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; opacity: 0; transform: scale(0.5); }
+        .pkg-pent-pop { animation: pkgPopInRotate 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; opacity: 0; transform: scale(0.5) rotate(-20deg); }
+        
+        .pkg-puzzle-piece { animation: pkgPuzzleSlide 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; opacity: 0; }
+        
+        @keyframes pkgDropIn { to { opacity: 1; transform: translateY(0); } }
+        @keyframes pkgPopIn { to { opacity: 1; transform: scale(1); } }
+        @keyframes pkgPopInRotate { to { opacity: 1; transform: scale(1) rotate(0deg); } }
+        @keyframes pkgPuzzleSlide { 
+            0% { opacity: 0; transform: translate(var(--startX), var(--startY)) scale(0.9); } 
+            100% { opacity: 1; transform: translate(0, 0) scale(1); } 
+        }
+        
+        .pkg-delay-1 { animation-delay: 0.1s; } .pkg-delay-2 { animation-delay: 0.2s; }
+        .pkg-delay-3 { animation-delay: 0.3s; } .pkg-delay-4 { animation-delay: 0.4s; }
+        .pkg-delay-5 { animation-delay: 0.5s; } .pkg-delay-6 { animation-delay: 0.6s; }
+        .pkg-delay-7 { animation-delay: 0.7s; } .pkg-delay-8 { animation-delay: 0.8s; }
+        .pkg-delay-9 { animation-delay: 0.9s; }
+
+        .pkg-waste-space { animation: pkgPulseRed 2s infinite; }
+        .pkg-gap-alert { opacity: 0; animation: pkgGapFadeIn 0.3s ease-out 1.2s forwards, pkgGapPulse 1.5s ease-in-out infinite 1.5s; transform-origin: 150px 150px; }
+
+        @keyframes pkgPulseRed { 0% { fill: rgba(239, 68, 68, 0.1); } 50% { fill: rgba(239, 68, 68, 0.5); } 100% { fill: rgba(239, 68, 68, 0.1); } }
+        @keyframes pkgGapFadeIn { to { opacity: 1; } }
+        @keyframes pkgGapPulse { 0% { fill: #ef4444; transform: scale(1); } 50% { fill: #ff0000; transform: scale(1.08); } 100% { fill: #ef4444; transform: scale(1); } }
+
+        .pkg-clip-hexagon { clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); }
+    </style>
+
+    <!-- Course Guidance Modal -->
+    <div id="pkg-modal" class="fixed inset-0 z-[100] bg-slate-950/90 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-500 flex justify-center items-center p-4 sm:p-8">
+        <div class="w-full max-w-5xl h-[85vh] min-h-[650px] bg-slate-900/95 border border-indigo-500/30 rounded-2xl shadow-[0_0_50px_rgba(79,70,229,0.2)] overflow-hidden flex flex-col relative transform scale-95 transition-transform duration-500" id="pkg-modal-content">
+            <!-- Close Button -->
+            <button onclick="closePkgModal()" class="absolute top-4 right-4 z-[110] w-10 h-10 bg-slate-800/80 hover:bg-red-500/20 border border-slate-600 hover:border-red-500/50 rounded-full flex items-center justify-center text-slate-300 hover:text-red-400 transition-colors backdrop-blur-sm">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            
+            <!-- Content Area -->
+            <div class="flex-1 overflow-y-auto relative bg-transparent overflow-x-hidden">
+                <!-- Slide 0 -->
+                <div id="pkg-slide-0" class="pkg-slide active flex-col justify-center items-center min-h-full p-12 text-center bg-gradient-to-br from-slate-900 via-indigo-950/40 to-slate-900 relative">
+                    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNykiLz48L3N2Zz4=')] opacity-50"></div>
+                    <div class="w-24 h-24 mb-6 rounded-2xl bg-indigo-600/80 border border-indigo-400/50 flex items-center justify-center shadow-[0_0_30px_rgba(79,70,229,0.5)] transform transition hover:rotate-12 relative z-10">
+                        <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                    </div>
+                    <h1 class="text-5xl font-black text-white mb-6 tracking-tight drop-shadow-lg relative z-10">包裝的幾何悖論</h1>
+                    <h2 class="text-2xl text-indigo-300 font-bold mb-8 relative z-10">為什麼物流箱是方的，而不是圓的、五邊形的？</h2>
+                    <div class="flex gap-2 justify-center mt-4 relative z-10">
+                        <span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold border border-blue-500/30">幾何最佳化</span>
+                        <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold border border-emerald-500/30">工業工程學</span>
+                        <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold border border-amber-500/30">物流效率</span>
+                    </div>
+                </div>
+
+                <!-- Slide 1 -->
+                <div id="pkg-slide-1" class="pkg-slide flex-col min-h-full p-10 bg-transparent">
+                    <h2 class="text-3xl font-bold text-indigo-300 mb-2">1. 數學視角：省材料的冠軍競賽</h2>
+                    <p class="text-slate-300 mb-6 text-lg">包裝 1000 立方公分 的物品，誰用的紙板（表面積）最少？邊數越多越省！</p>
+                    <div class="flex flex-1 items-center justify-center gap-6 pb-4">
+                        <div class="flex flex-col items-center bg-slate-800/60 p-4 rounded-xl border border-slate-700/50 w-1/3 shadow-sm hover:shadow-[0_0_15px_rgba(59,130,246,0.15)] transition hover:border-blue-500/50">
+                            <svg class="w-24 h-24 text-blue-400 mb-3" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h18v18H3V3z"/></svg>
+                            <h3 class="text-lg font-bold text-slate-100">四角柱</h3>
+                            <ul class="text-sm text-center mt-3 text-slate-400 space-y-1 w-full">
+                                <li>體積：1000 cm³</li>
+                                <li class="font-bold text-red-400 text-lg border-t border-slate-700/50 pt-2 mt-2">表面積：600 cm²</li>
+                            </ul>
+                        </div>
+                        <div class="flex flex-col items-center bg-slate-800/60 p-4 rounded-xl border border-slate-700/50 w-1/3 shadow-sm hover:shadow-[0_0_15px_rgba(245,158,11,0.15)] transition hover:border-amber-500/50">
+                            <div class="w-24 h-24 mb-3 bg-amber-500/80 pkg-clip-hexagon flex items-center justify-center text-white font-bold text-xs"></div>
+                            <h3 class="text-lg font-bold text-slate-100">六角柱</h3>
+                            <ul class="text-sm text-center mt-3 text-slate-400 space-y-1 w-full">
+                                <li>體積：1000 cm³</li>
+                                <li class="font-bold text-amber-400 text-lg border-t border-slate-700/50 pt-2 mt-2">表面積：約 576 cm²</li>
+                            </ul>
+                        </div>
+                        <div class="flex flex-col items-center bg-slate-800/60 p-4 rounded-xl border border-slate-700/50 w-1/3 shadow-sm hover:shadow-[0_0_15px_rgba(99,102,241,0.15)] transition hover:border-indigo-500/50">
+                            <svg class="w-24 h-24 text-indigo-400 mb-3" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 3.57 5 5.5v13c0 1.93 3.13 3.5 7 3.5s7-1.57 7-3.5v-13C19 3.57 15.87 2 12 2zm0 5c-2.76 0-5-1.12-5-2.5S9.24 2 12 2s5 1.12 5 2.5S14.76 7 12 7z"/></svg>
+                            <h3 class="text-lg font-bold text-slate-100">圓柱體</h3>
+                            <ul class="text-sm text-center mt-3 text-slate-400 space-y-1 w-full">
+                                <li>體積：1000 cm³</li>
+                                <li class="font-bold text-emerald-400 text-lg border-t border-slate-700/50 pt-2 mt-2">表面積：約 553 cm²</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-auto bg-blue-900/20 border-l-4 border-blue-500 text-blue-200 p-4 rounded-r-lg font-bold text-sm shadow-[inset_0_0_20px_rgba(59,130,246,0.1)]">
+                        💡 規律：在相同體積下，底面的邊數越多（越接近圓形），表面積就越小。圓柱最省材料。
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div id="pkg-slide-2" class="pkg-slide flex-col min-h-full p-10 bg-transparent">
+                    <h2 class="text-3xl font-bold text-indigo-300 mb-2">2. 裝載地獄：圓形的致命傷</h2>
+                    <p class="text-slate-300 mb-6 text-lg">雖然圓柱省材料，但在長方體的貨櫃中，「空氣」是不能賺錢的。</p>
+                    <div class="flex flex-1 gap-8 pb-4">
+                        <div class="flex-1 flex flex-col items-center justify-center">
+                            <h3 class="font-bold text-lg mb-4 text-slate-200">四角柱 <span class="text-emerald-400 text-sm">(填充率 100%)</span></h3>
+                            <div class="relative w-60 h-60 border-4 border-slate-700 bg-slate-800 p-1 flex flex-wrap content-start shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+                                <div class="w-1/3 h-1/3 p-0.5 pkg-box-drop pkg-delay-1"><div class="w-full h-full bg-blue-500/90 rounded-sm border border-blue-400/50 shadow-[inset_0_1px_3px_rgba(255,255,255,0.4)]"></div></div>
+                                <div class="w-1/3 h-1/3 p-0.5 pkg-box-drop pkg-delay-2"><div class="w-full h-full bg-blue-500/90 rounded-sm border border-blue-400/50 shadow-[inset_0_1px_3px_rgba(255,255,255,0.4)]"></div></div>
+                                <div class="w-1/3 h-1/3 p-0.5 pkg-box-drop pkg-delay-3"><div class="w-full h-full bg-blue-500/90 rounded-sm border border-blue-400/50 shadow-[inset_0_1px_3px_rgba(255,255,255,0.4)]"></div></div>
+                                <div class="w-1/3 h-1/3 p-0.5 pkg-box-drop pkg-delay-4"><div class="w-full h-full bg-blue-500/90 rounded-sm border border-blue-400/50 shadow-[inset_0_1px_3px_rgba(255,255,255,0.4)]"></div></div>
+                                <div class="w-1/3 h-1/3 p-0.5 pkg-box-drop pkg-delay-5"><div class="w-full h-full bg-blue-500/90 rounded-sm border border-blue-400/50 shadow-[inset_0_1px_3px_rgba(255,255,255,0.4)]"></div></div>
+                                <div class="w-1/3 h-1/3 p-0.5 pkg-box-drop pkg-delay-6"><div class="w-full h-full bg-blue-500/90 rounded-sm border border-blue-400/50 shadow-[inset_0_1px_3px_rgba(255,255,255,0.4)]"></div></div>
+                                <div class="w-1/3 h-1/3 p-0.5 pkg-box-drop pkg-delay-7"><div class="w-full h-full bg-blue-500/90 rounded-sm border border-blue-400/50 shadow-[inset_0_1px_3px_rgba(255,255,255,0.4)]"></div></div>
+                                <div class="w-1/3 h-1/3 p-0.5 pkg-box-drop pkg-delay-8"><div class="w-full h-full bg-blue-500/90 rounded-sm border border-blue-400/50 shadow-[inset_0_1px_3px_rgba(255,255,255,0.4)]"></div></div>
+                                <div class="w-1/3 h-1/3 p-0.5 pkg-box-drop pkg-delay-9"><div class="w-full h-full bg-blue-500/90 rounded-sm border border-blue-400/50 shadow-[inset_0_1px_3px_rgba(255,255,255,0.4)]"></div></div>
+                            </div>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center justify-center">
+                            <h3 class="font-bold text-lg mb-4 text-slate-200">圓柱體 <span class="text-red-400 text-sm">(填充率 ~78.5%)</span></h3>
+                            <div class="relative w-60 h-60 border-4 border-slate-700 bg-slate-800 p-1 overflow-hidden shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+                                <svg class="absolute inset-0 w-full h-full z-0" style="padding: 4px;">
+                                    <rect width="100%" height="100%" class="pkg-waste-space" />
+                                </svg>
+                                <div class="absolute inset-0 p-1 flex flex-wrap content-start z-10">
+                                    <div class="w-1/3 h-1/3 p-0.5 pkg-circle-drop pkg-delay-1"><div class="w-full h-full bg-indigo-500/90 rounded-full border border-indigo-400/50 shadow-[inset_0_2px_4px_rgba(255,255,255,0.3)]"></div></div>
+                                    <div class="w-1/3 h-1/3 p-0.5 pkg-circle-drop pkg-delay-2"><div class="w-full h-full bg-indigo-500/90 rounded-full border border-indigo-400/50 shadow-[inset_0_2px_4px_rgba(255,255,255,0.3)]"></div></div>
+                                    <div class="w-1/3 h-1/3 p-0.5 pkg-circle-drop pkg-delay-3"><div class="w-full h-full bg-indigo-500/90 rounded-full border border-indigo-400/50 shadow-[inset_0_2px_4px_rgba(255,255,255,0.3)]"></div></div>
+                                    <div class="w-1/3 h-1/3 p-0.5 pkg-circle-drop pkg-delay-4"><div class="w-full h-full bg-indigo-500/90 rounded-full border border-indigo-400/50 shadow-[inset_0_2px_4px_rgba(255,255,255,0.3)]"></div></div>
+                                    <div class="w-1/3 h-1/3 p-0.5 pkg-circle-drop pkg-delay-5"><div class="w-full h-full bg-indigo-500/90 rounded-full border border-indigo-400/50 shadow-[inset_0_2px_4px_rgba(255,255,255,0.3)]"></div></div>
+                                    <div class="w-1/3 h-1/3 p-0.5 pkg-circle-drop pkg-delay-6"><div class="w-full h-full bg-indigo-500/90 rounded-full border border-indigo-400/50 shadow-[inset_0_2px_4px_rgba(255,255,255,0.3)]"></div></div>
+                                    <div class="w-1/3 h-1/3 p-0.5 pkg-circle-drop pkg-delay-7"><div class="w-full h-full bg-indigo-500/90 rounded-full border border-indigo-400/50 shadow-[inset_0_2px_4px_rgba(255,255,255,0.3)]"></div></div>
+                                    <div class="w-1/3 h-1/3 p-0.5 pkg-circle-drop pkg-delay-8"><div class="w-full h-full bg-indigo-500/90 rounded-full border border-indigo-400/50 shadow-[inset_0_2px_4px_rgba(255,255,255,0.3)]"></div></div>
+                                    <div class="w-1/3 h-1/3 p-0.5 pkg-circle-drop pkg-delay-9"><div class="w-full h-full bg-indigo-500/90 rounded-full border border-indigo-400/50 shadow-[inset_0_2px_4px_rgba(255,255,255,0.3)]"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-auto bg-red-900/30 text-red-300 p-4 rounded-lg font-bold text-center border border-red-500/40 text-sm shadow-[0_0_15px_rgba(239,68,68,0.15)]">
+                        ⚠️ 圓柱體之間產生大量「空隙」(紅色區域)。你等同於付昂貴的跨國運費來「運送空氣」。
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div id="pkg-slide-3" class="pkg-slide flex-col min-h-full p-10 bg-transparent">
+                    <h2 class="text-3xl font-bold text-indigo-300 mb-2">3. 為什麼不用五邊形或六邊形？</h2>
+                    <p class="text-slate-300 mb-6 text-lg">既然四邊形不夠省材料，圓形又浪費空間，那折衷的五邊或六邊形呢？</p>
+                    <div class="flex flex-1 gap-8 pb-4">
+                        <div class="flex-1 flex flex-col items-center bg-slate-800/60 p-4 rounded-xl border border-red-500/30 justify-center relative">
+                            <div class="absolute inset-0 bg-red-900/5 rounded-xl pointer-events-none"></div>
+                            <h3 class="font-bold text-red-400 mb-2">五角柱</h3>
+                            <p class="text-sm text-slate-400 text-center mb-6 h-10">正五邊形的內角是 108°，無法整除 360°，註定無法完美拼合（鑲嵌）。</p>
+                            <div class="relative w-56 h-56 flex justify-center items-center">
+                                <svg viewBox="0 0 300 300" class="w-full h-full overflow-visible">
+                                    <defs>
+                                        <polygon id="pkg-pent" points="0,0 -47.55,-34.55 -29.39,-90.45 29.39,-90.45 47.55,-34.55" stroke="#ef4444" stroke-width="3" fill="#f87171" stroke-linejoin="round" opacity="0.8" />
+                                    </defs>
+                                    <g class="pkg-puzzle-piece pkg-delay-1" style="--startX: 0px; --startY: 80px;"><use href="#pkg-pent" x="150" y="150" transform="rotate(180 150 150)" /></g>
+                                    <g class="pkg-puzzle-piece pkg-delay-2" style="--startX: -80px; --startY: -40px;"><use href="#pkg-pent" x="150" y="150" transform="rotate(288 150 150)" /></g>
+                                    <g class="pkg-puzzle-piece pkg-delay-3" style="--startX: 80px; --startY: -40px;"><use href="#pkg-pent" x="150" y="150" transform="rotate(72 150 150)" /></g>
+                                    <polygon points="150,150 131.84,94.11 168.16,94.11" class="pkg-gap-alert" />
+                                </svg>
+                                <div class="absolute top-[12%] left-0 w-full flex justify-center z-10 pointer-events-none">
+                                    <div class="bg-slate-900/90 backdrop-blur-md px-3 py-1 text-xs text-red-400 font-bold rounded-full border border-red-500 pkg-delay-5 pkg-puzzle-piece shadow-[0_0_15px_rgba(239,68,68,0.5)]" style="--startX: 0px; --startY: -20px;">致命空隙</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center bg-slate-800/60 p-4 rounded-xl border border-amber-500/30 justify-center relative">
+                            <div class="absolute inset-0 bg-amber-900/5 rounded-xl pointer-events-none"></div>
+                            <h3 class="font-bold text-amber-400 mb-2">六角柱</h3>
+                            <p class="text-sm text-slate-400 text-center mb-6 h-10">正六邊形的內角是120°，可以整除360°，空間100%填充。那人類為何不用？</p>
+                            <div class="relative w-56 h-56 flex justify-center items-center">
+                                <svg viewBox="0 0 300 300" class="w-full h-full overflow-visible">
+                                    <defs><polygon id="pkg-hex" points="0,-40 34.64,-20 34.64,20 0,40 -34.64,20 -34.64,-20" stroke="#f59e0b" stroke-width="3" fill="#fbbf24" stroke-linejoin="round" opacity="0.8" /></defs>
+                                    <use href="#pkg-hex" x="150" y="150" class="pkg-hex-pop pkg-delay-1" />
+                                    <g class="pkg-puzzle-piece pkg-delay-2" style="--startX: -60px; --startY: -80px;"><use href="#pkg-hex" x="115.36" y="90" /></g>
+                                    <g class="pkg-puzzle-piece pkg-delay-3" style="--startX: 60px; --startY: -80px;"><use href="#pkg-hex" x="184.64" y="90" /></g>
+                                    <g class="pkg-puzzle-piece pkg-delay-4" style="--startX: -80px; --startY: 0px;"><use href="#pkg-hex" x="80.72" y="150" /></g>
+                                    <g class="pkg-puzzle-piece pkg-delay-5" style="--startX: 80px; --startY: 0px;"><use href="#pkg-hex" x="219.28" y="150" /></g>
+                                    <g class="pkg-puzzle-piece pkg-delay-6" style="--startX: -60px; --startY: 80px;"><use href="#pkg-hex" x="115.36" y="210" /></g>
+                                    <g class="pkg-puzzle-piece pkg-delay-7" style="--startX: 60px; --startY: 80px;"><use href="#pkg-hex" x="184.64" y="210" /></g>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-auto bg-slate-800/80 border border-slate-600 text-slate-300 p-3 rounded-lg text-sm font-bold text-center">
+                        六角柱在幾何空間中雖然能達到空間填滿的最佳化，但實際應用時，受限於製造加工與物流工程的物理特性。
+                    </div>
+                </div>
+
+                <!-- Slide 4 -->
+                <div id="pkg-slide-4" class="pkg-slide flex-col min-h-full p-10 bg-transparent">
+                    <h2 class="text-3xl font-bold text-indigo-300 mb-6">4. 工業製造與混裝的殘酷現實</h2>
+                    <div class="grid grid-cols-2 gap-6 flex-1 pb-4">
+                        <div class="bg-slate-800/80 rounded-xl p-5 shadow-sm border-l-4 border-amber-500">
+                            <h3 class="text-xl font-bold text-amber-300 mb-3 flex items-center">
+                                <span class="text-2xl mr-2">✂️</span> 刀模悲劇與儲存成本
+                            </h3>
+                            <p class="text-slate-300 text-sm mb-2">將一塊平整的長方形瓦楞紙板，裁切並摺疊成「六角柱」或「圓柱」：</p>
+                            <ul class="list-disc list-inside text-sm text-slate-400 space-y-2">
+                                <li>會產生大量的邊角料（廢紙）。</li>
+                                <li>摺線不連續，無法用自動化機器高速成型。</li>
+                                <li><span class="font-bold text-amber-400">長方體紙箱可以「1秒攤平」</span>，極大降低空箱儲存與運輸成本。</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-800/80 rounded-xl p-5 shadow-sm border-l-4 border-red-500">
+                            <h3 class="text-xl font-bold text-red-300 mb-3 flex items-center">
+                                <span class="text-2xl mr-2">🚢</span> 萬物混裝的俄羅斯方塊
+                            </h3>
+                            <p class="text-slate-300 text-sm mb-2">貨車與貨櫃裡不可能只裝「單一尺寸」的貨物。</p>
+                            <ul class="list-disc list-inside text-sm text-slate-400 space-y-2">
+                                <li>六角柱一旦尺寸大小不一，就完全無法互相鑲嵌，空間利用率瞬間崩潰！</li>
+                                <li><span class="font-bold text-blue-400">正方形/長方形是唯一</span>在不同長寬高尺寸下，依然能完美像積木般緊密堆疊的幾何形狀。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-auto bg-indigo-900/30 rounded-xl p-5 shadow-[inset_0_0_20px_rgba(79,70,229,0.15)] border-l-4 border-indigo-500 flex items-center border-y border-r border-indigo-500/20">
+                        <div class="text-4xl mr-4 drop-shadow-[0_0_10px_rgba(79,70,229,0.5)]">💸</div>
+                        <div>
+                            <h3 class="text-lg font-bold text-indigo-300 mb-1">紙板省 5%，運費賠 20%</h3>
+                            <p class="text-slate-300 text-sm">瓦楞紙非常便宜，但跨國貨櫃空間極度昂貴。物流業寧願浪費一點紙板材料（使用四角柱），來確保貨櫃被 100% 塞滿，並且能高速自動化摺疊。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 5 -->
+                <div id="pkg-slide-5" class="pkg-slide flex-col min-h-full p-10 bg-transparent">
+                    <h2 class="text-3xl font-bold text-indigo-300 mb-6">5. 物流界的「隱形標準」</h2>
+                    <p class="text-slate-300 mb-6 text-lg">除了上述原因，長方體能稱霸全球，還因為它完美契合了三大工業物理極限：</p>
+                    <div class="grid grid-cols-3 gap-6 flex-1 pb-4">
+                        <div class="bg-slate-800/80 rounded-xl p-5 shadow-[0_0_15px_rgba(0,0,0,0.3)] border-t-4 border-blue-500 flex flex-col hover:-translate-y-1 transition transform duration-300">
+                            <h3 class="text-lg font-bold text-blue-300 mb-3 flex items-center"><span class="text-2xl mr-2">🪑</span> 棧板標準化鎖死</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">全球物流的基石是「長方形標準木棧板」(如歐規120x80cm)。六角柱即使能互相鑲嵌，排到棧板邊緣必定凸出或留下鋸齒空隙。長方體則能完美分割填滿整個棧板。</p>
+                        </div>
+                        <div class="bg-slate-800/80 rounded-xl p-5 shadow-[0_0_15px_rgba(0,0,0,0.3)] border-t-4 border-orange-500 flex flex-col hover:-translate-y-1 transition transform duration-300">
+                            <h3 class="text-lg font-bold text-orange-300 mb-3 flex items-center"><span class="text-2xl mr-2">🏗️</span> 垂直抗壓極限</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">貨櫃需要往上堆疊承重。瓦楞紙箱有 <strong class="text-orange-200">70% 的抗壓強度來自「90度的四個直角」</strong>(如同建築的四根柱子)。六角形的120度角在受重壓時，極容易向外潰堤變形。</p>
+                        </div>
+                        <div class="bg-slate-800/80 rounded-xl p-5 shadow-[0_0_15px_rgba(0,0,0,0.3)] border-t-4 border-emerald-500 flex flex-col hover:-translate-y-1 transition transform duration-300">
+                            <h3 class="text-lg font-bold text-emerald-300 mb-3 flex items-center"><span class="text-2xl mr-2">📷</span> 光學條碼辨識</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">現代自動化物流極度依賴條碼與 QR Code 掃描。圓柱的曲面會使條碼扭曲；六角柱每個側面太窄。長方體提供了寬闊平坦的「2D畫布」，確保高速輸送帶上 100% 的讀取率。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 6 -->
+                <div id="pkg-slide-6" class="pkg-slide flex-col justify-center items-center min-h-full p-12 text-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+                    <h2 class="text-4xl font-black mb-8 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 drop-shadow-sm">局部最佳解 ≠ 全局最佳解</h2>
+                    <div class="text-xl text-slate-300 max-w-2xl w-full leading-relaxed mb-8 bg-slate-900/90 p-8 rounded-2xl border border-slate-700 text-left mx-auto shadow-[0_0_40px_rgba(0,0,0,0.5)] backdrop-blur-md">
+                        <p class="mb-3">圓柱：<span class="text-emerald-400 font-bold ml-2">最省材料</span></p>
+                        <p class="mb-3">六角柱：<span class="text-amber-400 font-bold ml-2">完美兼顧材料與空間</span></p>
+                        <hr class="border-slate-700 my-5">
+                        <p class="text-base text-slate-400 mb-3 font-bold">人類工程學的複雜權衡：</p>
+                        <p class="text-sm text-slate-500 pl-4 mb-6 leading-loose">
+                            <span class="bg-slate-800 px-2 py-1 rounded mr-1">裁切良率</span>
+                            <span class="bg-slate-800 px-2 py-1 rounded mr-1">攤平儲存</span>
+                            <span class="bg-slate-800 px-2 py-1 rounded mr-1">萬物混裝</span>
+                            <span class="bg-slate-800 px-2 py-1 rounded mr-1">棧板適配</span>
+                            <span class="bg-slate-800 px-2 py-1 rounded mr-1">垂直耐壓</span>
+                            <span class="bg-slate-800 px-2 py-1 rounded">機器掃描</span>
+                        </p>
+                        <div class="text-center font-bold text-2xl text-blue-300 mt-8 tracking-wide drop-shadow-[0_0_10px_rgba(59,130,246,0.6)]">
+                            看似平庸的「長方體」<br><span class="text-white">才是疊加所有變數後的工業王者！</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navigation -->
+            <div class="h-16 shrink-0 bg-slate-950/90 backdrop-blur-md border-t border-indigo-500/30 flex justify-between items-center px-6 z-20 relative">
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-[1px] bg-gradient-to-r from-transparent via-indigo-400 to-transparent shadow-[0_0_10px_rgba(79,70,229,0.8)]"></div>
+                <button id="pkg-prevBtn" onclick="pkgPrevSlide()" class="px-5 py-2 rounded-lg font-bold text-slate-400 hover:text-indigo-300 hover:bg-indigo-500/10 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-slate-400 transition-colors flex gap-2 items-center text-sm" disabled>
+                    <i class="fa-solid fa-arrow-left"></i> <span>上一步</span>
+                </button>
+                <div class="flex gap-2.5" id="pkg-dots">
+                    <!-- Dots generated by JS -->
+                </div>
+                <button id="pkg-nextBtn" onclick="pkgNextSlide()" class="px-5 py-2 rounded-lg font-bold text-white bg-indigo-600 hover:bg-indigo-500 shadow-[0_0_20px_rgba(79,70,229,0.4)] transition-all flex gap-2 items-center text-sm">
+                    <span>下一步</span> <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- D2 Modal Script -->
+    <script>
+        let d2CurrentSlide = 0;
+        const d2TotalSlides = 4;
+
+        function updateD2Slide() {
+            document.querySelectorAll('.d2-slide').forEach((slide, index) => {
+                if (index === d2CurrentSlide) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+            
+            document.getElementById('d2-prevBtn').disabled = d2CurrentSlide === 0;
+            
+            const nextBtn = document.getElementById('d2-nextBtn');
+            if (d2CurrentSlide === d2TotalSlides - 1) {
+                nextBtn.innerHTML = '<span>完成推導</span> <i class="fa-solid fa-check"></i>';
+                nextBtn.classList.replace('bg-emerald-600', 'bg-teal-600');
+                nextBtn.classList.replace('hover:bg-emerald-500', 'hover:bg-teal-500');
+                nextBtn.setAttribute('onclick', 'closeD2Modal()');
+            } else {
+                nextBtn.innerHTML = '<span>下一步</span> <i class="fa-solid fa-arrow-right"></i>';
+                nextBtn.classList.replace('bg-teal-600', 'bg-emerald-600');
+                nextBtn.classList.replace('hover:bg-teal-500', 'hover:bg-emerald-500');
+                nextBtn.setAttribute('onclick', 'd2NextSlide()');
+            }
+
+            // update dots
+            const dotsHTML = Array.from({length: d2TotalSlides}).map((_, i) => 
+                `<div class="w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === d2CurrentSlide ? 'bg-emerald-400 w-6 shadow-[0_0_8px_rgba(52,211,153,0.8)]' : 'bg-slate-700 hover:bg-slate-500 cursor-pointer'}" onclick="gotoD2Slide(${i})"></div>`
+            ).join('');
+            document.getElementById('d2-dots').innerHTML = dotsHTML;
+        }
+
+        function gotoD2Slide(index) {
+            d2CurrentSlide = index;
+            updateD2Slide();
+        }
+
+        function d2NextSlide() {
+            if (d2CurrentSlide < d2TotalSlides - 1) {
+                d2CurrentSlide++;
+                updateD2Slide();
+            }
+        }
+
+        function d2PrevSlide() {
+            if (d2CurrentSlide > 0) {
+                d2CurrentSlide--;
+                updateD2Slide();
+            }
+        }
+
+        function openD2Modal() {
+            d2CurrentSlide = 0;
+            updateD2Slide();
+            const modal = document.getElementById('d2-modal');
+            const content = document.getElementById('d2-modal-content');
+            modal.classList.remove('pointer-events-none');
+            modal.classList.remove('opacity-0');
+            setTimeout(() => {
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeD2Modal() {
+            const modal = document.getElementById('d2-modal');
+            const content = document.getElementById('d2-modal-content');
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('pointer-events-none');
+            }, 500);
+        }
+    </script>
+
+    <style id="d2-styles">
+        .d2-slide { display: none; opacity: 0; transition: opacity 0.5s ease-in-out; }
+        .d2-slide.active { display: flex; opacity: 1; }
+        .d2-fade-in { animation: d2FadeIn 0.8s forwards; opacity: 0; }
+        .d2-slide-up { animation: d2SlideUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; opacity: 0; transform: translateY(30px); }
+        @keyframes d2FadeIn { to { opacity: 1; } }
+        @keyframes d2SlideUp { to { opacity: 1; transform: translateY(0); } }
+        .d2-delay-1 { animation-delay: 0.2s; }
+        .d2-delay-2 { animation-delay: 0.6s; }
+        .d2-delay-3 { animation-delay: 1.0s; }
+    </style>
+
+    <!-- D2 Modal -->
+    <div id="d2-modal" class="fixed inset-0 z-[100] bg-slate-950/90 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-500 flex justify-center items-center p-4 sm:p-8">
+        <div class="w-full max-w-5xl h-[85vh] min-h-[650px] bg-slate-900/95 border border-emerald-500/30 rounded-2xl shadow-[0_0_50px_rgba(16,185,129,0.2)] overflow-hidden flex flex-col relative transform scale-95 transition-transform duration-500" id="d2-modal-content">
+            <!-- Close Button -->
+            <button onclick="closeD2Modal()" class="absolute top-4 right-4 z-[110] w-10 h-10 bg-slate-800/80 hover:bg-red-500/20 border border-slate-600 hover:border-red-500/50 rounded-full flex items-center justify-center text-slate-300 hover:text-red-400 transition-colors backdrop-blur-sm">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            
+            <!-- Content Area -->
+            <div class="flex-1 overflow-y-auto relative bg-transparent overflow-x-hidden">
+                <!-- Slide 0: Cover -->
+                <div id="d2-slide-0" class="d2-slide active flex-col justify-center items-center min-h-full p-12 text-center bg-gradient-to-br from-slate-900 via-emerald-950/40 to-slate-900 relative">
+                    <div class="w-24 h-24 mb-6 rounded-2xl bg-emerald-600/80 border border-emerald-400/50 flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.5)] transform transition hover:scale-105 relative z-10">
+                        <span class="text-5xl drop-shadow-md">🤔</span>
+                    </div>
+                    <h1 class="text-5xl font-black text-white mb-6 tracking-tight drop-shadow-lg relative z-10">降維打擊的嚴密證明</h1>
+                    <h2 class="text-2xl text-emerald-300 font-bold mb-8 relative z-10">為什麼正方體的截面，絕對切不出「正五邊形」？</h2>
+                    <div class="flex gap-2 justify-center mt-4 relative z-10">
+                        <span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold border border-blue-500/30">邏輯推理</span>
+                        <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold border border-emerald-500/30">空間幾何</span>
+                        <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold border border-amber-500/30">反證法</span>
+                    </div>
+                </div>
+
+                <!-- Slide 1 -->
+                <div id="d2-slide-1" class="d2-slide flex-col min-h-full p-10 bg-transparent">
+                    <h2 class="text-3xl font-bold text-emerald-300 mb-6">1. 尋找「平行的力量」</h2>
+                    <p class="text-slate-300 mb-6 text-lg leading-relaxed">我們在先前的課程中學過一個重要的空間定理：<br><strong class="text-emerald-200 text-xl border-b border-emerald-500/50 pb-1">「如果一個平面去截兩個相互平行的平面，它的交線必定互相平行。」</strong></p>
+                    <div class="flex-1 flex flex-col justify-center items-center pb-8 gap-8">
+                        <div class="bg-slate-800/80 rounded-xl p-8 border border-slate-700/50 shadow-lg text-center max-w-2xl w-full">
+                            <div class="text-6xl mb-4">🧊</div>
+                            <h3 class="text-xl font-bold text-slate-100 mb-4">正方體的結構解析</h3>
+                            <p class="text-slate-400 text-base leading-loose">
+                                正方體總共有 6 個面。這 6 個面可以分為 <strong class="text-cyan-300 text-lg">3 對互相平行的面</strong>。<br>
+                                分別是：(上與下)、(左與右)、(前與後)。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div id="d2-slide-2" class="d2-slide flex-col min-h-full p-10 bg-transparent">
+                    <h2 class="text-3xl font-bold text-emerald-300 mb-6">2. 鴿籠原理：必然的平行線</h2>
+                    <div class="flex-1 flex gap-6 items-stretch pb-4">
+                        <div class="flex-1 bg-slate-800/60 rounded-xl border border-slate-700/50 p-6 shadow-sm flex flex-col justify-center relative overflow-hidden">
+                            <div class="absolute -right-4 -bottom-4 text-9xl opacity-10">🔪</div>
+                            <h3 class="text-xl font-bold text-amber-300 mb-4">切出五邊形的代價</h3>
+                            <p class="text-slate-300 text-base leading-loose">
+                                當你用一刀切出「五邊形」時，這代表刀面必定切過了正方體的 <strong class="text-white">5 個面</strong>。
+                            </p>
+                        </div>
+                        <div class="flex-1 bg-slate-800/60 rounded-xl border border-slate-700/50 p-6 shadow-sm flex flex-col justify-center relative overflow-hidden">
+                            <div class="absolute -right-4 -bottom-4 text-9xl opacity-10">🕊️</div>
+                            <h3 class="text-xl font-bold text-amber-300 mb-4">避無可避的平行面</h3>
+                            <p class="text-slate-300 text-base leading-loose">
+                                正方體只有 3 對對立面。你要切 5 個面，根據<strong class="text-cyan-300">鴿籠原理</strong>（5 隻鴿子放進 3 個籠子），這 5 個面中<strong class="text-white text-lg underline decoration-amber-500">必定至少包含了 1 對平行的面</strong>。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mt-6 bg-emerald-900/20 border-l-4 border-emerald-500 text-emerald-200 p-6 rounded-r-lg shadow-[inset_0_0_20px_rgba(16,185,129,0.1)]">
+                        <div class="font-bold text-lg mb-2">💡 關鍵結論：</div>
+                        <p class="text-slate-300 text-base">既然截面切過了一對平行的面，根據先前的定理，切出的五邊形，<strong class="text-white text-xl mx-1 border-b border-emerald-400">必定存在至少一對互相平行的邊</strong>！</p>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div id="d2-slide-3" class="d2-slide flex-col min-h-full p-10 bg-transparent">
+                    <h2 class="text-3xl font-bold text-emerald-300 mb-6">3. 矛盾對決：五邊形的內在法則</h2>
+                    <div class="flex-1 flex items-center justify-center gap-8 pb-4">
+                        <div class="w-1/2 d2-slide-up">
+                            <h3 class="text-2xl font-bold text-slate-100 mb-6 flex items-center gap-3">
+                                <span class="text-rose-400">⭐</span> 正五邊形的秘密
+                            </h3>
+                            <p class="text-slate-400 text-lg leading-loose mb-6">
+                                回到我們熟悉的平面幾何。一個完美的「正五邊形」，它的每一個內角都是 108 度。
+                            </p>
+                            <div class="bg-rose-950/30 border-l-4 border-rose-500 p-5 rounded-r-xl shadow-lg">
+                                <p class="text-slate-300 text-lg leading-loose font-medium">
+                                    但最關鍵的是：<br><strong class="text-rose-400 text-2xl tracking-wide">正五邊形的「任意兩條邊」都絕對不會平行！</strong>
+                                </p>
+                            </div>
+                            <p class="text-slate-500 text-sm mt-6 pl-4 border-l-2 border-slate-700">
+                                (備註：在正多邊形中，只有偶數邊的圖形如正六邊形、正八邊形，才會有平行的對邊。)
+                            </p>
+                        </div>
+                        <div class="w-1/2 flex justify-center d2-slide-up d2-delay-1">
+                            <div class="bg-slate-800/80 rounded-3xl p-8 border border-slate-700/80 text-center shadow-[0_0_40px_rgba(0,0,0,0.6)] w-full max-w-md relative overflow-hidden">
+                                <div class="absolute top-0 right-0 w-32 h-32 bg-rose-500/10 blur-3xl rounded-full"></div>
+                                <div class="absolute bottom-0 left-0 w-32 h-32 bg-cyan-500/10 blur-3xl rounded-full"></div>
+                                
+                                <div class="text-5xl mb-6 font-black text-rose-500 tracking-widest animate-pulse">矛盾 ⚡</div>
+                                <div class="space-y-4 text-left relative z-10">
+                                    <div class="bg-slate-900/90 rounded-xl p-5 border border-slate-700 shadow-inner">
+                                        <div class="text-sm text-slate-400 mb-1">立體幾何推導：</div>
+                                        <div class="text-emerald-400 font-bold text-lg">截面五邊形「必須」有平行邊</div>
+                                    </div>
+                                    <div class="flex justify-center text-slate-500"><i class="fa-solid fa-bolt text-xl text-rose-500/50"></i></div>
+                                    <div class="bg-slate-900/90 rounded-xl p-5 border border-slate-700 shadow-inner">
+                                        <div class="text-sm text-slate-400 mb-1">平面幾何定義：</div>
+                                        <div class="text-rose-400 font-bold text-lg">正五邊形「不能」有平行邊</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-auto bg-slate-900/90 rounded-xl p-6 border border-slate-700 text-center shadow-[0_0_30px_rgba(0,0,0,0.5)] d2-slide-up d2-delay-2">
+                        <h3 class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-400 tracking-widest mb-2">Q.E.D. 證明完畢</h3>
+                        <p class="text-emerald-200/80 text-base font-medium">因此，不論你從什麼角度切、怎麼切，正方體都絕對不可能切出一個正五邊形！</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navigation -->
+            <div class="h-16 shrink-0 bg-slate-950/90 backdrop-blur-md border-t border-emerald-500/30 flex justify-between items-center px-6 z-20 relative">
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-[1px] bg-gradient-to-r from-transparent via-emerald-400 to-transparent shadow-[0_0_10px_rgba(16,185,129,0.8)]"></div>
+                <button id="d2-prevBtn" onclick="d2PrevSlide()" class="px-5 py-2 rounded-lg font-bold text-slate-400 hover:text-emerald-300 hover:bg-emerald-500/10 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-slate-400 transition-colors flex gap-2 items-center text-sm" disabled>
+                    <i class="fa-solid fa-arrow-left"></i> <span>上一步</span>
+                </button>
+                <div class="flex gap-2.5" id="d2-dots">
+                    <!-- Dots generated by JS -->
+                </div>
+                <button id="d2-nextBtn" onclick="d2NextSlide()" class="px-5 py-2 rounded-lg font-bold text-white bg-emerald-600 hover:bg-emerald-500 shadow-[0_0_20px_rgba(16,185,129,0.4)] transition-all flex gap-2 items-center text-sm">
+                    <span>下一步</span> <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
