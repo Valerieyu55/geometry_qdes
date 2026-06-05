@@ -28,6 +28,7 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        html { font-size: 18px; }
         body { 
             font-family: 'Noto Sans TC', sans-serif;
             background-color: #060a13;
@@ -165,9 +166,56 @@
         }
 
 
+    
+        /* Debate 2 Styles */
+        
+         
+         
+        .slide { display: none; opacity: 0; transition: opacity 0.5s ease-in-out; } 
+        .slide.active { display: flex; opacity: 1; } 
+         
+        /* 基礎動畫 */ 
+        .fade-in-up { animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; opacity: 0; transform: translateY(30px); } 
+        .fade-in { animation: fadeIn 0.5s ease forwards; opacity: 0; } 
+         
+        /* 線條動畫 */ 
+        .draw-line { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: drawLine 1.5s ease-in-out forwards; } 
+        .draw-line-slow { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: drawLine 2.5s ease-in-out forwards; } 
+         
+        /* 閃爍與跳動 */ 
+        .pulse-alert { animation: pulseRed 1.5s infinite; transform-origin: center; } 
+        .bounce-in { animation: bounceIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; opacity: 0; transform: scale(0.3); } 
+ 
+        /* 特殊自訂動畫 */ 
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } } 
+        @keyframes fadeIn { to { opacity: 1; } } 
+        @keyframes drawLine { to { stroke-dashoffset: 0; } } 
+        @keyframes pulseRed { 0% { filter: drop-shadow(0 0 2px rgba(239,68,68,0.4)); stroke-width: 4; } 50% { filter: drop-shadow(0 0 12px rgba(239,68,68,1)); stroke-width: 8; stroke: #ff0000; } 100% { filter: drop-shadow(0 0 2px rgba(239,68,68,0.4)); stroke-width: 4; } } 
+        @keyframes bounceIn { 0% { opacity: 0; transform: scale(0.3); } 50% { opacity: 1; transform: scale(1.1); } 100% { opacity: 1; transform: scale(1); } } 
+         
+        /* 精細延遲時間控制 */ 
+        .d-1 { animation-delay: 0.5s; } .d-2 { animation-delay: 1.0s; } .d-3 { animation-delay: 1.5s; } 
+        .d-4 { animation-delay: 2.0s; } .d-5 { animation-delay: 2.5s; } .d-6 { animation-delay: 3.0s; } 
+         
+        /* SVG 樣式 */ 
+        .cut-plane { fill: rgba(254, 226, 226, 0.6); stroke: #f87171; stroke-width: 2; stroke-linejoin: round; } 
+        .highlight-line { stroke: #dc2626; stroke-width: 6; stroke-linecap: round; } 
+        .track-line { stroke: #10b981; stroke-width: 6; stroke-dasharray: 10, 10; stroke-linecap: round; } 
+         
+        /* 3D 容器樣式 */ 
+        .three-canvas-container { cursor: grab; background: radial-gradient(circle, #f8fafc 0%, #e2e8f0 100%); } 
+        .three-canvas-container:active { cursor: grabbing; } 
+ 
+        /* Range Slider 樣式美化 (變得更精緻) */ 
+        input[type=range] { -webkit-appearance: none; background: transparent; } 
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 16px; width: 16px; border-radius: 50%; background: #4f46e5; cursor: pointer; margin-top: -5px; box-shadow: 0 2px 4px rgba(0,0,0,0.3); } 
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; cursor: pointer; background: #cbd5e1; border-radius: 3px; } 
+        input[type=range]:focus { outline: none; }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 </head>
-<body class="text-slate-200 min-h-screen flex flex-col overflow-hidden select-none">
+<body class="text-slate-200 h-screen max-h-screen flex flex-col overflow-hidden select-none">
 
     <header class="glass-panel border-b border-cyan-500/20 px-6 py-3.5 flex justify-between items-center z-20">
         <div class="flex items-center space-x-4">
@@ -184,13 +232,13 @@
                 </div>
                 <div>
                     <h1 class="text-base font-bold tracking-widest text-white flex items-center">
-                        <span data-i18n="mainTitle">立體幾何初步</span>
+                        <span data-i18n="mainTitle">立体几何初步</span>
                         <span class="text-xs font-mono px-2 py-0.5 ml-2 rounded bg-cyan-950/80 border border-cyan-500/30 text-cyber-cyan tech-font">CH-08</span>
                     </h1>
                     <p class="text-[10px] text-cyan-400/60 tracking-widest flex items-center gap-2">
                         <span class="uppercase tech-font" data-i18n="subTitle">Spatial Geometry Visualization System</span>
                         <span class="w-1 h-1 rounded-full bg-cyan-500/50"></span>
-                        <span class="text-cyan-300/80 font-sans tracking-normal hidden sm:inline">台灣區林口康橋國際學校老師製作</span>
+                        <span class="text-cyan-300/80 font-sans tracking-normal hidden sm:inline">台灣林口康橋國際學校老師製作</span>
                     </p>
                 </div>
             </div>
@@ -275,13 +323,6 @@
                         <button onclick="openExternalView('./platonic.html')" id="btn-nav-7" class="w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl bg-slate-950/40 border border-transparent hover:border-slate-700/50 text-left transition-all duration-300 group">
                             <span class="tech-font text-xs font-bold text-slate-500 bg-slate-900 w-6 h-6 flex items-center justify-center rounded-lg border border-slate-800 group-hover:text-slate-300">07</span>
                             <span class="text-sm font-medium tracking-wide text-slate-400 group-hover:text-slate-200">延伸思考：正多面體偵探室</span>
-                        </button>
-                        
-                        <!-- Added Feedback Board (Step 9) -->
-                        <div class="pt-2 border-t border-slate-800/50"></div>
-                        <button onclick="setActiveNav(9)" id="btn-nav-9" class="w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl bg-slate-950/40 border border-transparent hover:border-slate-700/50 text-left transition-all duration-300 group">
-                            <span class="tech-font text-xs font-bold text-slate-500 bg-slate-900 w-6 h-6 flex items-center justify-center rounded-lg border border-slate-800 group-hover:text-slate-300">08</span>
-                            <span class="text-sm font-medium tracking-wide text-slate-400 group-hover:text-slate-200">我有話要說</span>
                         </button>
                     </nav>
                 </div>
@@ -393,7 +434,7 @@
                     </div>
 
                     <!-- Step 1 View -->
-                    <div id="view-step1" class="w-full h-full flex flex-col absolute top-0 left-0 transition-opacity duration-500 opacity-0 pointer-events-none hidden">
+                    <div id="view-step1" class="w-full h-full flex flex-col absolute top-0 left-0 transition-opacity duration-500 opacity-0 pointer-events-none hidden overflow-y-auto">
                         <!-- Top/Middle Area (Two Columns) -->
                         <div class="flex-1 flex overflow-hidden">
                             <!-- Left Column: Cards -->
@@ -451,7 +492,7 @@
                     </div>
 
                     <!-- Step 2 View -->
-                    <div id="view-step2" class="w-full h-full flex flex-col absolute top-0 left-0 transition-opacity duration-500 opacity-0 pointer-events-none hidden">
+                    <div id="view-step2" class="w-full h-full flex flex-col absolute top-0 left-0 transition-opacity duration-500 opacity-0 pointer-events-none hidden overflow-y-auto">
                         <!-- Top info bar for Step 2 -->
                         <div class="p-4 flex justify-between items-center relative z-20">
                             <p class="text-sm text-cyan-300 tracking-wide" data-i18n="step2Intro">透過平面圖形繞軸旋轉，動態建構空間旋轉體。</p>
@@ -518,28 +559,47 @@
                             <div class="text-xs text-cyan-500/70 mb-3 tech-font tracking-[0.2em]">TEACHER CONTROL CONSOLE - PHASE 2</div>
                             <div class="flex gap-4 sm:gap-6">
                                 <button onclick="playStep2Rotation()" class="px-5 py-2.5 rounded-lg bg-slate-900 border border-cyan-500/40 text-cyan-300 hover:bg-cyan-900/40 hover:border-cyan-400 hover:shadow-[0_0_20px_rgba(6,182,212,0.5)] transition-all flex items-center gap-2 text-sm font-medium">
-                                    <span data-i18n="btnPlayRot">▶ 開始旋轉</span>
-                                </button>
-                                <button onclick="pauseStep2Rotation()" class="px-5 py-2.5 rounded-lg bg-slate-900 border border-slate-500/40 text-slate-300 hover:bg-slate-800 hover:border-slate-400 hover:shadow-[0_0_15px_rgba(148,163,184,0.4)] transition-all flex items-center gap-2 text-sm font-medium">
-                                    <span data-i18n="btnPauseRot">⏸ 暫停</span>
-                                </button>
-                                <button onclick="resetStep2Rotation()" class="px-5 py-2.5 rounded-lg bg-slate-900 border border-purple-500/40 text-purple-300 hover:bg-purple-900/40 hover:border-purple-400 hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] transition-all flex items-center gap-2 text-sm font-medium">
-                                    <span data-i18n="btnResetRot">🔄 重置</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Nets Area for Step 2 -->
-                        <div id="s2-nets-area" class="flex-1 flex flex-col hidden relative z-10 px-6 pb-6 pt-4 overflow-y-auto overflow-x-hidden">
-                            <div class="flex-1 glass-panel rounded-2xl flex flex-col items-center justify-center p-6 relative w-full min-h-fit">
-                                <div class="absolute top-4 left-0 w-full flex gap-3 px-4 flex-wrap justify-center z-[100] pointer-events-none" id="s2-nets-tabs">
+                                    <span data-i18n="btnPlayRot">▶ 開�                        <!-- Nets Area for Step 2 -->
+                        <div id="s2-nets-area" class="flex-1 flex flex-col hidden relative z-10 px-6 pb-6 pt-4 overflow-hidden">
+                            <div class="flex-1 glass-panel rounded-3xl flex flex-col p-6 relative w-full h-full min-h-0 overflow-hidden">
+                                <!-- Top: Tabs Navigation -->
+                                <div class="w-full flex flex-wrap gap-2.5 justify-center pb-4 border-b border-cyan-500/10 shrink-0 z-20" id="s2-nets-tabs">
                                     <!-- Tabs injected via JS -->
                                 </div>
-                                <div id="s2-nets-3d-container" class="w-full flex-1 flex items-center justify-center perspective-1000 cursor-grab relative z-10 min-h-[250px]">
+
+                                <!-- Middle: 3D Canvas Area -->
+                                <div id="s2-nets-3d-container" class="w-full flex-1 flex items-center justify-center perspective-1000 cursor-grab relative z-10 min-h-0 overflow-hidden">
+                                    <!-- Floating Helper Info -->
+                                    <div class="absolute bottom-3 right-3 bg-slate-950/65 border border-cyan-500/15 backdrop-blur-md px-3 py-1.5 rounded-xl text-[10px] text-cyan-400/80 tracking-wider pointer-events-none select-none z-20 flex items-center gap-1.5 shadow-lg">
+                                        <i class="fa-solid fa-arrows-spin animate-spin" style="animation-duration: 4s;"></i>
+                                        <span>拖曳旋轉 | 滾輪縮放</span>
+                                    </div>
                                     <div id="s2-nets-scene" class="scene" style="transform-style: preserve-3d; transform: rotateX(-15deg) rotateY(-25deg);">
                                        <!-- 3D injected via JS -->
+                                     </div>
+                                </div>
+
+                                <!-- Bottom: Control Panel & Note Info -->
+                                <div class="w-full shrink-0 flex flex-col mt-auto pt-4 border-t border-cyan-500/10 z-20 relative gap-3">
+                                    <!-- Folding Slider Card -->
+                                    <div class="w-full bg-slate-900/40 border border-cyan-500/10 backdrop-blur-md p-4 rounded-2xl shadow-lg">
+                                        <div class="flex justify-between items-center mb-2.5">
+                                            <span class="text-xs font-bold text-slate-300 tracking-wider flex items-center gap-2">
+                                                <i class="fa-solid fa-sliders text-cyan-400"></i>
+                                                展開 / 摺疊程度
+                                            </span>
+                                            <span id="s2-nets-fp-val" class="text-cyan-400 font-mono text-xs font-bold px-2 py-0.5 rounded bg-cyan-950/50 border border-cyan-500/25">0%</span>
+                                        </div>
+                                        <input type="range" id="s2-nets-slider" min="0" max="100" value="0" oninput="updateNetsFold(this.value)" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-500">
+                                    </div>
+
+                                    <!-- Tip Note Info Box -->
+                                    <div class="p-3 bg-cyan-950/15 border border-cyan-500/10 rounded-2xl text-center text-xs text-cyan-300/90 leading-relaxed">
+                                        <span id="s2-nets-note" class="tracking-wide"></span>
                                     </div>
                                 </div>
+                            </div>
+                        </div>    </div>
                                 <div class="w-full bg-slate-900/80 border border-slate-700 p-4 rounded-xl mt-4 z-20 shadow-lg relative">
                                     <div class="flex justify-between items-center mb-2">
                                         <span class="text-xs font-bold text-slate-400 tracking-widest">展開 / 摺疊程度</span>
@@ -588,7 +648,52 @@
                                 font-weight: bold;
                             }
                             .ans-blank:not(.ans-hidden)::after { display: none; }
-                        </style>
+                        
+        /* Debate 2 Styles */
+        
+         
+         
+        .slide { display: none; opacity: 0; transition: opacity 0.5s ease-in-out; } 
+        .slide.active { display: flex; opacity: 1; } 
+         
+        /* 基礎動畫 */ 
+        .fade-in-up { animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; opacity: 0; transform: translateY(30px); } 
+        .fade-in { animation: fadeIn 0.5s ease forwards; opacity: 0; } 
+         
+        /* 線條動畫 */ 
+        .draw-line { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: drawLine 1.5s ease-in-out forwards; } 
+        .draw-line-slow { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: drawLine 2.5s ease-in-out forwards; } 
+         
+        /* 閃爍與跳動 */ 
+        .pulse-alert { animation: pulseRed 1.5s infinite; transform-origin: center; } 
+        .bounce-in { animation: bounceIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; opacity: 0; transform: scale(0.3); } 
+ 
+        /* 特殊自訂動畫 */ 
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } } 
+        @keyframes fadeIn { to { opacity: 1; } } 
+        @keyframes drawLine { to { stroke-dashoffset: 0; } } 
+        @keyframes pulseRed { 0% { filter: drop-shadow(0 0 2px rgba(239,68,68,0.4)); stroke-width: 4; } 50% { filter: drop-shadow(0 0 12px rgba(239,68,68,1)); stroke-width: 8; stroke: #ff0000; } 100% { filter: drop-shadow(0 0 2px rgba(239,68,68,0.4)); stroke-width: 4; } } 
+        @keyframes bounceIn { 0% { opacity: 0; transform: scale(0.3); } 50% { opacity: 1; transform: scale(1.1); } 100% { opacity: 1; transform: scale(1); } } 
+         
+        /* 精細延遲時間控制 */ 
+        .d-1 { animation-delay: 0.5s; } .d-2 { animation-delay: 1.0s; } .d-3 { animation-delay: 1.5s; } 
+        .d-4 { animation-delay: 2.0s; } .d-5 { animation-delay: 2.5s; } .d-6 { animation-delay: 3.0s; } 
+         
+        /* SVG 樣式 */ 
+        .cut-plane { fill: rgba(254, 226, 226, 0.6); stroke: #f87171; stroke-width: 2; stroke-linejoin: round; } 
+        .highlight-line { stroke: #dc2626; stroke-width: 6; stroke-linecap: round; } 
+        .track-line { stroke: #10b981; stroke-width: 6; stroke-dasharray: 10, 10; stroke-linecap: round; } 
+         
+        /* 3D 容器樣式 */ 
+        .three-canvas-container { cursor: grab; background: radial-gradient(circle, #f8fafc 0%, #e2e8f0 100%); } 
+        .three-canvas-container:active { cursor: grabbing; } 
+ 
+        /* Range Slider 樣式美化 (變得更精緻) */ 
+        input[type=range] { -webkit-appearance: none; background: transparent; } 
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 16px; width: 16px; border-radius: 50%; background: #4f46e5; cursor: pointer; margin-top: -5px; box-shadow: 0 2px 4px rgba(0,0,0,0.3); } 
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; cursor: pointer; background: #cbd5e1; border-radius: 3px; } 
+        input[type=range]:focus { outline: none; }
+    </style>
 
                         <div class="glass-panel w-full max-w-5xl mx-auto rounded-2xl border border-cyan-500/30 p-8 flex flex-col gap-6">
 
@@ -686,7 +791,7 @@
 
 
                     <!-- Step 4 View (Old Step 3) -->
-                    <div id="view-step4" class="w-full h-full flex flex-col absolute top-0 left-0 transition-opacity duration-500 opacity-0 pointer-events-none hidden">
+                    <div id="view-step4" class="w-full h-full flex flex-col absolute top-0 left-0 transition-opacity duration-500 opacity-0 pointer-events-none hidden overflow-y-auto">
                         <!-- Top/Middle Area (Two Columns) -->
                         <div class="flex-1 flex overflow-hidden">
                             <!-- Left Column: Question Card -->
@@ -757,7 +862,7 @@
                     </div>
 
                     <!-- Step 5 View (Old Step 4) -->
-                    <div id="view-step5" class="w-full h-full flex flex-col absolute top-0 left-0 transition-opacity duration-500 opacity-0 pointer-events-none hidden">
+                    <div id="view-step5" class="w-full h-full flex flex-col absolute top-0 left-0 transition-opacity duration-500 opacity-0 pointer-events-none hidden overflow-y-auto">
                         <div class="flex-1 flex overflow-hidden">
                             <!-- Left: 3D Visualization Area -->
                             <div id="s4-scene-area" class="flex-1 flex items-center justify-center relative perspective-1000 cursor-pointer select-none">
@@ -824,7 +929,6 @@
                                 <i class="fa-solid fa-cube text-xs"></i>
                                 <span>思辨 2：降維打擊</span>
                             </button>
-
                         </div>
 
                         <!-- Tab Panel: debate 1 -->
@@ -852,9 +956,9 @@
                                 <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/10 to-transparent pointer-events-none"></div>
                                 <h3 class="text-xl font-bold text-emerald-300 mb-6 flex items-center gap-3 border-b border-emerald-500/20 pb-4" data-i18n="s6d2Title">🤔 思辨 2："降維打擊"的嚴密證明</h3>
                                 <div class="space-y-6 text-base text-slate-300 leading-relaxed mb-8 z-10">
-                                    <p data-i18n="s6d2Q1">正四面體（三角錐）由 4 個全等的等邊三角形圍成，共有 4 個面、6 條稜、4 個頂點。</p>
-                                    <p class="font-bold text-emerald-200 text-lg" data-i18n="s6d2Q2">請以數學邏輯論證：為什麼用一個平面去截正四面體，絕對不可能切出「五邊形」或更多邊的截面？</p>
-                                    <p class="text-slate-400 italic" data-i18n="s6d2Q3">（提示：截面的每一條邊，都是切面與正四面體某一個「面」的________。）</p>
+                                    <p data-i18n="s6d2Q1">如果用一個無限大的平面，像切豆腐一樣"一刀切"過一個正方體，截面最多可以是六邊形。</p>
+                                    <p class="font-bold text-emerald-200 text-lg" data-i18n="s6d2Q2">請以數學邏輯論證：為什麼無論你怎麼切，都絕對不可能切出一個「正五邊形」？</p>
+                                    <p class="text-slate-400 italic" data-i18n="s6d2Q3">（提示：如果一個平面去截兩個相互平行的平面，它的交線互相 ________。）</p>
                                 </div>
                                 <div class="mt-auto z-10 flex flex-col items-center w-full">
                                     <button onclick="openD2Modal()" class="w-full py-4 rounded-xl bg-gradient-to-r from-emerald-600/80 to-teal-600/80 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-lg shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)] transition-all flex justify-center items-center gap-3 border border-emerald-400/30 group">
@@ -864,15 +968,18 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
 
                     <!-- Step 8: Euler Theorem -->
                     <div id="view-step8" class="w-full h-full flex flex-col absolute top-0 left-0 transition-opacity duration-500 opacity-0 pointer-events-none hidden p-6 overflow-y-auto">
-                        <div class="flex items-center gap-4 border-b border-amber-500/30 pb-4 mb-6">
-                            <h2 class="text-2xl font-bold text-amber-300 tracking-wide">凸多面體的歐拉定理</h2>
-                            <span class="tech-font text-xs text-amber-500/70 border border-amber-500/30 px-2 py-0.5 rounded">V − E + F = 2</span>
+                        <div class="flex items-center justify-between border-b border-amber-500/30 pb-4 mb-6">
+                            <div class="flex items-center gap-4">
+                                <h2 class="text-2xl font-bold text-amber-300 tracking-wide">凸多面體的歐拉定理</h2>
+                                <span class="tech-font text-xs text-amber-500/70 border border-amber-500/30 px-2 py-0.5 rounded">V − E + F = 2</span>
+                            </div>
+                            <button onclick="revealAllAnswers('#view-step8')" class="px-4 py-1.5 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300 hover:bg-amber-500/20 transition-all font-medium text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-eye text-xs"></i> 一鍵顯示答案
+                            </button>
                         </div>
 
                         <div class="max-w-5xl mx-auto w-full space-y-8 pb-12">
@@ -949,10 +1056,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="p-4 border-t border-slate-700/50 flex justify-end gap-3">
-                                    <button onclick="revealAllEulerAnswers()" class="px-6 py-2.5 rounded-full bg-slate-800 border border-slate-600 text-slate-300 hover:bg-slate-700 hover:text-white transition-all font-medium text-sm flex items-center gap-2">
-                                        <i class="fa-solid fa-eye text-xs"></i> 一鍵顯示全部答案
-                                    </button>
+                                <div class="p-4 border-t border-slate-700/50 flex justify-end">
                                     <button onclick="revealEuler()" class="px-6 py-2.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 hover:bg-amber-500/30 hover:shadow-[0_0_15px_rgba(251,191,36,0.3)] transition-all font-medium text-sm flex items-center gap-2">
                                         <i class="fa-solid fa-calculator text-xs"></i> 計算 V − E + F
                                     </button>
@@ -978,70 +1082,6 @@
                                 </div>
                             </div>
 
-                            <!-- Euler Biography Button -->
-                            <div class="flex justify-center mt-8">
-                                <button onclick="openEulerModal()" class="px-8 py-3 rounded-full bg-gradient-to-r from-blue-600/80 to-indigo-600/80 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-sm shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transition-all flex items-center gap-3 border border-blue-400/30">
-                                    <i class="fa-solid fa-book-open"></i> 人物誌：數學家歐拉
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Step 9 View: Feedback Board -->
-                    <div id="view-step9" class="w-full h-full flex flex-col absolute top-0 left-0 transition-opacity duration-500 opacity-0 pointer-events-none hidden p-6 overflow-y-auto">
-                        <div class="max-w-4xl mx-auto w-full pb-20">
-                            <!-- Header -->
-                            <div class="glass-panel rounded-2xl p-6 mb-6 border border-cyan-500/20 relative overflow-hidden flex justify-between items-center">
-                                <div class="absolute -right-10 -top-10 w-40 h-40 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
-                                <div>
-                                    <h2 class="text-2xl font-bold text-cyan-300 tracking-wide mb-1">我有話要說</h2>
-                                    <p class="text-slate-400 text-sm">分享你的學習心得或提出疑問，老師會親自解答！</p>
-                                </div>
-                                <div ondblclick="toggleTeacherMode()" class="w-12 h-12 rounded-xl bg-cyan-950/80 border border-cyan-500/40 flex items-center justify-center shadow-[0_0_15px_rgba(6,182,212,0.3)] cursor-pointer hover:bg-cyan-900 transition-colors select-none" title="切換老師模式 (隱藏)">
-                                    <span class="text-2xl text-cyan-400 font-bold">08</span>
-                                </div>
-                            </div>
-                            
-                            <!-- Feedback Form -->
-                            <div class="bg-slate-900/60 rounded-xl border border-slate-700/50 p-6 mb-8 shadow-lg">
-                                <h3 class="text-lg font-bold text-slate-200 mb-4 flex items-center gap-2"><i class="fa-solid fa-pen-to-square text-cyan-400"></i> 新增留言</h3>
-                                
-                                <div class="flex flex-col md:flex-row gap-4 mb-4">
-                                    <div class="flex-1">
-                                        <label class="block text-xs text-slate-400 mb-1">姓名 / 暱稱</label>
-                                        <input type="text" id="fb-name" class="w-full bg-slate-950/80 border border-slate-700 rounded-lg px-3 py-2 text-slate-200 text-sm focus:outline-none focus:border-cyan-500 transition-colors" placeholder="請輸入名字...">
-                                    </div>
-                                    <div class="flex-1">
-                                        <label class="block text-xs text-slate-400 mb-1">Email (選填)</label>
-                                        <input type="email" id="fb-email" class="w-full bg-slate-950/80 border border-slate-700 rounded-lg px-3 py-2 text-slate-200 text-sm focus:outline-none focus:border-cyan-500 transition-colors" placeholder="方便老師回覆...">
-                                    </div>
-                                    <div class="flex-1">
-                                        <label class="block text-xs text-slate-400 mb-1">公開設定</label>
-                                        <select id="fb-visibility" class="w-full bg-slate-950/80 border border-slate-700 rounded-lg px-3 py-2 text-slate-200 text-sm focus:outline-none focus:border-cyan-500 transition-colors cursor-pointer">
-                                            <option value="public">🌍 公開（大家都能看見）</option>
-                                            <option value="private">🔒 私密（只有老師能看見）</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                
-                                <div class="mb-4">
-                                    <label class="block text-xs text-slate-400 mb-1">留言內容</label>
-                                    <textarea id="fb-content" rows="4" class="w-full bg-slate-950/80 border border-slate-700 rounded-lg px-3 py-2 text-slate-200 text-sm focus:outline-none focus:border-cyan-500 transition-colors resize-none" placeholder="寫下你的想法或問題..."></textarea>
-                                </div>
-                                
-                                <div class="flex justify-end">
-                                    <button onclick="submitFeedback()" class="px-6 py-2 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white rounded-lg font-bold text-sm shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all">送出留言</button>
-                                </div>
-                            </div>
-
-                            <!-- Feedback Display Area -->
-                            <div class="space-y-4">
-                                <h3 class="text-lg font-bold text-slate-200 mb-4 flex items-center gap-2"><i class="fa-solid fa-comments text-cyan-400"></i> 最新留言</h3>
-                                
-                                <div id="fb-messages" class="space-y-4">
-                                    <!-- Content will be injected by JS -->
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -1394,7 +1434,7 @@
 
         function setActiveNav(stepId) {
             // Update Buttons UI
-            for(let i=0; i<=9; i++) {
+            for(let i=0; i<=8; i++) {
                 const btn = document.getElementById(`btn-nav-${i}`);
                 if (!btn) continue;
                 const spanNum = btn.querySelector('span:first-child');
@@ -1420,7 +1460,6 @@
             else if (stepId === 5) renderStep5();
             else if (stepId === 6) renderStep6();
             else if (stepId === 8) renderStep8();
-            else if (stepId === 9) renderStep9();
 
             switchLanguage(document.getElementById('lang-select').value);
             document.getElementById('sys-status').textContent = `SYS_STATUS: STEP_${stepId}_LOADED`;
@@ -1463,7 +1502,7 @@
         }
 
         function showView(stepId) {
-            for(let i=0; i<=9; i++) {
+            for(let i=0; i<=8; i++) {
                 const view = document.getElementById(`view-step${i}`);
                 if(!view) continue;
                 if(i === stepId) {
@@ -1499,7 +1538,7 @@
         function openExternalView(url) {
             const stepId = 7;
             // Hide all steps
-            for(let i=0; i<=9; i++) {
+            for(let i=0; i<=8; i++) {
                 const view = document.getElementById(`view-step${i}`);
                 if(view) {
                     view.classList.add('opacity-0', 'pointer-events-none');
@@ -1608,144 +1647,6 @@
             });
         }
 
-        let isTeacherMode = false;
-        let feedbackData = JSON.parse(localStorage.getItem('geometry_feedback')) || [];
-
-        function toggleTeacherMode() {
-            if (isTeacherMode) {
-                isTeacherMode = false;
-                showToast('已退出老師模式。', 'fa-lock');
-            } else {
-                const pass = prompt('請輸入教師密碼：');
-                if (pass === 'kcislk') {
-                    isTeacherMode = true;
-                    showToast('歡迎回來！已切換至老師模式。', 'fa-unlock');
-                } else if (pass !== null) {
-                    alert('密碼錯誤！');
-                    return;
-                } else {
-                    return;
-                }
-            }
-            renderFeedback();
-        }
-
-        function showToast(message, iconClass = 'fa-check-circle') {
-            const toast = document.createElement('div');
-            toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 bg-cyan-900/90 text-cyan-100 px-6 py-3 rounded-full border border-cyan-500/40 shadow-lg shadow-cyan-500/20 z-[9999] opacity-0 transition-opacity duration-300 tech-font tracking-wider text-sm flex items-center gap-2';
-            toast.innerHTML = `<i class="fa-solid ${iconClass} text-cyan-400"></i> ${message}`;
-            document.body.appendChild(toast);
-            
-            setTimeout(() => toast.classList.remove('opacity-0'), 10);
-            setTimeout(() => {
-                toast.classList.add('opacity-0');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
-        }
-
-        function renderFeedback() {
-            const list = document.getElementById('fb-messages');
-            if (!list) return;
-            
-            list.innerHTML = '';
-            
-            let visibleCount = 0;
-            
-            // Loop backwards to show newest first
-            for (let i = feedbackData.length - 1; i >= 0; i--) {
-                const fb = feedbackData[i];
-                if (fb.isPrivate && !isTeacherMode) {
-                    continue; // Skip private messages if not teacher
-                }
-                
-                visibleCount++;
-                const badgeClass = fb.isPrivate ? 'border-amber-500/30 text-amber-400 bg-amber-500/10' : 'border-cyan-500/30 text-cyan-400 bg-cyan-500/10';
-                const badgeText = fb.isPrivate ? '🔒 私密（僅老師可見）' : '🌍 公開';
-                const borderColor = fb.isPrivate ? 'border-amber-500/20' : 'border-slate-700/50';
-                const initial = fb.name.charAt(0);
-                const safeContent = fb.content.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, '<br>');
-                
-                const html = `
-                    <div class="bg-slate-800/40 border ${borderColor} rounded-xl p-4 transition-all duration-300">
-                        <div class="flex justify-between items-center mb-2">
-                            <div class="flex items-center gap-2">
-                                <div class="w-6 h-6 rounded-full bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center text-emerald-300 text-xs font-bold">${initial}</div>
-                                <span class="text-sm font-bold text-slate-300">${fb.name}</span>
-                                ${fb.email && isTeacherMode ? `<span class="text-[10px] text-cyan-400 border border-cyan-500/30 bg-cyan-500/10 px-1.5 py-0.5 rounded-md ml-1"><i class="fa-regular fa-envelope"></i> ${fb.email}</span>` : ''}
-                                <span class="text-xs text-slate-500">${fb.time}</span>
-                            </div>
-                            <span class="px-2 py-0.5 rounded text-[10px] border ${badgeClass}">${badgeText}</span>
-                        </div>
-                        <p class="text-slate-300 text-sm leading-relaxed ${fb.isPrivate ? 'italic text-amber-200/80' : ''}">${safeContent}</p>
-                    </div>
-                `;
-                list.insertAdjacentHTML('beforeend', html);
-            }
-            
-            if (visibleCount === 0) {
-                list.innerHTML = '<div class="text-center text-slate-500 py-8 text-sm">目前還沒有留言，來搶頭香吧！</div>';
-            }
-        }
-
-        function renderStep9() {
-            showView(9);
-            renderFeedback();
-        }
-
-        function submitFeedback() {
-            const nameInput = document.getElementById('fb-name');
-            const emailInput = document.getElementById('fb-email');
-            const contentInput = document.getElementById('fb-content');
-            const visibilitySelect = document.getElementById('fb-visibility');
-            
-            const name = nameInput.value.trim() || '匿名同學';
-            const email = emailInput.value.trim();
-            const content = contentInput.value.trim();
-            const visibility = visibilitySelect.value;
-            
-            if (!content) {
-                alert('請輸入留言內容！');
-                return;
-            }
-            
-            const isPrivate = visibility === 'private';
-            
-            // Format time
-            const now = new Date();
-            const timeStr = `${now.getFullYear()}/${(now.getMonth()+1).toString().padStart(2,'0')}/${now.getDate().toString().padStart(2,'0')} ${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
-            
-            feedbackData.push({
-                name: name,
-                email: email,
-                content: content,
-                isPrivate: isPrivate,
-                time: timeStr
-            });
-            
-            // Save to localStorage
-            localStorage.setItem('geometry_feedback', JSON.stringify(feedbackData));
-            
-            emailInput.value = '';
-            
-            contentInput.value = '';
-            
-            if (isPrivate && !isTeacherMode) {
-                showToast('已悄悄送給老師囉！', 'fa-paper-plane');
-            } else {
-                renderFeedback();
-                showToast('留言送出成功！', 'fa-check-circle');
-            }
-        }
-
-        function revealAllEulerAnswers() {
-            // Reveal V, E, F blanks
-            document.querySelectorAll('#view-step8 .ans-blank.ans-hidden').forEach(blank => {
-                blank.classList.remove('ans-hidden');
-            });
-            // Automatically calculate the final result column
-            revealEuler();
-        }
-
         function revealEuler() {
             const rows = document.querySelectorAll('#euler-table-body tr');
             rows.forEach(row => {
@@ -1763,6 +1664,14 @@
                     disc.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }
             }, 400);
+        }
+
+        function revealAllAnswers(containerSelector) {
+            const container = document.querySelector(containerSelector || 'body');
+            if (container) {
+                const hiddens = container.querySelectorAll('.ans-hidden');
+                hiddens.forEach(el => el.classList.remove('ans-hidden'));
+            }
         }
 
         function toggleReveal(id, btn) {
@@ -2473,7 +2382,7 @@
         }
 
         function renderNetsHTML(shapeId, fp) {
-            const s = 70;
+            const s = 60;
             let html = '';
             if (shapeId === 'cube') {
                 html = `
@@ -2672,7 +2581,15 @@
                 const shape = netShapesData[key];
                 const isActive = key === currentNetShape;
                 const btn = document.createElement('button');
-                btn.className = `pointer-events-auto px-5 py-2 rounded-full text-xs font-bold transition-all backdrop-blur-md tracking-wider ${isActive ? `${shape.tagColor} text-white shadow-[0_0_15px_rgba(6,182,212,0.4)] border border-cyan-400 scale-105` : 'bg-slate-900/50 text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border border-slate-700/50 hover:border-slate-500/50'}`;
+                
+                let activeShadow = 'shadow-[0_0_15px_rgba(6,182,212,0.4)]';
+                if (key === 'triPrism') activeShadow = 'shadow-[0_0_15px_rgba(168,85,247,0.4)]';
+                else if (key === 'cylinder') activeShadow = 'shadow-[0_0_15px_rgba(16,185,129,0.4)]';
+                else if (key === 'cone') activeShadow = 'shadow-[0_0_15px_rgba(239,68,68,0.4)]';
+                else if (key === 'tetra') activeShadow = 'shadow-[0_0_15px_rgba(99,102,241,0.4)]';
+                else if (key === 'sqPyramid') activeShadow = 'shadow-[0_0_15px_rgba(245,158,11,0.4)]';
+
+                btn.className = `pointer-events-auto px-5 py-2.5 rounded-xl text-xs font-bold transition-all tracking-wider ${isActive ? `${shape.tagColor} text-white ${activeShadow} border ${shape.color} scale-105` : 'bg-slate-900/60 text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 border border-slate-800/80 hover:border-slate-700/80'}`;
                 btn.innerHTML = shape.name;
                 btn.onclick = () => {
                     currentNetShape = key;
@@ -2823,6 +2740,51 @@
         @keyframes pkgGapPulse { 0% { fill: #ef4444; transform: scale(1); } 50% { fill: #ff0000; transform: scale(1.08); } 100% { fill: #ef4444; transform: scale(1); } }
 
         .pkg-clip-hexagon { clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); }
+    
+        /* Debate 2 Styles */
+        
+         
+         
+        .slide { display: none; opacity: 0; transition: opacity 0.5s ease-in-out; } 
+        .slide.active { display: flex; opacity: 1; } 
+         
+        /* 基礎動畫 */ 
+        .fade-in-up { animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; opacity: 0; transform: translateY(30px); } 
+        .fade-in { animation: fadeIn 0.5s ease forwards; opacity: 0; } 
+         
+        /* 線條動畫 */ 
+        .draw-line { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: drawLine 1.5s ease-in-out forwards; } 
+        .draw-line-slow { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: drawLine 2.5s ease-in-out forwards; } 
+         
+        /* 閃爍與跳動 */ 
+        .pulse-alert { animation: pulseRed 1.5s infinite; transform-origin: center; } 
+        .bounce-in { animation: bounceIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; opacity: 0; transform: scale(0.3); } 
+ 
+        /* 特殊自訂動畫 */ 
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } } 
+        @keyframes fadeIn { to { opacity: 1; } } 
+        @keyframes drawLine { to { stroke-dashoffset: 0; } } 
+        @keyframes pulseRed { 0% { filter: drop-shadow(0 0 2px rgba(239,68,68,0.4)); stroke-width: 4; } 50% { filter: drop-shadow(0 0 12px rgba(239,68,68,1)); stroke-width: 8; stroke: #ff0000; } 100% { filter: drop-shadow(0 0 2px rgba(239,68,68,0.4)); stroke-width: 4; } } 
+        @keyframes bounceIn { 0% { opacity: 0; transform: scale(0.3); } 50% { opacity: 1; transform: scale(1.1); } 100% { opacity: 1; transform: scale(1); } } 
+         
+        /* 精細延遲時間控制 */ 
+        .d-1 { animation-delay: 0.5s; } .d-2 { animation-delay: 1.0s; } .d-3 { animation-delay: 1.5s; } 
+        .d-4 { animation-delay: 2.0s; } .d-5 { animation-delay: 2.5s; } .d-6 { animation-delay: 3.0s; } 
+         
+        /* SVG 樣式 */ 
+        .cut-plane { fill: rgba(254, 226, 226, 0.6); stroke: #f87171; stroke-width: 2; stroke-linejoin: round; } 
+        .highlight-line { stroke: #dc2626; stroke-width: 6; stroke-linecap: round; } 
+        .track-line { stroke: #10b981; stroke-width: 6; stroke-dasharray: 10, 10; stroke-linecap: round; } 
+         
+        /* 3D 容器樣式 */ 
+        .three-canvas-container { cursor: grab; background: radial-gradient(circle, #f8fafc 0%, #e2e8f0 100%); } 
+        .three-canvas-container:active { cursor: grabbing; } 
+ 
+        /* Range Slider 樣式美化 (變得更精緻) */ 
+        input[type=range] { -webkit-appearance: none; background: transparent; } 
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 16px; width: 16px; border-radius: 50%; background: #4f46e5; cursor: pointer; margin-top: -5px; box-shadow: 0 2px 4px rgba(0,0,0,0.3); } 
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; cursor: pointer; background: #cbd5e1; border-radius: 3px; } 
+        input[type=range]:focus { outline: none; }
     </style>
 
     <!-- Course Guidance Modal -->
@@ -3072,66 +3034,18 @@
 
     <!-- D2 Modal Script -->
     <script>
-        let d2CurrentSlide = 0;
-        const d2TotalSlides = 4;
-
-        function updateD2Slide() {
-            document.querySelectorAll('.d2-slide').forEach((slide, index) => {
-                if (index === d2CurrentSlide) {
-                    slide.classList.add('active');
-                } else {
-                    slide.classList.remove('active');
-                }
-            });
-            
-            document.getElementById('d2-prevBtn').disabled = d2CurrentSlide === 0;
-            
-            const nextBtn = document.getElementById('d2-nextBtn');
-            if (d2CurrentSlide === d2TotalSlides - 1) {
-                nextBtn.innerHTML = '<span>完成推導</span> <i class="fa-solid fa-check"></i>';
-                nextBtn.classList.replace('bg-emerald-600', 'bg-teal-600');
-                nextBtn.classList.replace('hover:bg-emerald-500', 'hover:bg-teal-500');
-                nextBtn.setAttribute('onclick', 'closeD2Modal()');
-            } else {
-                nextBtn.innerHTML = '<span>下一步</span> <i class="fa-solid fa-arrow-right"></i>';
-                nextBtn.classList.replace('bg-teal-600', 'bg-emerald-600');
-                nextBtn.classList.replace('hover:bg-teal-500', 'hover:bg-emerald-500');
-                nextBtn.setAttribute('onclick', 'd2NextSlide()');
-            }
-
-            // update dots
-            const dotsHTML = Array.from({length: d2TotalSlides}).map((_, i) => 
-                `<div class="w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === d2CurrentSlide ? 'bg-emerald-400 w-6 shadow-[0_0_8px_rgba(52,211,153,0.8)]' : 'bg-slate-700 hover:bg-slate-500 cursor-pointer'}" onclick="gotoD2Slide(${i})"></div>`
-            ).join('');
-            document.getElementById('d2-dots').innerHTML = dotsHTML;
-        }
-
-        function gotoD2Slide(index) {
-            d2CurrentSlide = index;
-            updateD2Slide();
-        }
-
-        function d2NextSlide() {
-            if (d2CurrentSlide < d2TotalSlides - 1) {
-                d2CurrentSlide++;
-                updateD2Slide();
-            }
-        }
-
-        function d2PrevSlide() {
-            if (d2CurrentSlide > 0) {
-                d2CurrentSlide--;
-                updateD2Slide();
-            }
-        }
-
         function openD2Modal() {
-            d2CurrentSlide = 0;
-            updateD2Slide();
             const modal = document.getElementById('d2-modal');
             const content = document.getElementById('d2-modal-content');
-            modal.classList.remove('pointer-events-none');
-            modal.classList.remove('opacity-0');
+            modal.classList.remove('pointer-events-none', 'opacity-0');
+            modal.classList.add('opacity-100');
+            
+            // Reset to Slide 1
+            if (typeof updateSlide === 'function') {
+                currentSlide = 0;
+                updateSlide();
+            }
+            
             setTimeout(() => {
                 content.classList.remove('scale-95');
                 content.classList.add('scale-100');
@@ -3143,341 +3057,870 @@
             const content = document.getElementById('d2-modal-content');
             content.classList.remove('scale-100');
             content.classList.add('scale-95');
+            modal.classList.remove('opacity-100');
             modal.classList.add('opacity-0');
             setTimeout(() => {
                 modal.classList.add('pointer-events-none');
             }, 500);
-        }
-
-        function openEulerModal() {
-            const modal = document.getElementById('euler-modal');
-            const content = document.getElementById('euler-modal-content');
-            modal.classList.remove('pointer-events-none');
-            modal.classList.remove('opacity-0');
-            setTimeout(() => {
-                content.classList.remove('scale-95');
-                content.classList.add('scale-100');
-            }, 10);
-        }
-
-        function closeEulerModal() {
-            const modal = document.getElementById('euler-modal');
-            const content = document.getElementById('euler-modal-content');
-            content.classList.remove('scale-100');
-            content.classList.add('scale-95');
-            modal.classList.add('opacity-0');
-            setTimeout(() => {
-                modal.classList.add('pointer-events-none');
-            }, 500);
-        }
-
-        function d2PlayTetraAnim() {
-            const faces = [
-                { id: 'd2f-f1', badge: 'd2-badge-1', color: 'rgba(56,189,248,0.45)',  stroke: 'rgb(56,189,248)'  },
-                { id: 'd2f-f2', badge: 'd2-badge-2', color: 'rgba(251,146,60,0.45)',  stroke: 'rgb(251,146,60)'  },
-                { id: 'd2f-f3', badge: 'd2-badge-3', color: 'rgba(167,139,250,0.45)', stroke: 'rgb(167,139,250)' },
-                { id: 'd2f-f4', badge: 'd2-badge-4', color: 'rgba(52,211,153,0.35)',   stroke: 'rgb(52,211,153)'  },
-            ];
-
-            // Reset all first
-            faces.forEach(f => {
-                const el = document.getElementById(f.id);
-                if (!el) return;
-                el.style.transition = 'none';
-                el.setAttribute('fill', 'rgba(100,116,139,0.15)');
-                el.setAttribute('stroke', 'rgb(148,163,184)');
-                document.getElementById(f.badge).setAttribute('fill', 'rgba(251,191,36,0)');
-            });
-            const quad = document.getElementById('d2-quad');
-            const label = document.getElementById('d2-section-label');
-            if (quad) { quad.setAttribute('fill', 'rgba(56,189,248,0)'); quad.setAttribute('stroke', 'rgba(56,189,248,0)'); }
-            if (label) { label.setAttribute('fill', 'rgba(56,189,248,0)'); }
-
-            // Animate faces one by one
-            faces.forEach((f, i) => {
-                setTimeout(() => {
-                    const el = document.getElementById(f.id);
-                    if (!el) return;
-                    el.style.transition = 'fill 0.4s, stroke 0.4s';
-                    el.setAttribute('fill', f.color);
-                    el.setAttribute('stroke', f.stroke);
-                    el.setAttribute('stroke-width', '2.5');
-                    const badge = document.getElementById(f.badge);
-                    badge.style.transition = 'all 0.3s';
-                    badge.setAttribute('fill', 'rgba(251,191,36,1)');
-                }, i * 600);
-            });
-
-            // After all faces lit: show quadrilateral cross-section
-            setTimeout(() => {
-                if (quad) {
-                    quad.style.transition = 'fill 0.6s, stroke 0.6s';
-                    quad.setAttribute('fill', 'rgba(56,189,248,0.2)');
-                    quad.setAttribute('stroke', 'rgba(56,189,248,1)');
-                }
-                if (label) {
-                    label.style.transition = 'fill 0.5s';
-                    label.setAttribute('fill', 'rgba(56,189,248,1)');
-                }
-            }, faces.length * 600 + 400);
         }
     </script>
 
-    <style id="d2-styles">
-        .d2-slide { display: none; opacity: 0; transition: opacity 0.5s ease-in-out; }
-        .d2-slide.active { display: flex; opacity: 1; }
-        .d2-fade-in { animation: d2FadeIn 0.8s forwards; opacity: 0; }
-        .d2-slide-up { animation: d2SlideUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; opacity: 0; transform: translateY(30px); }
-        @keyframes d2FadeIn { to { opacity: 1; } }
-        @keyframes d2SlideUp { to { opacity: 1; transform: translateY(0); } }
-        .d2-delay-1 { animation-delay: 0.2s; }
-        .d2-delay-2 { animation-delay: 0.6s; }
-        .d2-delay-3 { animation-delay: 1.0s; }
-    </style>
-
     <!-- D2 Modal -->
     <div id="d2-modal" class="fixed inset-0 z-[100] bg-slate-950/90 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-500 flex justify-center items-center p-4 sm:p-8">
-        <div class="w-full max-w-5xl h-[85vh] min-h-[650px] bg-slate-900/95 border border-emerald-500/30 rounded-2xl shadow-[0_0_50px_rgba(16,185,129,0.2)] overflow-hidden flex flex-col relative transform scale-95 transition-transform duration-500" id="d2-modal-content">
+        <div class="w-full max-w-5xl h-[85vh] bg-slate-900/95 border border-emerald-500/30 rounded-2xl shadow-[0_0_50px_rgba(16,185,129,0.2)] overflow-hidden flex flex-col relative transform scale-95 transition-transform duration-500" id="d2-modal-content">
             <!-- Close Button -->
             <button onclick="closeD2Modal()" class="absolute top-4 right-4 z-[110] w-10 h-10 bg-slate-800/80 hover:bg-red-500/20 border border-slate-600 hover:border-red-500/50 rounded-full flex items-center justify-center text-slate-300 hover:text-red-400 transition-colors backdrop-blur-sm">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
-            
-            <!-- Content Area -->
-            <div class="flex-1 overflow-y-auto relative bg-transparent overflow-x-hidden">
-                <!-- Slide 0: Cover -->
-                <div id="d2-slide-0" class="d2-slide active flex-col justify-center items-center min-h-full p-12 text-center bg-gradient-to-br from-slate-900 via-emerald-950/40 to-slate-900 relative">
-                    <div class="w-24 h-24 mb-6 rounded-2xl bg-emerald-600/80 border border-emerald-400/50 flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.5)] transform transition hover:scale-105 relative z-10">
-                        <span class="text-5xl drop-shadow-md">🤔</span>
-                    </div>
-                    <h1 class="text-5xl font-black text-white mb-6 tracking-tight drop-shadow-lg relative z-10">降維打擊的嚴密證明</h1>
-                    <h2 class="text-2xl text-emerald-300 font-bold mb-8 relative z-10">為什麼正四面體的截面，絕對切不出「五邊形」？</h2>
-                    <div class="flex gap-2 justify-center mt-4 relative z-10">
-                        <span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold border border-blue-500/30">邏輯推理</span>
-                        <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold border border-emerald-500/30">空間幾何</span>
-                        <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold border border-amber-500/30">計數論證</span>
-                    </div>
-                </div>
-
-                <!-- Slide 1 -->
-                <div id="d2-slide-1" class="d2-slide flex-col min-h-full p-10 bg-transparent">
-                    <h2 class="text-3xl font-bold text-emerald-300 mb-6">1. 觀察正四面體的結構</h2>
-                    <p class="text-slate-300 mb-6 text-lg leading-relaxed">正四面體（三角錐）是最簡單的多面體。<br><strong class="text-emerald-200 text-xl border-b border-emerald-500/50 pb-1">它由 4 個全等的等邊三角形圍成，共有 4 個面、6 條稜、4 個頂點。</strong></p>
-                    <div class="flex-1 flex flex-col justify-center items-center pb-8 gap-8">
-                        <div class="bg-slate-800/80 rounded-xl p-8 border border-slate-700/50 shadow-lg text-center max-w-2xl w-full">
-                            <div class="text-6xl mb-4">🔺</div>
-                            <h3 class="text-xl font-bold text-slate-100 mb-4">正四面體的面數特徵</h3>
-                            <p class="text-slate-400 text-base leading-loose">
-                                正四面體總共只有 <strong class="text-cyan-300 text-lg">4 個面</strong>。<br>
-                                這是所有多面體中面數最少的（多面體至少 4 個面）。<br>
-                                <strong class="text-amber-300">關鍵問題：截面的邊數，與被切過的面數有什麼關係？</strong>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 2 -->
-                <div id="d2-slide-2" class="d2-slide flex-col min-h-full p-10 bg-transparent">
-                    <h2 class="text-3xl font-bold text-emerald-300 mb-4">2. 截面的邊數上限</h2>
-                    
-                    <!-- Animation Area -->
-                    <div class="flex gap-6 mb-4 items-center">
-                        <!-- Tetrahedron SVG Animation -->
-                        <div class="flex flex-col items-center">
-                            <div class="text-xs text-slate-400 mb-2 font-bold tracking-widest uppercase">正四面體的 4 個面</div>
-                            <svg id="d2-tetra-svg" viewBox="0 0 240 210" class="w-52 h-48" xmlns="http://www.w3.org/2000/svg">
-                                <!--
-                                  Tetrahedron vertices:
-                                  A (top): (120, 18)
-                                  B (bottom-left): (38, 185)
-                                  C (bottom-right): (202, 185)
-                                  D (back): (120, 100)
-                                -->
-                                <!-- Hidden edges (dashed) -->
-                                <line x1="38" y1="185" x2="120" y2="100" stroke="rgba(148,163,184,0.35)" stroke-width="1.5" stroke-dasharray="5,3"/>
-                                <line x1="202" y1="185" x2="120" y2="100" stroke="rgba(148,163,184,0.35)" stroke-width="1.5" stroke-dasharray="5,3"/>
-
-                                <!-- Face 4 (bottom BCD) - hidden -->
-                                <polygon id="d2f-f4" points="38,185 202,185 120,100"
-                                    fill="rgba(100,116,139,0.06)" stroke="rgba(148,163,184,0.25)" stroke-width="1" stroke-dasharray="5,3"/>
-
-                                <!-- Face 2 (left ABD) -->
-                                <polygon id="d2f-f2" points="120,18 38,185 120,100"
-                                    fill="rgba(100,116,139,0.15)" stroke="rgb(148,163,184)" stroke-width="1.5"/>
-
-                                <!-- Face 3 (right ACD) -->
-                                <polygon id="d2f-f3" points="120,18 202,185 120,100"
-                                    fill="rgba(100,116,139,0.12)" stroke="rgb(148,163,184)" stroke-width="1.5"/>
-
-                                <!-- Face 1 (front ABC) -->
-                                <polygon id="d2f-f1" points="120,18 38,185 202,185"
-                                    fill="rgba(100,116,139,0.25)" stroke="rgb(148,163,184)" stroke-width="1.5"/>
-
-                                <!-- Cross-section quadrilateral (midpoints of AB, AC, BD, CD) -->
-                                <polygon id="d2-quad" points="79,101 161,101 161,142 79,142"
-                                    fill="rgba(56,189,248,0)" stroke="rgba(56,189,248,0)"
-                                    stroke-width="2.5" stroke-linejoin="round"/>
-
-                                <!-- Label -->
-                                <text id="d2-section-label" x="120" y="205" text-anchor="middle"
-                                    font-size="10" fill="rgba(56,189,248,0)" font-family="monospace" font-weight="bold">截面最多 = 四邊形</text>
-
-                                <!-- Badges -->
-                                <text id="d2-badge-1" x="120" y="135" text-anchor="middle" font-size="12" fill="rgba(251,191,36,0)" font-weight="bold">①</text>
-                                <text id="d2-badge-2" x="85" y="105" text-anchor="middle" font-size="12" fill="rgba(251,191,36,0)" font-weight="bold">②</text>
-                                <text id="d2-badge-3" x="155" y="105" text-anchor="middle" font-size="12" fill="rgba(251,191,36,0)" font-weight="bold">③</text>
-                                <text id="d2-badge-4" x="120" y="162" text-anchor="middle" font-size="12" fill="rgba(251,191,36,0)" font-weight="bold">④</text>
-                            </svg>
-                            <button onclick="d2PlayTetraAnim()" class="mt-2 px-4 py-1.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold hover:bg-amber-500/30 transition-all flex items-center gap-2">
-                                <i class="fa-solid fa-play text-[10px]"></i> 播放動畫
-                            </button>
-                        </div>
-
-                        <!-- Right: Two text cards stacked -->
-                        <div class="flex-1 flex flex-col gap-4">
-                            <div class="bg-slate-800/60 rounded-xl border border-slate-700/50 p-5 relative overflow-hidden">
-                                <div class="absolute -right-3 -bottom-3 text-7xl opacity-10">🔪</div>
-                                <h3 class="text-base font-bold text-amber-300 mb-2">截面的邊從哪裡來？</h3>
-                                <p class="text-slate-300 text-sm leading-relaxed">
-                                    當一個平面切過正四面體時，它與每一個「面」最多產生<strong class="text-white">一條交線</strong>。這條交線就是截面多邊形的一條「邊」。
-                                </p>
-                            </div>
-                            <div class="bg-slate-800/60 rounded-xl border border-slate-700/50 p-5 relative overflow-hidden">
-                                <div class="absolute -right-3 -bottom-3 text-7xl opacity-10">🧮</div>
-                                <h3 class="text-base font-bold text-amber-300 mb-2">面數就是邊數的天花板</h3>
-                                <p class="text-slate-300 text-sm leading-relaxed">
-                                    正四面體只有 <strong class="text-cyan-300">4 個面</strong>。<br>每個面最多貢獻 1 條邊，所以截面最多只有 <strong class="text-amber-300 underline decoration-amber-500">4 條邊</strong>（四邊形）。
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-emerald-900/20 border-l-4 border-emerald-500 text-emerald-200 p-5 rounded-r-lg shadow-[inset_0_0_20px_rgba(16,185,129,0.1)]">
-                        <div class="font-bold text-base mb-1">💡 關鍵結論：</div>
-                        <p class="text-slate-300 text-sm">截面的邊數 ≤ 正四面體的面數 = <strong class="text-white border-b border-emerald-400">4</strong>。五邊形需要 5 條邊，但正四面體只有 4 個面，<strong class="text-white">根本不夠切出第 5 條邊</strong>！</p>
-                    </div>
-                </div>
-
-                <!-- Slide 3 -->
-                <div id="d2-slide-3" class="d2-slide flex-col min-h-full p-10 bg-transparent">
-                    <h2 class="text-3xl font-bold text-emerald-300 mb-6">3. 不可能的五邊形</h2>
-                    <div class="flex-1 flex items-center justify-center gap-8 pb-4">
-                        <div class="w-1/2 d2-slide-up">
-                            <h3 class="text-2xl font-bold text-slate-100 mb-6 flex items-center gap-3">
-                                <span class="text-rose-400">⭐</span> 計數論證
-                            </h3>
-                            <p class="text-slate-400 text-lg leading-loose mb-6">
-                                如果截面是五邊形，就代表截面有 5 條邊。而截面的每條邊，都來自切面與正四面體某個面的交線。
-                            </p>
-                            <div class="bg-rose-950/30 border-l-4 border-rose-500 p-5 rounded-r-xl shadow-lg">
-                                <p class="text-slate-300 text-lg leading-loose font-medium">
-                                    5 條邊需要切過 5 個面，<br><strong class="text-rose-400 text-2xl tracking-wide">但正四面體只有 4 個面！</strong>
-                                </p>
-                            </div>
-                            <p class="text-slate-500 text-sm mt-6 pl-4 border-l-2 border-slate-700">
-                                （延伸：同理，任何 n 面體的截面，最多只能是 n 邊形。）
-                            </p>
-                        </div>
-                        <div class="w-1/2 flex justify-center d2-slide-up d2-delay-1">
-                            <div class="bg-slate-800/80 rounded-3xl p-8 border border-slate-700/80 text-center shadow-[0_0_40px_rgba(0,0,0,0.6)] w-full max-w-md relative overflow-hidden">
-                                <div class="absolute top-0 right-0 w-32 h-32 bg-rose-500/10 blur-3xl rounded-full"></div>
-                                <div class="absolute bottom-0 left-0 w-32 h-32 bg-cyan-500/10 blur-3xl rounded-full"></div>
-                                
-                                <div class="text-5xl mb-6 font-black text-rose-500 tracking-widest animate-pulse">不可能 ⚡</div>
-                                <div class="space-y-4 text-left relative z-10">
-                                    <div class="bg-slate-900/90 rounded-xl p-5 border border-slate-700 shadow-inner">
-                                        <div class="text-sm text-slate-400 mb-1">五邊形需要：</div>
-                                        <div class="text-rose-400 font-bold text-lg">切過 5 個面</div>
-                                    </div>
-                                    <div class="flex justify-center text-slate-500"><i class="fa-solid fa-bolt text-xl text-rose-500/50"></i></div>
-                                    <div class="bg-slate-900/90 rounded-xl p-5 border border-slate-700 shadow-inner">
-                                        <div class="text-sm text-slate-400 mb-1">正四面體只有：</div>
-                                        <div class="text-emerald-400 font-bold text-lg">4 個面（不夠！）</div>
-                                    </div>
-                                </div>
-                                <div class="mt-6 p-4 bg-cyan-950/30 border border-cyan-500/20 rounded-xl text-left">
-                                    <div class="text-xs text-cyan-400 font-bold mb-2">📐 截面可以是什麼？</div>
-                                    <div class="flex gap-2 flex-wrap">
-                                        <span class="px-2 py-1 bg-cyan-500/10 text-cyan-300 text-xs rounded border border-cyan-500/20">三角形（切 3 面）</span>
-                                        <span class="px-2 py-1 bg-amber-500/10 text-amber-300 text-xs rounded border border-amber-500/20">四邊形（切 4 面）</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-auto bg-slate-900/90 rounded-xl p-6 border border-slate-700 text-center shadow-[0_0_30px_rgba(0,0,0,0.5)] d2-slide-up d2-delay-2">
-                        <h3 class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-400 tracking-widest mb-2">Q.E.D. 證明完畢</h3>
-                        <p class="text-emerald-200/80 text-base font-medium">正四面體只有 4 個面，截面最多 4 條邊。五邊形（或更多邊）的截面，絕對不可能出現！</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Navigation -->
-            <div class="h-16 shrink-0 bg-slate-950/90 backdrop-blur-md border-t border-emerald-500/30 flex justify-between items-center px-6 z-20 relative">
-                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-[1px] bg-gradient-to-r from-transparent via-emerald-400 to-transparent shadow-[0_0_10px_rgba(16,185,129,0.8)]"></div>
-                <button id="d2-prevBtn" onclick="d2PrevSlide()" class="px-5 py-2 rounded-lg font-bold text-slate-400 hover:text-emerald-300 hover:bg-emerald-500/10 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-slate-400 transition-colors flex gap-2 items-center text-sm" disabled>
-                    <i class="fa-solid fa-arrow-left"></i> <span>上一步</span>
-                </button>
-                <div class="flex gap-2.5" id="d2-dots">
-                    <!-- Dots generated by JS -->
-                </div>
-                <button id="d2-nextBtn" onclick="d2NextSlide()" class="px-5 py-2 rounded-lg font-bold text-white bg-emerald-600 hover:bg-emerald-500 shadow-[0_0_20px_rgba(16,185,129,0.4)] transition-all flex gap-2 items-center text-sm">
-                    <span>下一步</span> <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </div>
+            <div class="flex-1 overflow-y-auto relative bg-white"> 
+             
+            <!-- Slide 1: 標題 --> 
+            <div class="slide active flex-col justify-center items-center min-h-full p-12 text-center bg-gradient-to-br from-blue-50 to-indigo-100"> 
+                <div class="w-32 h-32 mb-6 bounce-in"> 
+                    <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-xl"> 
+                        <path d="M20,35 L50,15 L80,35 L50,55 Z" fill="#c7d2fe" stroke="#4f46e5" stroke-width="3" stroke-linejoin="round"/> 
+                        <path d="M20,35 L50,55 L50,85 L20,65 Z" fill="#a5b4fc" stroke="#4f46e5" stroke-width="3" stroke-linejoin="round"/> 
+                        <path d="M80,35 L50,55 L50,85 L80,65 Z" fill="#818cf8" stroke="#4f46e5" stroke-width="3" stroke-linejoin="round"/> 
+                    </svg> 
+                </div> 
+                <h1 class="text-5xl font-black text-gray-900 mb-6 tracking-tight fade-in-up">切豆腐的幾何學</h1> 
+                <h2 class="text-2xl text-gray-600 font-bold mb-8 fade-in-up d-1">為什麼「一刀切下去」，絕對切不出正五邊形？</h2> 
+            </div> 
+ 
+            <!-- Slide 2: 基礎規則 --> 
+            <div class="slide flex-col min-h-full p-10 bg-white"> 
+                <h2 class="text-3xl font-bold text-indigo-700 mb-8">第 1 招：邊與面的因果關係</h2> 
+                 
+                <div class="flex flex-1 items-center gap-12"> 
+                    <div class="flex-1 flex justify-center fade-in-up"> 
+                        <svg viewBox="0 0 200 200" class="w-72 h-72"> 
+                            <rect x="40" y="40" width="120" height="120" fill="#f1f5f9" stroke="#94a3b8" stroke-width="4" rx="8" /> 
+                            <line x1="20" y1="80" x2="180" y2="140" class="highlight-line draw-line d-2" /> 
+                            <circle cx="40" cy="87.5" r="5" fill="#dc2626" class="fade-in d-3" /> 
+                            <circle cx="160" cy="132.5" r="5" fill="#dc2626" class="fade-in d-3" /> 
+                        </svg> 
+                    </div> 
+                     
+                    <div class="flex-1 space-y-6"> 
+                        <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200 fade-in-up d-1"> 
+                            <h3 class="text-xl font-bold text-gray-800 mb-3 text-2xl flex items-center">🗡️ 一個面 = 一條邊</h3> 
+                            <p class="text-gray-600 text-lg leading-relaxed"> 
+                                當我們用刀子切過正方體時，截面上的每一條「邊」，都是刀子劃過表面的「切痕」。<br><br> 
+                                也就是說：<strong class="text-indigo-600">刀子切到了幾個面，截面就會有幾條邊！</strong> 
+                            </p> 
+                        </div> 
+                        <div class="bg-red-50 p-6 rounded-2xl border border-red-200 fade-in-up d-4 shadow-sm"> 
+                            <p class="text-red-700 font-bold text-xl"> 
+                                🎯 任務前提：<br> 
+                                想得到一個「五」邊形，這五條邊必須來自正方體的表面。因此，<span class="text-red-600 underline">刀子必須剛好劃過 5 個面！</span> 
+                            </p> 
+                        </div> 
+                    </div> 
+                </div> 
+            </div> 
+ 
+            <!-- Slide 3: 鐵軌法則 (升級為可旋轉的 3D 視角) --> 
+            <div class="slide flex-col min-h-full p-10 bg-white"> 
+                <h2 class="text-3xl font-bold text-indigo-700 mb-6">第 2 招：「切穿對立面」的必然平行</h2> 
+                 
+                <div class="flex flex-1 items-stretch gap-8 pb-4"> 
+                    <!-- 改為 3D 互動畫布 --> 
+                    <div class="flex-1 flex justify-center items-center relative fade-in-up d-1 three-canvas-container rounded-3xl overflow-hidden shadow-inner border border-gray-300"> 
+                        <div id="three-container-track" class="w-full h-full min-h-[350px]"></div> 
+                        <div class="absolute bottom-4 left-0 w-full text-center pointer-events-none"> 
+                            <span class="bg-gray-800 text-white px-4 py-2 rounded-full shadow-lg font-bold text-sm"> 
+                                👆 請用滑鼠拖曳旋轉，從不同角度觀察平行的切痕！ 
+                            </span> 
+                        </div> 
+                    </div> 
+ 
+                    <div class="flex-1 space-y-6 flex flex-col justify-center"> 
+                        <div class="bg-blue-50 p-8 rounded-3xl fade-in-up d-4 shadow-sm border border-blue-100"> 
+                            <h3 class="text-2xl font-bold text-blue-800 mb-4 flex items-center">✨ 貫穿，強制產生平行線</h3> 
+                            <p class="text-gray-700 text-lg leading-relaxed"> 
+                                如果刀片<strong class="text-blue-600">同時貫穿了相對立的兩個面</strong>（如左圖切過了上底面與下底面），那麼留在這兩個面上的加粗紅線刀痕，必定會互相平行！<br><br> 
+                                💡 <strong class="text-red-500">反過來說：</strong>如果只是輕輕削掉一個角落（形成三角形），是不會有平行線的；但只要你切得夠深，貫穿了對立面，平行線就必定強制誕生！ 
+                            </p> 
+                        </div> 
+                    </div> 
+                </div> 
+            </div> 
+ 
+            <!-- Slide 4: 互動式刀切體驗 --> 
+            <div class="slide flex-col min-h-full p-10 bg-white"> 
+                <div class="flex justify-between items-end mb-4 relative z-20"> 
+                    <div> 
+                        <h2 class="text-3xl font-bold text-indigo-700 mb-2">第 3 招：動手切切看！體驗真實的刀切極限</h2> 
+                        <p class="text-gray-600 text-sm mt-1">💡 一開始只是三角形(無平行線)，請慢慢加深深度，觀察切穿對面時被迫出現的「平行雙軌」！(可用滑鼠任意旋轉觀察)</p> 
+                    </div> 
+                    <!-- 加入 whitespace-nowrap 確保不換行 --> 
+                    <div class="bg-red-50 px-4 py-2 rounded-xl border-2 border-red-200 fade-in-up d-1 whitespace-nowrap flex items-center"> 
+                        <span class="font-bold text-gray-700 mr-2">🎯 產生形狀：</span> 
+                        <span id="cut-sides-count" class="text-red-600 font-black text-2xl whitespace-nowrap">三角形</span> 
+                    </div> 
+                </div> 
+ 
+                <div class="flex flex-1 items-stretch gap-8 pb-4 relative"> 
+                    <!-- 3D 畫布容器 --> 
+                    <div class="flex-1 flex justify-center items-center relative fade-in-up d-1 three-canvas-container rounded-3xl overflow-hidden shadow-inner border border-gray-300"> 
+                        <div id="three-container-cut5" class="w-full h-full min-h-[350px]"></div> 
+                         
+                        <!-- 互動滑桿 UI (縮小置中) --> 
+                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 w-56 z-10 flex flex-col items-center"> 
+                            <div class="w-full bg-white/90 backdrop-blur-sm px-4 py-2 rounded-xl shadow-lg border border-indigo-200"> 
+                                <label class="block text-xs font-bold text-gray-700 mb-2 text-center"> 
+                                    🔪 推拉刀片 (改變深度) 
+                                </label> 
+                                <input type="range" id="knife-slider" min="-1.5" max="1.5" step="0.02" value="1.2" class="w-full"> 
+                            </div> 
+                        </div> 
+                    </div> 
+ 
+                    <div class="w-1/3 space-y-4 flex flex-col justify-center"> 
+                        <div class="bg-gray-50 p-4 rounded-xl border-l-4 border-gray-400 fade-in-up d-2 shadow-sm"> 
+                            <h3 class="text-md font-bold text-gray-800 mb-1">🎲 6 個面分 3 組</h3> 
+                            <p class="text-gray-600 text-sm">正方體的面兩兩平行，分為（<span class="text-blue-600 font-bold">上下</span>、<span class="text-pink-600 font-bold">左右</span>、<span class="text-yellow-600 font-bold">前後</span>）。</p> 
+                        </div> 
+                         
+                        <div class="bg-red-50 p-4 rounded-xl border-l-4 border-red-500 fade-in-up d-3 shadow-sm"> 
+                            <h3 class="text-md font-bold text-red-900 mb-1">🎯 試著切出 5 個面</h3> 
+                            <p class="text-gray-600 text-sm">調動滑桿讓切面變成「五邊形」。為了切滿 5 個面，刀片無可避免地徹底貫穿了兩組對立面。</p> 
+                        </div> 
+ 
+                        <div class="bg-indigo-50 p-4 rounded-xl border-2 border-indigo-300 fade-in-up d-4 shadow-md"> 
+                            <h3 class="text-lg font-black text-indigo-900 mb-1">🚨 雙重強迫中獎</h3> 
+                            <p class="text-gray-700 text-sm"> 
+                                貫穿上下，強制拉出<strong class="text-cyan-600">藍色平行線</strong>。<br> 
+                                貫穿左右，強制拉出<strong class="text-pink-500">粉紅平行線</strong>。<br> 
+                                👉 <strong>結論：五邊形必定自帶【兩組平行邊】！</strong> 
+                            </p> 
+                        </div> 
+                    </div> 
+                </div> 
+            </div> 
+ 
+            <!-- Slide 5: 五邊形的秘密 --> 
+            <div class="slide flex-col min-h-full p-10 bg-white"> 
+                <h2 class="text-3xl font-bold text-indigo-700 mb-6">第 4 招：看看真正的「正五邊形」</h2> 
+                 
+                <div class="flex flex-1 items-center gap-8"> 
+                    <div class="flex-1 flex justify-center relative fade-in-up d-1"> 
+                        <svg viewBox="-50 -50 300 300" class="w-80 h-80"> 
+                            <polygon points="100,0 195,69 158,181 42,181 5,69" fill="#fef2f2" stroke="#dc2626" stroke-width="4" stroke-linejoin="round" /> 
+                            <line x1="5" y1="69" x2="-23" y2="-17" stroke="#3b82f6" stroke-width="4" stroke-dasharray="6,6" class="draw-line-slow d-3" /> 
+                            <line x1="195" y1="69" x2="223" y2="-17" stroke="#3b82f6" stroke-width="4" stroke-dasharray="6,6" class="draw-line-slow d-3" /> 
+                            <line x1="42" y1="181" x2="-80" y2="181" stroke="#10b981" stroke-width="4" stroke-dasharray="6,6" class="draw-line-slow d-3" /> 
+                            <line x1="100" y1="0" x2="-14" y2="83" stroke="#10b981" stroke-width="4" stroke-dasharray="6,6" class="draw-line-slow d-3" /> 
+                             
+                            <circle cx="100" cy="-94" r="10" fill="none" stroke="#f59e0b" stroke-width="0" class="fade-in d-6" style="animation: explode 0.5s ease-out forwards 3s;"/> 
+                            <text x="100" y="-120" font-size="24" text-anchor="middle" font-weight="bold" fill="#f59e0b" class="fade-in d-6">相撞！</text> 
+                            <text x="-60" y="160" font-size="24" text-anchor="middle" font-weight="bold" fill="#10b981" class="fade-in d-6">相撞！</text> 
+                        </svg> 
+                    </div> 
+ 
+                    <div class="flex-1 space-y-6"> 
+                        <div class="bg-gray-50 p-8 rounded-3xl border border-gray-200 fade-in-up d-2 shadow-sm"> 
+                            <h3 class="text-2xl font-bold text-red-700 mb-4 flex items-center">🚫 無平行線的圖形</h3> 
+                            <p class="text-gray-700 text-lg leading-relaxed"> 
+                                在正五邊形中，不管挑選哪兩條邊，只要將它們無限延伸，最後一定會<strong>「相撞交會」</strong>！<br><br> 
+                                <span class="font-bold text-red-600">這證明了：真正的正五邊形裡面，絕對沒有 any 平行線。</span> 
+                            </p> 
+                        </div> 
+                    </div> 
+                </div> 
+            </div> 
+ 
+            <!-- Slide 6: 大對決 --> 
+            <div class="slide flex-col min-h-full p-10 bg-white"> 
+                <h2 class="text-4xl font-black text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mb-12 fade-in-up">世紀大對決：矛盾出現！</h2> 
+                 
+                <div class="flex justify-center items-stretch gap-8 mb-12"> 
+                    <div class="flex-1 bg-blue-50 rounded-3xl p-8 border-4 border-blue-200 flex flex-col items-center text-center fade-in-up d-1 shadow-sm transform transition hover:-translate-y-2"> 
+                        <div class="text-6xl mb-4">🧊</div> 
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4">正方體的幾何限制</h3> 
+                        <p class="text-xl text-blue-900 font-bold">一旦切過 5 個面，<br>截面<span class="text-red-600 underline">必然產生平行線！</span></p> 
+                    </div> 
+                     
+                    <div class="flex flex-col justify-center items-center font-black text-6xl text-red-500 fade-in-up d-3 pulse-alert">VS</div> 
+ 
+                    <div class="flex-1 bg-red-50 rounded-3xl p-8 border-4 border-red-200 flex flex-col items-center text-center fade-in-up d-2 shadow-sm transform transition hover:-translate-y-2"> 
+                        <div class="text-6xl mb-4">⭐</div> 
+                        <h3 class="text-2xl font-bold text-red-800 mb-4">正五邊形的幾何特性</h3> 
+                        <p class="text-xl text-red-900 font-bold">作為正五邊形，<br>內部<span class="text-blue-600 underline">絕對不能有平行線！</span></p> 
+                    </div> 
+                </div> 
+                 
+                <div class="bg-gray-800 text-white p-6 rounded-2xl w-full max-w-4xl mx-auto text-center fade-in-up d-5 shadow-2xl"> 
+                    <p class="text-2xl font-black tracking-widest text-yellow-300"> 
+                        【 結論：要求完全相反，物理上一刀切絕對不可能發生！ 】 
+                    </p> 
+                </div> 
+            </div> 
+ 
+            <!-- Slide 7: 3D 六邊形解密 --> 
+            <div class="slide flex-col min-h-full p-10 bg-white"> 
+                <h2 class="text-3xl font-bold text-amber-600 mb-6 flex items-center"> 
+                    <span class="text-4xl mr-3">🏆</span> 加碼解密：那為什麼能切出「正六邊形」？ 
+                </h2> 
+                 
+                <div class="flex flex-1 items-stretch gap-8 pb-4"> 
+                    <div class="flex-1 flex justify-center items-center relative fade-in-up d-1 three-canvas-container rounded-3xl overflow-hidden shadow-inner border border-gray-300"> 
+                        <div id="three-container-hexagon" class="w-full h-full min-h-[350px]"></div> 
+                        <div class="absolute bottom-4 left-0 w-full text-center pointer-events-none"> 
+                            <span class="bg-gray-800 text-white px-4 py-2 rounded-full shadow-lg font-bold text-sm"> 
+                                👆 請用滑鼠拖曳旋轉，看完美契合的平行線！ 
+                            </span> 
+                        </div> 
+                    </div> 
+ 
+                    <div class="flex-1 space-y-6 flex flex-col justify-center"> 
+                        <div class="bg-amber-50 p-6 rounded-2xl border-l-4 border-amber-500 fade-in-up d-2 shadow-sm"> 
+                            <h3 class="text-lg font-bold text-amber-900 mb-2 flex items-center">🤏 捏住對角一刀切</h3> 
+                            <p class="text-gray-700 text-md"> 
+                                捏住正方體最遠的兩個對角頂點，垂直一刀切下去，刀片會剛好劃過 6 條邊的「正中間」。 
+                            </p> 
+                        </div> 
+                         
+                        <div class="bg-green-50 p-6 rounded-2xl border-l-4 border-green-500 fade-in-up d-3 shadow-sm"> 
+                            <h3 class="text-lg font-bold text-green-900 mb-2 flex items-center">✨ 誕生黃金正六邊形</h3> 
+                            <p class="text-gray-700 text-md"> 
+                                看見裡面的<strong class="text-amber-600">黃色幾何圖形</strong>了嗎？<br> 
+                                它一刀切過了 6 個面，產生了 3 組互相平行的邊。 
+                            </p> 
+                        </div> 
+ 
+                        <div class="bg-blue-50 p-6 rounded-2xl border-l-4 border-blue-500 fade-in-up d-4 shadow-sm"> 
+                            <h3 class="text-lg font-bold text-blue-900 mb-2 flex items-center">🤝 巧合的完美契合</h3> 
+                            <p class="text-gray-700 text-md"> 
+                                「正六邊形」天生就擁有 3 組平行的對邊！<br> 
+                                五邊形因為缺乏平行特性而無法成立，六邊形則恰好符合平行條件，與正方體達成了空間中的完美契合。 
+                            </p> 
+                        </div> 
+                    </div> 
+                </div> 
+            </div> 
+ 
+            <!-- Slide 8: 終極極限 (萬向切刀模擬器) --> 
+            <div class="slide flex-col min-h-full p-10 bg-white"> 
+                <div class="flex justify-between items-end mb-4 relative z-20"> 
+                    <div> 
+                        <h2 class="text-3xl font-bold text-indigo-700 mb-2">終極實驗室：你切得出七邊形嗎？</h2> 
+                        <p class="text-gray-600 text-sm mt-1">「既然一個面等於一條邊，那我們靠改變刀片角度，能切出七條邊嗎？」<br>請隨意改變下方角度！<strong class="text-indigo-600">（目前為您預設的角度，就是傳說中的完美正六邊形喔！）</strong></p> 
+                    </div> 
+                    <div class="bg-gray-800 px-5 py-3 rounded-xl shadow-lg fade-in-up d-1 whitespace-nowrap flex items-center text-white"> 
+                        <span class="font-bold text-gray-300 mr-3">極限結果：</span> 
+                        <span id="final-sides-count" class="text-yellow-300 font-black text-3xl whitespace-nowrap tracking-wide">三角形</span> 
+                    </div> 
+                </div> 
+ 
+                <div class="flex flex-1 items-stretch gap-6 pb-4 relative"> 
+                     
+                    <!-- 3D 畫布容器 (終極切刀) --> 
+                    <div class="flex-1 flex flex-col relative fade-in-up d-1 three-canvas-container rounded-3xl overflow-hidden shadow-inner border border-gray-300"> 
+                        <div id="three-container-final" class="w-full h-full min-h-[350px]"></div> 
+                         
+                        <!-- 萬向控制 UI --> 
+                        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 w-64 z-10"> 
+                            <div class="space-y-2 w-full bg-white/90 backdrop-blur-md px-4 py-3 rounded-xl shadow-lg border border-indigo-200"> 
+                                <div> 
+                                    <label class="block text-[11px] font-bold text-gray-700 flex justify-between mb-0.5"> 
+                                        <span>🔄 X軸傾斜 (前後)</span> <span id="f-val-x" class="text-indigo-600">-35°</span> 
+                                    </label> 
+                                    <input type="range" id="f-rot-x" min="-90" max="90" step="1" value="-35" class="w-full"> 
+                                </div> 
+                                <div> 
+                                    <label class="block text-[11px] font-bold text-gray-700 flex justify-between mb-0.5"> 
+                                        <span>🔄 Y軸傾斜 (左右)</span> <span id="f-val-y" class="text-indigo-600">45°</span> 
+                                    </label> 
+                                    <input type="range" id="f-rot-y" min="-90" max="90" step="1" value="45" class="w-full"> 
+                                </div> 
+                                <div> 
+                                    <label class="block text-[11px] font-bold text-gray-700 flex justify-between mb-0.5"> 
+                                        <span>🔪 刀片深度</span> <span id="f-val-d" class="text-indigo-600">0.00</span> 
+                                    </label> 
+                                    <input type="range" id="f-depth" min="-1.5" max="1.5" step="0.05" value="0" class="w-full"> 
+                                </div> 
+                                <div class="pt-1"> 
+                                    <button id="reset-hex-btn" class="w-full bg-indigo-100 hover:bg-indigo-200 text-indigo-700 font-bold py-1.5 rounded-lg text-[11px] transition-colors shadow-sm"> 
+                                        ✨ 一鍵還原正六邊形 
+                                    </button> 
+                                </div> 
+                            </div> 
+                        </div> 
+                    </div> 
+ 
+                    <!-- 結論面板 --> 
+                    <div class="w-1/3 flex flex-col justify-center gap-6"> 
+                        <div class="bg-blue-50 p-6 rounded-3xl border border-blue-200 fade-in-up d-2 shadow-sm hover:shadow-md transition"> 
+                            <h3 class="text-2xl font-bold text-blue-800 mb-3 flex items-center"><span class="text-3xl mr-2">🧐</span> 發現了嗎？</h3> 
+                            <p class="text-gray-700 text-lg leading-relaxed"> 
+                                左圖中，<strong class="text-blue-700">只要是同顏色的線條，就代表它們處於平行的面上！</strong> 
+                            </p> 
+                            <p class="text-gray-700 text-lg leading-relaxed mt-2"> 
+                                正方體總共只有 6 個面。就算你把角度調到最極限的狀態，把 6 個面全部切穿，<span class="font-bold underline text-indigo-700">你也最多只能收集到 6 條邊</span>。 
+                            </p> 
+                        </div> 
+                        <div class="bg-gray-800 p-6 rounded-2xl fade-in-up d-3 shadow-lg text-center transform transition hover:-translate-y-2"> 
+                            <p class="text-xl font-black text-yellow-300 leading-relaxed tracking-wide"> 
+                                🛑 不可打破的物理法則<br> 
+                                正方體一刀切的極限，<br>最高就是「六邊形」！ 
+                            </p> 
+                        </div> 
+                    </div> 
+                </div> 
+            </div> 
+ 
+        </div> <!-- /內容區 --> 
+         
+        <!-- Navigation Footer --> 
+        <div class="h-16 shrink-0 bg-white border-t border-gray-200 flex justify-between items-center px-6 z-20"> 
+            <button id="prevBtn" class="px-4 py-2 font-bold text-gray-500 hover:text-indigo-600 transition-colors disabled:opacity-30">← 上一步</button> 
+            <div class="flex gap-2" id="dots"></div> 
+            <button id="nextBtn" class="px-4 py-2 font-bold text-white bg-indigo-600 rounded hover:bg-indigo-700 transition-colors shadow">下一步 →</button> 
+        </div>
         </div>
     </div>
-    <!-- Euler Modal -->
-    <div id="euler-modal" class="fixed inset-0 z-[100] bg-slate-950/90 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-500 flex justify-center items-center p-4 sm:p-8">
-        <div class="w-full max-w-4xl max-h-[90vh] bg-slate-900/95 border border-blue-500/30 rounded-2xl shadow-[0_0_50px_rgba(59,130,246,0.2)] overflow-hidden flex flex-col relative transform scale-95 transition-transform duration-500" id="euler-modal-content">
-            <!-- Close Button -->
-            <button onclick="closeEulerModal()" class="absolute top-4 right-4 z-[110] w-10 h-10 bg-slate-800/80 hover:bg-red-500/20 border border-slate-600 hover:border-red-500/50 rounded-full flex items-center justify-center text-slate-300 hover:text-red-400 transition-colors backdrop-blur-sm">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-            
-            <!-- Content Area -->
-            <div class="flex-1 overflow-y-auto relative bg-transparent overflow-x-hidden p-6 sm:p-10">
-                <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
-                    <!-- Avatar/Left Col -->
-                    <div class="w-full md:w-1/3 flex flex-col items-center">
-                        <div class="w-48 h-48 rounded-full bg-slate-800 border-4 border-blue-400/50 mb-6 flex items-center justify-center overflow-hidden shadow-[0_0_30px_rgba(59,130,246,0.4)]">
-                            <i class="fa-solid fa-user-tie text-8xl text-blue-300/80 mt-4"></i>
-                        </div>
-                        <h3 class="text-3xl font-black text-blue-300 tracking-wider text-center">萊昂哈德·歐拉</h3>
-                        <p class="text-lg text-blue-400/80 tech-font mt-2 text-center">Leonhard Euler</p>
-                        <div class="px-4 py-1.5 rounded-full border border-slate-700 bg-slate-800/50 text-slate-400 text-sm mt-4 font-mono">1707 - 1783</div>
-                    </div>
-                    
-                    <!-- Details/Right Col -->
-                    <div class="w-full md:w-2/3 flex flex-col relative pt-4 md:pt-0">
-                        <div class="absolute right-0 -top-6 text-blue-500/10 text-8xl pointer-events-none">
-                            <i class="fa-solid fa-quote-right"></i>
-                        </div>
-                        
-                        <div class="space-y-6 text-slate-300 text-base leading-loose relative z-10">
-                            <p>
-                                <span class="text-xl text-blue-400 font-bold tracking-wide">歐拉（Leonhard Euler）</span>是 18 世紀最偉大的數學家之一，也是數學史上最多產的天才。他一生發表了超過 800 篇論文，橫跨微積分、數論、圖論與拓撲學等多個領域。
-                            </p>
-                            <div class="p-5 rounded-xl bg-blue-950/30 border border-blue-500/20 shadow-inner">
-                                <h4 class="text-blue-300 font-bold mb-2 flex items-center gap-2"><i class="fa-solid fa-eye-slash"></i> 失明後的奇蹟</h4>
-                                <p class="text-sm">
-                                    即使在晚年雙目完全失明後，歐拉依然沒有停止他的研究步伐。他憑藉著驚人的心算能力與記憶力，以口述的方式完成了他一生中將近一半的數學著作。
-                                </p>
-                            </div>
-                            <p>
-                                我們在剛剛課程中發現的「<span class="text-amber-300 font-bold tech-font">V - E + F = 2</span>」公式，正是歐拉的經典之作。這個公式顛覆了傳統幾何學對於「長度」與「角度」的依賴，轉而研究點、線、面的「連結關係」。
-                            </p>
-                            <div class="p-5 rounded-xl bg-emerald-950/30 border border-emerald-500/20 shadow-inner">
-                                <h4 class="text-emerald-300 font-bold mb-2 flex items-center gap-2"><i class="fa-solid fa-network-wired"></i> 拓撲學的誕生</h4>
-                                <p class="text-sm text-emerald-100/80">
-                                    這個看似簡單的規律，實際上成為了現代「拓撲學」（Topology）的重要基石。拓撲學被譽為「橡皮泥幾何學」，它告訴我們：如果把一個多面體像氣球一樣吹脹，只要它表面沒有破洞（簡單多面體），它的結構本質永遠不會改變！
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    <!-- Debate 2 Logic -->
+    <script>
+// 共用與獨立變數 
+        let globalRequestID; 
+        let activeSceneId = null; 
+ 
+        // Track (Slide 3) 變數 (全新加入的 3D 場景) 
+        let tScene, tCamera, tRenderer, tControls; 
+        let isTrackInit = false; 
+ 
+        // Cut5 (Slide 4) 變數 
+        let c5Scene, c5Camera, c5Renderer, c5Controls; 
+        let c5KnifeMesh, c5CutGroup; 
+        let isCut5Init = false; 
+ 
+        // Hexagon (Slide 7) 變數 
+        let hScene, hCamera, hRenderer, hControls; 
+        let isHexInit = false; 
+ 
+        // FinalCut (Slide 8) 變數 
+        let fScene, fCamera, fRenderer, fControls; 
+        let fKnifeMesh, fCutGroup; 
+        let isFinalInit = false; 
+ 
+        // --- Slide 3 (平行鐵軌) 全新 3D 邏輯 --- 
+        function initTrack3D() { 
+            if (isTrackInit) return; 
+            const container = document.getElementById('three-container-track'); 
+            if (!container) return; 
+ 
+            tScene = new THREE.Scene(); 
+            tCamera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 100); 
+            // 巧妙調整視角：從側邊俯視，保證不被半透明粉紅切面完全擋住 
+            tCamera.position.set(-4.5, 3.5, 5);  
+            tRenderer = new THREE.WebGLRenderer({ alpha: true, antialias: true }); 
+            tRenderer.setSize(container.clientWidth, container.clientHeight); 
+            tRenderer.setPixelRatio(window.devicePixelRatio); 
+            container.appendChild(tRenderer.domElement); 
+ 
+            tControls = new THREE.OrbitControls(tCamera, tRenderer.domElement); 
+            tControls.enableDamping = true; tControls.dampingFactor = 0.05;  
+            tControls.autoRotate = false; // 允許使用者盡情手動轉動觀察 
+            tControls.target.set(0, 0, 0); 
+ 
+            // 畫正方體 
+            const boxGeo = new THREE.BoxGeometry(2, 2, 2); 
+            tScene.add(new THREE.Mesh(boxGeo, new THREE.MeshBasicMaterial({ color: 0x94a3b8, transparent: true, opacity: 0.1, depthWrite: false }))); 
+            tScene.add(new THREE.LineSegments(new THREE.EdgesGeometry(boxGeo), new THREE.LineBasicMaterial({ color: 0x64748b, linewidth: 2 }))); 
+ 
+            // 畫一個貫穿上下面的斜刀片 
+            const normal = new THREE.Vector3(0.4, 0.3, 1).normalize();  
+            const planeGeo = new THREE.PlaneGeometry(6, 6); 
+            const planeMat = new THREE.MeshBasicMaterial({ color: 0xfca5a5, transparent: true, opacity: 0.3, side: THREE.DoubleSide }); 
+            const pMesh = new THREE.Mesh(planeGeo, planeMat); 
+            pMesh.lookAt(normal); 
+            tScene.add(pMesh); 
+            pMesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(planeGeo), new THREE.LineBasicMaterial({ color: 0xef4444, linewidth: 2 }))); 
+ 
+            // 計算與正方體的交線 
+            const mathPlane = new THREE.Plane(normal, 0); 
+            const edges = [ 
+                [[-1,-1,-1], [1,-1,-1]], [[-1,1,-1], [1,1,-1]], [[-1,-1,1], [1,-1,1]], [[-1,1,1], [1,1,1]], 
+                [[-1,-1,-1], [-1,1,-1]], [[1,-1,-1], [1,1,-1]], [[-1,-1,1], [-1,1,1]], [[1,-1,1], [1,1,1]], 
+                [[-1,-1,-1], [-1,-1,1]], [[1,-1,-1], [1,-1,1]], [[-1,1,-1], [-1,1,1]], [[1,1,-1], [1,1,1]] 
+            ]; 
+ 
+            const points = []; 
+            edges.forEach(edge => { 
+                const line = new THREE.Line3(new THREE.Vector3(...edge[0]), new THREE.Vector3(...edge[1])); 
+                const pt = new THREE.Vector3(); 
+                if (mathPlane.intersectLine(line, pt)) { 
+                    if (!points.some(p => p.distanceTo(pt) < 0.001)) points.push(pt); 
+                } 
+            }); 
+ 
+            const center = new THREE.Vector3(); 
+            points.forEach(p => center.add(p)); 
+            center.divideScalar(points.length); 
+            const u = new THREE.Vector3().subVectors(points[0], center).normalize(); 
+            const v = new THREE.Vector3().crossVectors(normal, u).normalize(); 
+ 
+            points.sort((a, b) => { 
+                const da = new THREE.Vector3().subVectors(a, center); 
+                const db = new THREE.Vector3().subVectors(b, center); 
+                return Math.atan2(da.dot(v), da.dot(u)) - Math.atan2(db.dot(v), db.dot(u)); 
+            }); 
+ 
+            // 畫出「平行鐵軌」：若為上下面的交線，就畫成粗紅線，其他邊畫較細 
+            points.forEach((p, i) => { 
+                const nextP = points[(i + 1) % points.length]; 
+                const isY = (Math.abs(p.y - 1) < 0.01 && Math.abs(nextP.y - 1) < 0.01) || (Math.abs(p.y + 1) < 0.01 && Math.abs(nextP.y + 1) < 0.01); 
+                 
+                const path = new THREE.LineCurve3(p, nextP); 
+                if (isY) { 
+                    const tubeGeo = new THREE.TubeGeometry(path, 1, 0.06, 8, false); 
+                    tScene.add(new THREE.Mesh(tubeGeo, new THREE.MeshBasicMaterial({ color: 0xdc2626 }))); 
+                } else { 
+                    const tubeGeo = new THREE.TubeGeometry(path, 1, 0.015, 8, false); 
+                    tScene.add(new THREE.Mesh(tubeGeo, new THREE.MeshBasicMaterial({ color: 0xfca5a5 }))); 
+                } 
+            }); 
+ 
+            // 內層切面填色 
+            const shapeGeo = new THREE.BufferGeometry(); 
+            const vertices = []; 
+            for (let i = 1; i < points.length - 1; i++) { 
+                vertices.push( 
+                    points[0].x, points[0].y, points[0].z, 
+                    points[i].x, points[i].y, points[i].z, 
+                    points[i+1].x, points[i+1].y, points[i+1].z 
+                ); 
+            } 
+            shapeGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(vertices), 3)); 
+            tScene.add(new THREE.Mesh(shapeGeo, new THREE.MeshBasicMaterial({ color: 0xef4444, transparent: true, opacity: 0.35, side: THREE.DoubleSide }))); 
+ 
+            isTrackInit = true; 
+        } 
+ 
+        // --- Slide 4 (固定角度推拉) 邏輯 --- 
+        function updateC5Intersection(distance) { 
+            if (!c5Scene) return; 
+            if (c5CutGroup) c5Scene.remove(c5CutGroup); 
+            c5CutGroup = new THREE.Group(); c5Scene.add(c5CutGroup); 
+ 
+            const normal = new THREE.Vector3(1, 1, 2).normalize(); 
+            const plane = new THREE.Plane(normal, -distance);  
+             
+            // 解決 Z-fighting 破圖：將刀片平面往後退 0.005 
+            if(c5KnifeMesh) c5KnifeMesh.position.copy(normal).multiplyScalar(distance - 0.005); 
+ 
+            const edges = [ 
+                [[-1,-1,-1], [1,-1,-1]], [[-1,1,-1], [1,1,-1]], [[-1,-1,1], [1,-1,1]], [[-1,1,1], [1,1,1]], 
+                [[-1,-1,-1], [-1,1,-1]], [[1,-1,-1], [1,1,-1]], [[-1,-1,1], [-1,1,1]], [[1,-1,1], [1,1,1]], 
+                [[-1,-1,-1], [-1,-1,1]], [[1,-1,-1], [1,1,-1]], [[-1,1,-1], [-1,1,1]], [[1,1,-1], [1,1,1]] 
+            ]; 
+ 
+            const points = []; 
+            edges.forEach(edge => { 
+                const line = new THREE.Line3(new THREE.Vector3(...edge[0]), new THREE.Vector3(...edge[1])); 
+                const pt = new THREE.Vector3(); 
+                if (plane.intersectLine(line, pt)) { 
+                    if (!points.some(p => p.distanceTo(pt) < 0.001)) points.push(pt); 
+                } 
+            }); 
+ 
+            const sidesEl = document.getElementById('cut-sides-count'); 
+            if (sidesEl) { 
+                const sideNames = {3: '三角形', 4: '四邊形', 5: '五邊形', 6: '六邊形'}; 
+                sidesEl.innerText = sideNames[points.length] || '未切到 / 點'; 
+            } 
+            if (points.length < 3) return;  
+ 
+            const center = new THREE.Vector3(); 
+            points.forEach(p => center.add(p)); 
+            center.divideScalar(points.length); 
+            const u = new THREE.Vector3().subVectors(points[0], center).normalize(); 
+            const v = new THREE.Vector3().crossVectors(normal, u).normalize(); 
+ 
+            points.sort((a, b) => { 
+                const da = new THREE.Vector3().subVectors(a, center); 
+                const db = new THREE.Vector3().subVectors(b, center); 
+                return Math.atan2(da.dot(v), da.dot(u)) - Math.atan2(db.dot(v), db.dot(u)); 
+            }); 
+ 
+            const dotGeo = new THREE.SphereGeometry(0.08, 16, 16); 
+            const dotMat = new THREE.MeshBasicMaterial({ color: 0xffffff }); 
+ 
+            points.forEach((p, i) => { 
+                const nextP = points[(i + 1) % points.length]; 
+                 
+                // 動態判斷線段在哪一個平面上 (自動上色，抓出平行線) 
+                const isY = (Math.abs(p.y - 1) < 0.01 && Math.abs(nextP.y - 1) < 0.01) || (Math.abs(p.y + 1) < 0.01 && Math.abs(nextP.y + 1) < 0.01); 
+                const isX = (Math.abs(p.x - 1) < 0.01 && Math.abs(nextP.x - 1) < 0.01) || (Math.abs(p.x + 1) < 0.01 && Math.abs(nextP.x + 1) < 0.01); 
+                const isZ = (Math.abs(p.z - 1) < 0.01 && Math.abs(nextP.z - 1) < 0.01) || (Math.abs(p.z + 1) < 0.01 && Math.abs(nextP.z + 1) < 0.01); 
+                 
+                let lineColor = 0xef4444;  
+                if (isY) lineColor = 0x06b6d4; // Cyan (上下) 
+                else if (isX) lineColor = 0xec4899; // Pink (左右) 
+                else if (isZ) lineColor = 0xeab308; // Yellow (前後) 
+                 
+                const path = new THREE.LineCurve3(p, nextP); 
+                const tubeGeo = new THREE.TubeGeometry(path, 1, 0.04, 8, false); 
+                const tubeMat = new THREE.MeshBasicMaterial({ color: lineColor }); 
+                c5CutGroup.add(new THREE.Mesh(tubeGeo, tubeMat)); 
+ 
+                const dot = new THREE.Mesh(dotGeo, dotMat); dot.position.copy(p); c5CutGroup.add(dot); 
+            }); 
+ 
+            const shapeGeo = new THREE.BufferGeometry(); 
+            const vertices = []; 
+            for (let i = 1; i < points.length - 1; i++) { 
+                vertices.push( 
+                    points[0].x, points[0].y, points[0].z, 
+                    points[i].x, points[i].y, points[i].z, 
+                    points[i+1].x, points[i+1].y, points[i+1].z 
+                ); 
+            } 
+            shapeGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(vertices), 3)); 
+            c5CutGroup.add(new THREE.Mesh(shapeGeo, new THREE.MeshBasicMaterial({ color: 0xef4444, transparent: true, opacity: 0.3, side: THREE.DoubleSide }))); 
+        } 
+ 
+        function initCut53D() { 
+            if (isCut5Init) return; 
+            const container = document.getElementById('three-container-cut5'); 
+            if (!container) return; 
+ 
+            c5Scene = new THREE.Scene(); 
+            c5Camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 100); 
+             
+            // 改變視角位置，從側邊觀測，防止粉紅面直接擋住觀察路線 
+            c5Camera.position.set(-4, 3.5, 5.5); 
+            c5Renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true }); 
+            c5Renderer.setSize(container.clientWidth, container.clientHeight); 
+            c5Renderer.setPixelRatio(window.devicePixelRatio); 
+            container.appendChild(c5Renderer.domElement); 
+ 
+            c5Controls = new THREE.OrbitControls(c5Camera, c5Renderer.domElement); 
+            c5Controls.enableDamping = true; c5Controls.dampingFactor = 0.05;  
+            // 關閉自動旋轉，方便操作者觀察 
+            c5Controls.autoRotate = false;  
+ 
+            const boxGeo = new THREE.BoxGeometry(2, 2, 2); 
+            c5Scene.add(new THREE.Mesh(boxGeo, new THREE.MeshBasicMaterial({ color: 0x94a3b8, transparent: true, opacity: 0.1, depthWrite: false }))); 
+            c5Scene.add(new THREE.LineSegments(new THREE.EdgesGeometry(boxGeo), new THREE.LineBasicMaterial({ color: 0x64748b, linewidth: 2 }))); 
+ 
+            const planeGeo = new THREE.PlaneGeometry(6, 6); 
+            c5KnifeMesh = new THREE.Mesh(planeGeo, new THREE.MeshBasicMaterial({ color: 0xfca5a5, transparent: true, opacity: 0.25, side: THREE.DoubleSide })); 
+            const normal = new THREE.Vector3(1, 1, 2).normalize(); 
+            c5KnifeMesh.lookAt(normal); // 精準對齊法向量 
+            c5Scene.add(c5KnifeMesh); 
+            c5KnifeMesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(planeGeo), new THREE.LineBasicMaterial({ color: 0xef4444, linewidth: 2 }))); 
+ 
+            const slider = document.getElementById('knife-slider'); 
+            slider.addEventListener('input', (e) => updateC5Intersection(parseFloat(e.target.value))); 
+            updateC5Intersection(parseFloat(slider.value)); 
+ 
+            isCut5Init = true; 
+        } 
+ 
+        // --- Slide 7 (六邊形 3D) 邏輯 --- 
+        function initHexagon3D() { 
+            if (isHexInit) return; 
+            const container = document.getElementById('three-container-hexagon'); 
+            if (!container) return; 
+ 
+            hScene = new THREE.Scene(); 
+            hCamera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100); 
+            hCamera.position.set(3, 3, 5);  
+            hRenderer = new THREE.WebGLRenderer({ alpha: true, antialias: true }); 
+            hRenderer.setSize(container.clientWidth, container.clientHeight); 
+            hRenderer.setPixelRatio(window.devicePixelRatio); 
+            container.appendChild(hRenderer.domElement); 
+ 
+            hControls = new THREE.OrbitControls(hCamera, hRenderer.domElement); 
+            hControls.enableDamping = true; hControls.dampingFactor = 0.05;  
+            // 【特別修改】：關閉自動旋轉，供手動觀測 
+            hControls.autoRotate = false;  
+ 
+            const boxGeo = new THREE.BoxGeometry(2, 2, 2); 
+            hScene.add(new THREE.LineSegments(new THREE.EdgesGeometry(boxGeo), new THREE.LineBasicMaterial({ color: 0x818cf8, linewidth: 2 }))); 
+            hScene.add(new THREE.Mesh(boxGeo, new THREE.MeshBasicMaterial({ color: 0xbfdbfe, transparent: true, opacity: 0.1 }))); 
+ 
+            const hexGeo = new THREE.BufferGeometry(); 
+            const vertices = new Float32Array([ 1, -1, 0, 1, 0, -1, 0, 1, -1, -1, 1, 0, -1, 0, 1, 0, -1, 1 ]); 
+            hexGeo.setAttribute('position', new THREE.BufferAttribute(vertices, 3)); 
+            hexGeo.setIndex([ 0, 1, 2, 0, 2, 3, 0, 3, 4, 0, 4, 5 ]); 
+            hScene.add(new THREE.Mesh(hexGeo, new THREE.MeshBasicMaterial({ color: 0xf59e0b, side: THREE.DoubleSide, transparent: true, opacity: 0.75 }))); 
+            hScene.add(new THREE.LineSegments(new THREE.EdgesGeometry(hexGeo), new THREE.LineBasicMaterial({ color: 0xb45309, linewidth: 3 }))); 
+ 
+            const greenMat = new THREE.MeshBasicMaterial({ color: 0x10b981 }); 
+            for (let i = 0; i < vertices.length; i += 3) { 
+                const point = new THREE.Mesh(new THREE.SphereGeometry(0.08, 16, 16), greenMat); 
+                point.position.set(vertices[i], vertices[i+1], vertices[i+2]); 
+                hScene.add(point); 
+            } 
+ 
+            isHexInit = true; 
+        } 
+ 
+        // --- Slide 8 (終極萬向切刀) 重構邏輯 --- 
+        function updateFinalIntersection() { 
+            if (!fScene) return; 
+            if (fCutGroup) fScene.remove(fCutGroup); 
+            fCutGroup = new THREE.Group(); fScene.add(fCutGroup); 
+ 
+            const rx = parseFloat(document.getElementById('f-rot-x').value) * Math.PI / 180; 
+            const ry = parseFloat(document.getElementById('f-rot-y').value) * Math.PI / 180; 
+            const depth = parseFloat(document.getElementById('f-depth').value); 
+ 
+            // 讓數學法向量與 Three.js 預設 PlaneGeometry 法向量 (0,0,1) 完全一致 
+            const normal = new THREE.Vector3(0, 0, 1); 
+            normal.applyEuler(new THREE.Euler(rx, ry, 0, 'XYZ')); 
+            normal.normalize(); 
+             
+            const plane = new THREE.Plane(normal, -depth);  
+             
+            // 避免破圖 
+            if(fKnifeMesh) { 
+                fKnifeMesh.quaternion.setFromEuler(new THREE.Euler(rx, ry, 0, 'XYZ')); 
+                fKnifeMesh.position.copy(normal).multiplyScalar(depth - 0.005); 
+            } 
+ 
+            const edges = [ 
+                [[-1,-1,-1], [1,-1,-1]], [[-1,1,-1], [1,1,-1]], [[-1,-1,1], [1,-1,1]], [[-1,1,1], [1,1,1]], 
+                [[-1,-1,-1], [-1,1,-1]], [[1,-1,-1], [1,1,-1]], [[-1,-1,1], [-1,1,1]], [[1,-1,1], [1,1,1]], 
+                [[-1,-1,-1], [-1,-1,1]], [[1,-1,-1], [1,-1,1]], [[-1,1,-1], [-1,1,1]], [[1,1,-1], [1,1,1]] 
+            ]; 
+ 
+            const points = []; 
+            edges.forEach(edge => { 
+                const line = new THREE.Line3(new THREE.Vector3(...edge[0]), new THREE.Vector3(...edge[1])); 
+                const pt = new THREE.Vector3(); 
+                if (plane.intersectLine(line, pt)) { 
+                    if (!points.some(p => p.distanceTo(pt) < 0.001)) points.push(pt); 
+                } 
+            }); 
+ 
+            const sidesEl = document.getElementById('final-sides-count'); 
+            if (sidesEl) { 
+                const sideNames = {3: '三角形', 4: '四邊形', 5: '五邊形', 6: '六邊形'}; 
+                sidesEl.innerText = sideNames[points.length] || '未切到 / 點'; 
+                // 視覺刺激，如果是六邊形給個綠色高亮 
+                sidesEl.className = points.length === 6  
+                    ? "text-green-400 font-black text-3xl whitespace-nowrap tracking-wide drop-shadow-md"  
+                    : "text-yellow-300 font-black text-3xl whitespace-nowrap tracking-wide drop-shadow-md"; 
+            } 
+            if (points.length < 3) return;  
+ 
+            const center = new THREE.Vector3(); 
+            points.forEach(p => center.add(p)); 
+            center.divideScalar(points.length); 
+            const u = new THREE.Vector3().subVectors(points[0], center).normalize(); 
+            const v = new THREE.Vector3().crossVectors(normal, u).normalize(); 
+ 
+            points.sort((a, b) => { 
+                const da = new THREE.Vector3().subVectors(a, center); 
+                const db = new THREE.Vector3().subVectors(b, center); 
+                return Math.atan2(da.dot(v), da.dot(u)) - Math.atan2(db.dot(v), db.dot(u)); 
+            }); 
+ 
+            const dotGeo = new THREE.SphereGeometry(0.08, 16, 16); 
+            const dotMat = new THREE.MeshBasicMaterial({ color: 0xffffff }); 
+ 
+            points.forEach((p, i) => { 
+                const nextP = points[(i + 1) % points.length]; 
+                 
+                // 【精準上色系統】：自動判斷線段在哪一個平面上，抓出平行線 
+                const isY = (Math.abs(p.y - 1) < 0.01 && Math.abs(nextP.y - 1) < 0.01) || (Math.abs(p.y + 1) < 0.01 && Math.abs(nextP.y + 1) < 0.01); 
+                const isX = (Math.abs(p.x - 1) < 0.01 && Math.abs(nextP.x - 1) < 0.01) || (Math.abs(p.x + 1) < 0.01 && Math.abs(nextP.x + 1) < 0.01); 
+                const isZ = (Math.abs(p.z - 1) < 0.01 && Math.abs(nextP.z - 1) < 0.01) || (Math.abs(p.z + 1) < 0.01 && Math.abs(nextP.z + 1) < 0.01); 
+                 
+                let lineColor = 0xf59e0b; // 預設深橘色 
+                if (isY) lineColor = 0x06b6d4; // 藍色 (上下平面) 
+                else if (isX) lineColor = 0xec4899; // 粉紅色 (左右平面) 
+                else if (isZ) lineColor = 0xeab308; // 黃色 (前後平面) 
+ 
+                const path = new THREE.LineCurve3(p, nextP); 
+                const tubeGeo = new THREE.TubeGeometry(path, 1, 0.04, 8, false); 
+                const tubeMat = new THREE.MeshBasicMaterial({ color: lineColor }); 
+                fCutGroup.add(new THREE.Mesh(tubeGeo, tubeMat)); 
+ 
+                const dot = new THREE.Mesh(dotGeo, dotMat); dot.position.copy(p); fCutGroup.add(dot); 
+            }); 
+ 
+            const shapeGeo = new THREE.BufferGeometry(); 
+            const vertices = []; 
+            for (let i = 1; i < points.length - 1; i++) { 
+                vertices.push( 
+                    points[0].x, points[0].y, points[0].z, 
+                    points[i].x, points[i].y, points[i].z, 
+                    points[i+1].x, points[i+1].y, points[i+1].z 
+                ); 
+            } 
+            shapeGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(vertices), 3)); 
+            fCutGroup.add(new THREE.Mesh(shapeGeo, new THREE.MeshBasicMaterial({ color: 0xf59e0b, transparent: true, opacity: 0.4, side: THREE.DoubleSide }))); 
+        } 
+ 
+        function initFinalCut3D() { 
+            if (isFinalInit) return; 
+            const container = document.getElementById('three-container-final'); 
+            if (!container) return; 
+ 
+            fScene = new THREE.Scene(); 
+            fCamera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 100); 
+            fCamera.position.set(4.5, 4.5, 6); 
+            fRenderer = new THREE.WebGLRenderer({ alpha: true, antialias: true }); 
+            fRenderer.setSize(container.clientWidth, container.clientHeight); 
+            fRenderer.setPixelRatio(window.devicePixelRatio); 
+            container.appendChild(fRenderer.domElement); 
+ 
+            fControls = new THREE.OrbitControls(fCamera, fRenderer.domElement); 
+            fControls.enableDamping = true; fControls.dampingFactor = 0.05;  
+            // 已經關閉自動旋轉，方便操作者自由旋轉並拉霸 
+            fControls.autoRotate = false;  
+ 
+            // 【關鍵修改：整體拉升 3D 圖形】 將相機目標點下降，使畫布中的模型往上提升，完全避開下方拉霸控制台！ 
+            fControls.target.set(0, -1.3, 0); 
+            fControls.update(); 
+ 
+            const boxGeo = new THREE.BoxGeometry(2, 2, 2); 
+            fScene.add(new THREE.Mesh(boxGeo, new THREE.MeshBasicMaterial({ color: 0x94a3b8, transparent: true, opacity: 0.1, depthWrite: false }))); 
+            fScene.add(new THREE.LineSegments(new THREE.EdgesGeometry(boxGeo), new THREE.LineBasicMaterial({ color: 0x64748b, linewidth: 2 }))); 
+ 
+            const planeGeo = new THREE.PlaneGeometry(6, 6); 
+            fKnifeMesh = new THREE.Mesh(planeGeo, new THREE.MeshBasicMaterial({ color: 0xfca5a5, transparent: true, opacity: 0.35, side: THREE.DoubleSide })); 
+            fScene.add(fKnifeMesh); 
+            fKnifeMesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(planeGeo), new THREE.LineBasicMaterial({ color: 0xef4444, linewidth: 2 }))); 
+ 
+            // 綁定 UI 事件 
+            const rxSlider = document.getElementById('f-rot-x'); 
+            const rySlider = document.getElementById('f-rot-y'); 
+            const dSlider = document.getElementById('f-depth'); 
+            const resetHexBtn = document.getElementById('reset-hex-btn'); 
+             
+            const handleUpdate = () => { 
+                document.getElementById('f-val-x').innerText = rxSlider.value + '°'; 
+                document.getElementById('f-val-y').innerText = rySlider.value + '°'; 
+                document.getElementById('f-val-d').innerText = parseFloat(dSlider.value).toFixed(2); 
+                updateFinalIntersection(); 
+            }; 
+ 
+            rxSlider.addEventListener('input', handleUpdate); 
+            rySlider.addEventListener('input', handleUpdate); 
+            dSlider.addEventListener('input', handleUpdate); 
+             
+            if (resetHexBtn) { 
+                resetHexBtn.addEventListener('click', () => { 
+                    rxSlider.value = -35; 
+                    rySlider.value = 45; 
+                    dSlider.value = 0; 
+                    handleUpdate(); 
+                }); 
+            } 
+             
+            handleUpdate(); // 初始繪製，預設值就會直接切出完美的正六邊形！ 
+ 
+            isFinalInit = true; 
+        } 
+ 
+        // --- 全局渲染與視窗控制 --- 
+        function animateThree() { 
+            globalRequestID = requestAnimationFrame(animateThree); 
+            if (activeSceneId === 'track' && tControls) { 
+                tControls.update(); tRenderer.render(tScene, tCamera); 
+            } else if (activeSceneId === 'cut5' && c5Controls) { 
+                c5Controls.update(); c5Renderer.render(c5Scene, c5Camera); 
+            } else if (activeSceneId === 'hex' && hControls) { 
+                hControls.update(); hRenderer.render(hScene, hCamera); 
+            } else if (activeSceneId === 'final' && fControls) { 
+                fControls.update(); fRenderer.render(fScene, fCamera); 
+            } 
+        } 
+        animateThree(); 
+ 
+        window.addEventListener('resize', () => { 
+            const updateCanvas = (id, cam, ren) => { 
+                const con = document.getElementById(id); 
+                if(con && con.clientWidth > 0 && cam && ren) { 
+                    cam.aspect = con.clientWidth / con.clientHeight; 
+                    cam.updateProjectionMatrix(); 
+                    ren.setSize(con.clientWidth, con.clientHeight); 
+                } 
+            } 
+            if (activeSceneId === 'track') updateCanvas('three-container-track', tCamera, tRenderer); 
+            if (activeSceneId === 'cut5') updateCanvas('three-container-cut5', c5Camera, c5Renderer); 
+            if (activeSceneId === 'hex') updateCanvas('three-container-hexagon', hCamera, hRenderer); 
+            if (activeSceneId === 'final') updateCanvas('three-container-final', fCamera, fRenderer); 
+        }); 
+ 
+        // --- 簡報導航邏輯 --- 
+        let currentSlide = 0; 
+        const slides = document.querySelectorAll('.slide'); 
+        const totalSlides = slides.length; 
+        const dotsContainer = document.getElementById('dots'); 
+        const prevBtn = document.getElementById('prevBtn'); 
+        const nextBtn = document.getElementById('nextBtn'); 
+ 
+        for(let i=0; i<totalSlides; i++) { 
+            const dot = document.createElement('div'); 
+            dot.className = 'w-2.5 h-2.5 rounded-full bg-gray-300 transition-colors duration-300'; 
+            dotsContainer.appendChild(dot); 
+        } 
+        const dots = dotsContainer.children; 
+ 
+        function updateSlide() { 
+            slides.forEach((slide, index) => { 
+                if (index === currentSlide) { 
+                    slide.classList.add('active'); 
+                    slide.parentElement.scrollTop = 0; 
+                     
+                    const animatedElements = slide.querySelectorAll('.fade-in-up, .fade-in, .draw-line, .draw-line-slow, .pulse-alert, .bounce-in'); 
+                    animatedElements.forEach(el => { 
+                        el.style.animation = 'none'; 
+                        el.offsetHeight;  
+                        el.style.animation = null;  
+                    }); 
+ 
+                    // 處理 3D 場景的顯示與初始化 
+                    if (index === 2) { 
+                        activeSceneId = 'track'; 
+                        if (!isTrackInit) initTrack3D(); 
+                        setTimeout(() => window.dispatchEvent(new Event('resize')), 50); 
+                    } else if (index === 3) { 
+                        activeSceneId = 'cut5'; 
+                        if (!isCut5Init) initCut53D(); 
+                        setTimeout(() => window.dispatchEvent(new Event('resize')), 50); 
+                    } else if (index === 6) { 
+                        activeSceneId = 'hex'; 
+                        if (!isHexInit) initHexagon3D(); 
+                        setTimeout(() => window.dispatchEvent(new Event('resize')), 50); 
+                    } else if (index === 7) { 
+                        activeSceneId = 'final'; 
+                        if (!isFinalInit) initFinalCut3D(); 
+                        setTimeout(() => window.dispatchEvent(new Event('resize')), 50); 
+                    } else { 
+                        activeSceneId = null; 
+                    } 
+                } else { 
+                    slide.classList.remove('active'); 
+                } 
+            }); 
+ 
+            Array.from(dots).forEach((dot, index) => { 
+                dot.className = index === currentSlide ? 'w-3 h-3 rounded-full bg-indigo-600 shadow' : 'w-2.5 h-2.5 rounded-full bg-gray-300'; 
+            }); 
+ 
+            prevBtn.disabled = currentSlide === 0; 
+            nextBtn.innerHTML = currentSlide === totalSlides - 1 ? '重新開始 ↺' : '下一步 →'; 
+        } 
+ 
+        nextBtn.addEventListener('click', () => { 
+            currentSlide = (currentSlide < totalSlides - 1) ? currentSlide + 1 : 0; 
+            updateSlide(); 
+        }); 
+ 
+        prevBtn.addEventListener('click', () => { 
+            if (currentSlide > 0) { currentSlide--; updateSlide(); } 
+        }); 
+ 
+        updateSlide();
+    </script>
 </body>
 </html>
