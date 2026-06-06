@@ -767,36 +767,36 @@
 
             return (
                 <>
-                    <div className="min-h-screen max-w-5xl mx-auto px-6 py-10">
+                    <div className="min-h-screen max-w-5xl mx-auto px-6 py-6">
                         {/* ── Header ── */}
-                        <header className="flex items-center justify-between mb-10">
+                        <header className="flex items-center justify-between mb-5">
                             <div>
-                                <div className="flex items-center gap-3 mb-1">
-                                    <span className="bg-sky-500 text-slate-900 text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest">資優挑戰</span>
-                                    <span className="text-slate-500 text-xs font-bold">PLATONIC DETECTIVE ROOM</span>
+                                <div className="flex items-center gap-2 mb-0.5">
+                                    <span className="bg-sky-500 text-slate-900 text-[9px] font-black px-1.5 py-0.5 rounded-full uppercase tracking-widest">資優挑戰</span>
+                                    <span className="text-slate-500 text-[10px] font-bold">PLATONIC DETECTIVE ROOM</span>
                                 </div>
-                                <h1 className="text-4xl font-black text-white tracking-tight">正多面體偵探室</h1>
-                                <p className="text-slate-400 text-sm font-bold mt-1">觀察 → 猜測 → 發現 → 深入思考</p>
+                                <h1 className="text-2xl font-black text-white tracking-tight">正多面體偵探室</h1>
+                                <p className="text-slate-400 text-xs font-bold mt-0.5">觀察 → 猜測 → 發現 → 深入思考</p>
                             </div>
-                            <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-3">
                                 {completed.size < SOLIDS.length ? (
-                                    <div className="hidden md:flex bg-amber-500/10 border border-amber-500/30 px-4 py-2 rounded-xl items-center gap-3 shadow-[0_0_15px_rgba(245,158,11,0.15)]">
-                                        <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center border border-amber-400/50">
-                                            <i className="fa-solid fa-lock text-amber-400"></i>
+                                    <div className="hidden md:flex bg-amber-500/10 border border-amber-500/30 px-3 py-1.5 rounded-lg items-center gap-2 shadow-[0_0_10px_rgba(245,158,11,0.1)]">
+                                        <div className="w-7 h-7 rounded-full bg-amber-500/20 flex items-center justify-center border border-amber-400/50">
+                                            <i className="fa-solid fa-lock text-amber-400 text-xs"></i>
                                         </div>
-                                        <div className="text-xs">
+                                        <div className="text-[10px]">
                                             <div className="font-black text-amber-300 tracking-wide mb-0.5">神秘知識點</div>
-                                            <div className="text-slate-300 font-medium">完成<span className="text-amber-400 font-bold mx-1">全部解鎖</span>即可開啟！</div>
+                                            <div className="text-slate-300">完成<span className="text-amber-400 font-bold mx-1">全部解鎖</span>即可開啟</div>
                                         </div>
                                     </div>
                                 ) : (
-                                    <div className="hidden md:flex bg-emerald-500/10 border border-emerald-500/30 px-4 py-2 rounded-xl items-center gap-3 shadow-[0_0_15px_rgba(16,185,129,0.15)] fade-in">
-                                        <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-400/50">
-                                            <i className="fa-solid fa-unlock text-emerald-400"></i>
+                                    <div className="hidden md:flex bg-emerald-500/10 border border-emerald-500/30 px-3 py-1.5 rounded-lg items-center gap-2 shadow-[0_0_10px_rgba(16,185,129,0.1)] fade-in">
+                                        <div className="w-7 h-7 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-400/50">
+                                            <i className="fa-solid fa-unlock text-emerald-400 text-xs"></i>
                                         </div>
-                                        <div className="text-xs">
+                                        <div className="text-[10px]">
                                             <div className="font-black text-emerald-300 tracking-wide mb-0.5">解鎖成功</div>
-                                            <div className="text-slate-300 font-medium">柏拉圖立體的奧秘已在下方開啟</div>
+                                            <div className="text-slate-300">柏拉圖立體的奧秘已在下方開啟</div>
                                         </div>
                                     </div>
                                 )}
