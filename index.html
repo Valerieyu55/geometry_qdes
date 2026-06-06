@@ -615,17 +615,17 @@
                                 align-items: center;
                                 justify-content: center;
                                 min-width: 3rem;
-                                border-bottom: 2px solid #64748b;
+                                border-bottom: 1.5px solid rgba(56, 189, 248, 0.6);
                                 padding: 0 0.5rem;
                                 margin: 0 0.25rem;
                                 cursor: pointer;
                                 position: relative;
                                 transition: all 0.2s;
                             }
-                            .ans-blank:hover { border-color: #f87171; }
+                            .ans-blank:hover { border-color: #38bdf8; }
                             .ans-text {
                                 font-weight: 700;
-                                color: #f87171;
+                                color: #38bdf8;
                                 transition: opacity 0.3s, filter 0.3s;
                             }
                             .ans-blank.ans-hidden .ans-text {
@@ -637,104 +637,143 @@
                             .ans-blank.ans-hidden::after {
                                 content: '?';
                                 position: absolute;
-                                color: #64748b;
-                                font-size: 0.85em;
+                                color: #38bdf8;
+                                font-size: 0.9em;
                                 font-weight: bold;
+                                opacity: 0.9;
                             }
                             .ans-blank:not(.ans-hidden)::after { display: none; }
                         </style>
 
-                        <div class="glass-panel w-full max-w-5xl mx-auto rounded-2xl border border-cyan-500/30 p-8 flex flex-col gap-6">
-
-                            <div class="flex items-center justify-between gap-4 border-b border-cyan-500/20 pb-4 flex-wrap gap-y-3">
-                                <div class="flex items-center gap-3">
-                                    <span class="text-2xl">👉</span>
-                                    <h2 class="text-xl font-bold text-cyan-300 tracking-wide" data-i18n="step3Desc">綜合一、二，請比較這四個立體圖形，歸納它們的特徵，並填寫生活中的實例</h2>
+                                                    <!-- Top Banner -->
+                            <div class="w-full max-w-5xl mx-auto rounded-xl border border-blue-500/50 bg-slate-900/60 shadow-[0_0_20px_rgba(59,130,246,0.3),inset_0_0_15px_rgba(59,130,246,0.1)] p-6 flex flex-col relative overflow-hidden mb-2">
+                                <div class="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-transparent to-purple-900/20 pointer-events-none"></div>
+                                <div class="absolute -left-10 top-0 opacity-40 text-blue-400 flex gap-4 pointer-events-none">
+                                    <svg class="w-24 h-24 drop-shadow-[0_0_5px_rgba(96,165,250,0.8)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><polygon points="12 4 19 7 12 11 5 7"/><polygon points="12 16 19 19 12 23 5 19"/><line x1="5" y1="7" x2="5" y2="19"/><line x1="12" y1="11" x2="12" y2="23"/><line x1="19" y1="7" x2="19" y2="19"/><line x1="12" y1="4" x2="12" y2="16"/></svg>
+                                    <svg class="w-24 h-24 text-purple-400 drop-shadow-[0_0_5px_rgba(192,132,252,0.8)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><polygon points="12 18 19 20 12 23 5 20"/><line x1="12" y1="3" x2="12" y2="18"/><line x1="12" y1="3" x2="19" y2="20"/><line x1="12" y1="3" x2="12" y2="23"/><line x1="12" y1="3" x2="5" y2="20"/></svg>
                                 </div>
-                                <!-- Teacher control -->
-                                <button id="s3-reveal-btn" onclick="toggleS3Answers()" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-red-500/10 border border-red-500/30 text-red-300 hover:bg-red-500/20 hover:shadow-[0_0_12px_rgba(239,68,68,0.2)] transition-all text-xs font-bold tech-font whitespace-nowrap">
-                                    <i class="fa-solid fa-eye-slash"></i>
-                                    <span id="s3-reveal-label">顯示答案</span>
-                                </button>
+                                <div class="absolute -right-6 bottom-0 opacity-40 text-cyan-400 flex gap-4 pointer-events-none">
+                                    <svg class="w-20 h-20 drop-shadow-[0_0_5px_rgba(34,211,238,0.8)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><ellipse cx="12" cy="5" rx="9" ry="3"/><ellipse cx="12" cy="19" rx="9" ry="3"/><line x1="3" y1="5" x2="3" y2="19"/><line x1="21" y1="5" x2="21" y2="19"/></svg>
+                                    <svg class="w-16 h-16 text-blue-500 drop-shadow-[0_0_5px_rgba(59,130,246,0.8)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><polygon points="12 16 19 21 6 19"/><line x1="12" y1="3" x2="12" y2="16"/><line x1="12" y1="3" x2="19" y2="21"/><line x1="12" y1="3" x2="6" y2="19"/></svg>
+                                </div>
+                                
+                                <div class="relative z-10 flex items-center justify-between w-full h-full">
+                                    <div class="flex items-center gap-4 mx-auto pl-10 pr-4">
+                                        <span class="text-3xl drop-shadow-[0_0_10px_rgba(251,191,36,0.8)]">👉</span>
+                                        <h2 class="text-xl font-bold text-slate-100 tracking-[0.1em] drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]" data-i18n="step3Desc">請比較這四個立體圖形，歸納它們的特徵，並填寫生活中的實例</h2>
+                                    </div>
+                                    <button id="s3-reveal-btn" onclick="toggleS3Answers()" class="shrink-0 flex items-center gap-2 px-6 py-2.5 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 border border-blue-400/50 text-white hover:from-blue-500 hover:to-purple-500 hover:shadow-[0_0_20px_rgba(139,92,246,0.6)] transition-all text-sm font-bold tracking-widest whitespace-nowrap shadow-[0_0_15px_rgba(99,102,241,0.4)]">
+                                        <span id="s3-reveal-label">顯示答案</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="w-full max-w-5xl mx-auto flex items-center gap-2 mb-2 px-2 text-cyan-300/70 text-sm tracking-wide">
+                                <i class="fa-regular fa-lightbulb"></i> 點擊各空白格可個別顯示答案
                             </div>
 
-                            <p class="text-xs text-slate-500 -mt-2 flex items-center gap-1.5">
-                                <i class="fa-solid fa-hand-pointer text-slate-600"></i>
-                                點擊各空白格可個別顯示答案
-                            </p>
+                            <div class="glass-panel w-full max-w-5xl mx-auto rounded-2xl border border-blue-500/30 overflow-hidden shadow-[0_0_30px_rgba(59,130,246,0.05)] bg-slate-900/60">
+                                <div class="overflow-x-auto">
+                                    <table class="w-full text-center border-collapse min-w-[800px]">
+                                        <thead>
+                                            <tr class="border-b border-blue-500/40">
+                                                <th class="py-5 px-4 text-cyan-400 font-bold tracking-[0.15em] border-r border-blue-500/20 w-[15%]" data-i18n="tName">
+                                                    <div class="flex items-center justify-center gap-2"><i class="fa-solid fa-cube text-lg opacity-80"></i> 名稱</div>
+                                                </th>
+                                                <th class="py-5 px-4 text-cyan-400 font-bold tracking-[0.15em] border-r border-blue-500/20 w-[22%]" data-i18n="tBase">
+                                                    <div class="flex items-center justify-center gap-2"><i class="fa-solid fa-vector-square text-lg opacity-80"></i> 底面特徵</div>
+                                                </th>
+                                                <th class="py-5 px-4 text-cyan-400 font-bold tracking-[0.15em] border-r border-blue-500/20 w-[22%]" data-i18n="tSide">
+                                                    <div class="flex items-center justify-center gap-2"><i class="fa-solid fa-layer-group text-lg opacity-80"></i> 側面特徵</div>
+                                                </th>
+                                                <th class="py-5 px-4 text-cyan-400 font-bold tracking-[0.15em] border-r border-blue-500/20 w-[22%]" data-i18n="tVertex">
+                                                    <div class="flex items-center justify-center gap-2"><i class="fa-solid fa-circle-nodes text-lg opacity-80"></i> 頂點特徵</div>
+                                                </th>
+                                                <th class="py-5 px-4 text-cyan-400 font-bold tracking-[0.15em] w-[19%]" data-i18n="tExample">
+                                                    <div class="flex items-center justify-center gap-2"><i class="fa-regular fa-bookmark text-lg opacity-80"></i> 生活實例 (舉一例)</div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-sm text-slate-300 divide-y divide-blue-500/20">
 
-                            <div class="overflow-x-auto">
-                                <table class="w-full text-left border-collapse min-w-[800px]">
-                                    <thead>
-                                        <tr class="bg-cyan-900/40 border-b border-cyan-500/50">
-                                            <th class="p-4 text-cyan-400 font-bold whitespace-nowrap" data-i18n="tName">名稱</th>
-                                            <th class="p-4 text-cyan-400 font-bold whitespace-nowrap" data-i18n="tBase">底面特徵</th>
-                                            <th class="p-4 text-cyan-400 font-bold whitespace-nowrap" data-i18n="tSide">側面特徵</th>
-                                            <th class="p-4 text-cyan-400 font-bold whitespace-nowrap" data-i18n="tVertex">頂點特徵</th>
-                                            <th class="p-4 text-cyan-400 font-bold whitespace-nowrap" data-i18n="tExample">生活實例 (舉一例)</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="text-sm text-slate-300 divide-y divide-slate-700/50">
+                                            <tr class="hover:bg-slate-800/40 transition-colors group">
+                                                <td class="py-6 px-4 font-bold text-slate-100 tracking-wider border-r border-blue-500/20">
+                                                    <div class="flex items-center justify-center gap-4">
+                                                        <svg class="w-8 h-8 text-cyan-400 drop-shadow-[0_0_5px_rgba(34,211,238,0.5)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 4 19 7 12 11 5 7"/><polygon points="12 16 19 19 12 23 5 19"/><line x1="5" y1="7" x2="5" y2="19"/><line x1="12" y1="11" x2="12" y2="23"/><line x1="19" y1="7" x2="19" y2="19"/><line x1="12" y1="4" x2="12" y2="16"/></svg>
+                                                        <span class="text-base tracking-[0.1em]" data-i18n="tPrism">角柱</span>
+                                                    </div>
+                                                </td>
+                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium">
+                                                    <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">2</span></span> 個平行的 <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">多邊</span></span>形
+                                                </td>
+                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium">
+                                                    皆為 <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">平行四邊</span></span>形
+                                                </td>
+                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium" data-i18n="tPrismV">上下底面各有頂點</td>
+                                                <td class="py-6 px-4 text-center">
+                                                    <span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">包裝盒</span></span>
+                                                </td>
+                                            </tr>
 
-                                        <tr class="hover:bg-slate-800/30 transition-colors group">
-                                            <td class="p-4 font-bold text-slate-200" data-i18n="tPrism">角柱</td>
-                                            <td class="p-4 leading-loose">
-                                                <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-cyan-400 font-bold px-2">2</span></span>個平行的<span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">多邊</span></span>形
-                                            </td>
-                                            <td class="p-4 leading-loose">
-                                                皆為<span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">平行四邊</span></span>形
-                                            </td>
-                                            <td class="p-4" data-i18n="tPrismV">上下底面各有頂點</td>
-                                            <td class="p-4">
-                                                <span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">包裝盒</span></span>
-                                            </td>
-                                        </tr>
+                                            <tr class="hover:bg-slate-800/40 transition-colors group">
+                                                <td class="py-6 px-4 font-bold text-slate-100 tracking-wider border-r border-blue-500/20">
+                                                    <div class="flex items-center justify-center gap-4">
+                                                        <svg class="w-8 h-8 text-purple-400 drop-shadow-[0_0_5px_rgba(192,132,252,0.5)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 17 19 19 12 22 5 19"/><line x1="12" y1="3" x2="12" y2="17"/><line x1="12" y1="3" x2="19" y2="19"/><line x1="12" y1="3" x2="12" y2="22"/><line x1="12" y1="3" x2="5" y2="19"/></svg>
+                                                        <span class="text-base tracking-[0.1em]" data-i18n="tPyramid">角錐</span>
+                                                    </div>
+                                                </td>
+                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium">
+                                                    <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">1</span></span> 個 <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">多邊</span></span>形
+                                                </td>
+                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium">
+                                                    皆為 <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">三角</span></span>形
+                                                </td>
+                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium" data-i18n="tPyramidV">所有側邊交於一頂點</td>
+                                                <td class="py-6 px-4 text-center">
+                                                    <span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">四角錐香水瓶</span></span>
+                                                </td>
+                                            </tr>
 
-                                        <tr class="hover:bg-slate-800/30 transition-colors group">
-                                            <td class="p-4 font-bold text-slate-200" data-i18n="tPyramid">角錐</td>
-                                            <td class="p-4 leading-loose">
-                                                <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-cyan-400 font-bold px-2">1</span></span>個<span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">多邊</span></span>形
-                                            </td>
-                                            <td class="p-4 leading-loose">
-                                                皆為<span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">三角</span></span>形
-                                            </td>
-                                            <td class="p-4" data-i18n="tPyramidV">所有側邊交於一頂點</td>
-                                            <td class="p-4">
-                                                <span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">四角錐香水瓶</span></span>
-                                            </td>
-                                        </tr>
+                                            <tr class="hover:bg-slate-800/40 transition-colors group">
+                                                <td class="py-6 px-4 font-bold text-slate-100 tracking-wider border-r border-blue-500/20">
+                                                    <div class="flex items-center justify-center gap-4">
+                                                        <svg class="w-8 h-8 text-cyan-400 drop-shadow-[0_0_5px_rgba(34,211,238,0.5)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><ellipse cx="12" cy="19" rx="9" ry="3"/><line x1="3" y1="5" x2="3" y2="19"/><line x1="21" y1="5" x2="21" y2="19"/></svg>
+                                                        <span class="text-base tracking-[0.1em]" data-i18n="tCylinder">圓柱</span>
+                                                    </div>
+                                                </td>
+                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium">
+                                                    <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">2</span></span> 個平行的 <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">圓</span></span>形
+                                                </td>
+                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium leading-relaxed">
+                                                    平滑的曲面<br>（展開為 <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">矩</span></span>形）
+                                                </td>
+                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium" data-i18n="tCylinderV">無頂點</td>
+                                                <td class="py-6 px-4 text-center">
+                                                    <span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">易開罐</span></span>
+                                                </td>
+                                            </tr>
 
-                                        <tr class="bg-amber-900/10 hover:bg-amber-900/20 transition-colors group">
-                                            <td class="p-4 font-bold text-slate-200" data-i18n="tCylinder">圓柱</td>
-                                            <td class="p-4 leading-loose">
-                                                <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-cyan-400 font-bold px-2">2</span></span>個平行的<span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">圓</span></span>形
-                                            </td>
-                                            <td class="p-4 leading-loose">
-                                                平滑的曲面<br>（展開為<span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">矩</span></span>形）
-                                            </td>
-                                            <td class="p-4" data-i18n="tCylinderV">無頂點</td>
-                                            <td class="p-4">
-                                                <span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">易開罐</span></span>
-                                            </td>
-                                        </tr>
-
-                                        <tr class="bg-amber-900/10 hover:bg-amber-900/20 transition-colors group">
-                                            <td class="p-4 font-bold text-slate-200" data-i18n="tCone">圓錐</td>
-                                            <td class="p-4 leading-loose">
-                                                <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-cyan-400 font-bold px-2">1</span></span>個<span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">圓</span></span>形
-                                            </td>
-                                            <td class="p-4 leading-loose">
-                                                平滑的曲面<br>（展開為<span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">扇</span></span>形）
-                                            </td>
-                                            <td class="p-4" data-i18n="tConeV">所有母線交於一頂點</td>
-                                            <td class="p-4">
-                                                <span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">交通錐、甜筒</span></span>
-                                            </td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-                            </div>
+                                            <tr class="hover:bg-slate-800/40 transition-colors group">
+                                                <td class="py-6 px-4 font-bold text-slate-100 tracking-wider border-r border-blue-500/20">
+                                                    <div class="flex items-center justify-center gap-4">
+                                                        <svg class="w-8 h-8 text-purple-400 drop-shadow-[0_0_5px_rgba(192,132,252,0.5)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="19" rx="9" ry="3"/><line x1="12" y1="2" x2="3" y2="19"/><line x1="12" y1="2" x2="21" y2="19"/></svg>
+                                                        <span class="text-base tracking-[0.1em]" data-i18n="tCone">圓錐</span>
+                                                    </div>
+                                                </td>
+                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium">
+                                                    <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">1</span></span> 個 <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">圓</span></span>形
+                                                </td>
+                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium leading-relaxed">
+                                                    平滑的曲面<br>（展開為 <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">扇</span></span>形）
+                                                </td>
+                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium" data-i18n="tConeV">所有母線交於一頂點</td>
+                                                <td class="py-6 px-4 text-center">
+                                                    <span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">甜筒冰淇淋</span></span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                         </div>
                     </div>
 
