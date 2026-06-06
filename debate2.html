@@ -44,7 +44,7 @@
         .track-line { stroke: #10b981; stroke-width: 6; stroke-dasharray: 10, 10; stroke-linecap: round; }
         
         /* 3D 容器樣式 */
-        .three-canvas-container { cursor: grab; background: radial-gradient(circle, #f8fafc 0%, #e2e8f0 100%); }
+        .three-canvas-container { cursor: grab; background: radial-gradient(circle, #1e293b 0%, #0f172a 100%); }
         .three-canvas-container:active { cursor: grabbing; }
 
         /* Range Slider 樣式美化 (變得更精緻) */
@@ -54,13 +54,13 @@
         input[type=range]:focus { outline: none; }
     </style>
 </head>
-<body class="text-gray-800">
+<body class="text-slate-200" style="background-color: #0c0f1a;">
 
-    <div class="w-full h-full bg-white overflow-hidden flex flex-col relative">
-        <div class="flex-1 overflow-y-auto relative bg-white">
+    <div class="w-full h-full bg-slate-900 overflow-hidden flex flex-col relative">
+        <div class="flex-1 overflow-y-auto relative bg-slate-900">
             
             <!-- Slide 1: 標題 -->
-            <div class="slide active flex-col justify-center items-center min-h-full p-12 text-center bg-gradient-to-br from-blue-50 to-indigo-100">
+            <div class="slide active flex-col justify-center items-center min-h-full p-12 text-center bg-gradient-to-br from-slate-900 via-indigo-950/40 to-slate-900">
                 <div class="w-32 h-32 mb-6 bounce-in">
                     <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-xl">
                         <path d="M20,35 L50,15 L80,35 L50,55 Z" fill="#c7d2fe" stroke="#4f46e5" stroke-width="3" stroke-linejoin="round"/>
@@ -68,18 +68,18 @@
                         <path d="M80,35 L50,55 L50,85 L80,65 Z" fill="#818cf8" stroke="#4f46e5" stroke-width="3" stroke-linejoin="round"/>
                     </svg>
                 </div>
-                <h1 class="text-5xl font-black text-gray-900 mb-6 tracking-tight fade-in-up">切豆腐的幾何學</h1>
-                <h2 class="text-2xl text-gray-600 font-bold mb-8 fade-in-up d-1">為什麼「一刀切下去」，絕對切不出正五邊形？</h2>
+                <h1 class="text-5xl font-black text-white mb-6 tracking-tight fade-in-up">切豆腐的幾何學</h1>
+                <h2 class="text-2xl text-slate-400 font-bold mb-8 fade-in-up d-1">為什麼「一刀切下去」，絕對切不出正五邊形？</h2>
             </div>
 
             <!-- Slide 2: 基礎規則 -->
-            <div class="slide flex-col min-h-full p-10 bg-white">
-                <h2 class="text-3xl font-bold text-indigo-700 mb-8">第 1 招：邊與面的因果關係</h2>
+            <div class="slide flex-col min-h-full p-10 bg-slate-900">
+                <h2 class="text-3xl font-bold text-indigo-300 mb-8">第 1 招：邊與面的因果關係</h2>
                 
                 <div class="flex flex-1 items-center gap-12">
                     <div class="flex-1 flex justify-center fade-in-up">
                         <svg viewBox="0 0 200 200" class="w-72 h-72">
-                            <rect x="40" y="40" width="120" height="120" fill="#f1f5f9" stroke="#94a3b8" stroke-width="4" rx="8" />
+                            <rect x="40" y="40" width="120" height="120" fill="#1e293b" stroke="#475569" stroke-width="4" rx="8" />
                             <line x1="20" y1="80" x2="180" y2="140" class="highlight-line draw-line d-2" />
                             <circle cx="40" cy="87.5" r="5" fill="#dc2626" class="fade-in d-3" />
                             <circle cx="160" cy="132.5" r="5" fill="#dc2626" class="fade-in d-3" />
@@ -87,17 +87,17 @@
                     </div>
                     
                     <div class="flex-1 space-y-6">
-                        <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200 fade-in-up d-1">
-                            <h3 class="text-xl font-bold text-gray-800 mb-3 text-2xl flex items-center">🗡️ 一個面 = 一條邊</h3>
-                            <p class="text-gray-600 text-lg leading-relaxed">
+                        <div class="bg-slate-800/80 p-6 rounded-2xl border border-slate-700/50 fade-in-up d-1">
+                            <h3 class="text-xl font-bold text-slate-200 mb-3 text-2xl flex items-center">🗡️ 一個面 = 一條邊</h3>
+                            <p class="text-slate-400 text-lg leading-relaxed">
                                 當我們用刀子切過正方體時，截面上的每一條「邊」，都是刀子劃過表面的「切痕」。<br><br>
-                                也就是說：<strong class="text-indigo-600">刀子切到了幾個面，截面就會有幾條邊！</strong>
+                                也就是說：<strong class="text-indigo-400">刀子切到了幾個面，截面就會有幾條邊！</strong>
                             </p>
                         </div>
-                        <div class="bg-red-50 p-6 rounded-2xl border border-red-200 fade-in-up d-4 shadow-sm">
-                            <p class="text-red-700 font-bold text-xl">
+                        <div class="bg-rose-900/30 p-6 rounded-2xl border border-rose-500/30 fade-in-up d-4 shadow-sm">
+                            <p class="text-rose-300 font-bold text-xl">
                                 🎯 任務前提：<br>
-                                想得到一個「五」邊形，這五條邊必須來自正方體的表面。因此，<span class="text-red-600 underline">刀子必須剛好劃過 5 個面！</span>
+                                想得到一個「五」邊形，這五條邊必須來自正方體的表面。因此，<span class="text-rose-400 underline">刀子必須剛好劃過 5 個面！</span>
                             </p>
                         </div>
                     </div>
@@ -105,25 +105,25 @@
             </div>
 
             <!-- Slide 3: 鐵軌法則 (升級為可旋轉的 3D 視角) -->
-            <div class="slide flex-col min-h-full p-10 bg-white">
-                <h2 class="text-3xl font-bold text-indigo-700 mb-6">第 2 招：「切穿對立面」的必然平行</h2>
+            <div class="slide flex-col min-h-full p-10 bg-slate-900">
+                <h2 class="text-3xl font-bold text-indigo-300 mb-6">第 2 招：「切穿對立面」的必然平行</h2>
                 
                 <div class="flex flex-1 items-stretch gap-8 pb-4">
                     <!-- 改為 3D 互動畫布 -->
-                    <div class="flex-1 flex justify-center items-center relative fade-in-up d-1 three-canvas-container rounded-3xl overflow-hidden shadow-inner border border-gray-300">
+                    <div class="flex-1 flex justify-center items-center relative fade-in-up d-1 three-canvas-container rounded-3xl overflow-hidden shadow-inner border border-slate-700">
                         <div id="three-container-track" class="w-full h-full min-h-[350px]"></div>
                         <div class="absolute bottom-4 left-0 w-full text-center pointer-events-none">
-                            <span class="bg-gray-800 text-white px-4 py-2 rounded-full shadow-lg font-bold text-sm">
+                            <span class="bg-slate-800 text-white px-4 py-2 rounded-full shadow-lg font-bold text-sm">
                                 👆 請用滑鼠拖曳旋轉，從不同角度觀察平行的切痕！
                             </span>
                         </div>
                     </div>
 
                     <div class="flex-1 space-y-6 flex flex-col justify-center">
-                        <div class="bg-blue-50 p-8 rounded-3xl fade-in-up d-4 shadow-sm border border-blue-100">
-                            <h3 class="text-2xl font-bold text-blue-800 mb-4 flex items-center">✨ 貫穿，強制產生平行線</h3>
-                            <p class="text-gray-700 text-lg leading-relaxed">
-                                如果刀片<strong class="text-blue-600">同時貫穿了相對立的兩個面</strong>（如左圖切過了上底面與下底面），那麼留在這兩個面上的加粗紅線刀痕，必定會互相平行！<br><br>
+                        <div class="bg-sky-900/30 p-8 rounded-3xl fade-in-up d-4 shadow-sm border border-sky-500/30">
+                            <h3 class="text-2xl font-bold text-sky-300 mb-4 flex items-center">✨ 貫穿，強制產生平行線</h3>
+                            <p class="text-slate-300 text-lg leading-relaxed">
+                                如果刀片<strong class="text-sky-400">同時貫穿了相對立的兩個面</strong>（如左圖切過了上底面與下底面），那麼留在這兩個面上的加粗紅線刀痕，必定會互相平行！<br><br>
                                 💡 <strong class="text-red-500">反過來說：</strong>如果只是輕輕削掉一個角落（形成三角形），是不會有平行線的；但只要你切得夠深，貫穿了對立面，平行線就必定強制誕生！
                             </p>
                         </div>
@@ -132,28 +132,28 @@
             </div>
 
             <!-- Slide 4: 互動式刀切體驗 -->
-            <div class="slide flex-col min-h-full p-10 bg-white">
+            <div class="slide flex-col min-h-full p-10 bg-slate-900">
                 <div class="flex justify-between items-end mb-4 relative z-20">
                     <div>
-                        <h2 class="text-3xl font-bold text-indigo-700 mb-2">第 3 招：動手切切看！體驗真實的刀切極限</h2>
-                        <p class="text-gray-600 text-sm mt-1">💡 一開始只是三角形(無平行線)，請慢慢加深深度，觀察切穿對面時被迫出現的「平行雙軌」！(可用滑鼠任意旋轉觀察)</p>
+                        <h2 class="text-3xl font-bold text-indigo-300 mb-2">第 3 招：動手切切看！體驗真實的刀切極限</h2>
+                        <p class="text-slate-400 text-sm mt-1">💡 一開始只是三角形(無平行線)，請慢慢加深深度，觀察切穿對面時被迫出現的「平行雙軌」！(可用滑鼠任意旋轉觀察)</p>
                     </div>
                     <!-- 加入 whitespace-nowrap 確保不換行 -->
-                    <div class="bg-red-50 px-4 py-2 rounded-xl border-2 border-red-200 fade-in-up d-1 whitespace-nowrap flex items-center">
-                        <span class="font-bold text-gray-700 mr-2">🎯 產生形狀：</span>
-                        <span id="cut-sides-count" class="text-red-600 font-black text-2xl whitespace-nowrap">三角形</span>
+                    <div class="bg-rose-900/30 px-4 py-2 rounded-xl border-2 border-rose-500/30 fade-in-up d-1 whitespace-nowrap flex items-center">
+                        <span class="font-bold text-slate-300 mr-2">🎯 產生形狀：</span>
+                        <span id="cut-sides-count" class="text-rose-400 font-black text-2xl whitespace-nowrap">三角形</span>
                     </div>
                 </div>
 
                 <div class="flex flex-1 items-stretch gap-8 pb-4 relative">
                     <!-- 3D 畫布容器 -->
-                    <div class="flex-1 flex justify-center items-center relative fade-in-up d-1 three-canvas-container rounded-3xl overflow-hidden shadow-inner border border-gray-300">
+                    <div class="flex-1 flex justify-center items-center relative fade-in-up d-1 three-canvas-container rounded-3xl overflow-hidden shadow-inner border border-slate-700">
                         <div id="three-container-cut5" class="w-full h-full min-h-[350px]"></div>
                         
                         <!-- 互動滑桿 UI (縮小置中) -->
                         <div class="absolute bottom-4 left-1/2 -translate-x-1/2 w-56 z-10 flex flex-col items-center">
-                            <div class="w-full bg-white/90 backdrop-blur-sm px-4 py-2 rounded-xl shadow-lg border border-indigo-200">
-                                <label class="block text-xs font-bold text-gray-700 mb-2 text-center">
+                            <div class="w-full bg-slate-900/90 backdrop-blur-sm px-4 py-2 rounded-xl shadow-lg border border-indigo-500/30">
+                                <label class="block text-xs font-bold text-slate-300 mb-2 text-center">
                                     🔪 推拉刀片 (改變深度)
                                 </label>
                                 <input type="range" id="knife-slider" min="-1.5" max="1.5" step="0.02" value="1.2" class="w-full">
@@ -162,21 +162,21 @@
                     </div>
 
                     <div class="w-1/3 space-y-4 flex flex-col justify-center">
-                        <div class="bg-gray-50 p-4 rounded-xl border-l-4 border-gray-400 fade-in-up d-2 shadow-sm">
-                            <h3 class="text-md font-bold text-gray-800 mb-1">🎲 6 個面分 3 組</h3>
-                            <p class="text-gray-600 text-sm">正方體的面兩兩平行，分為（<span class="text-blue-600 font-bold">上下</span>、<span class="text-pink-600 font-bold">左右</span>、<span class="text-yellow-600 font-bold">前後</span>）。</p>
+                        <div class="bg-slate-800/80 p-4 rounded-xl border-l-4 border-slate-600 fade-in-up d-2 shadow-sm">
+                            <h3 class="text-md font-bold text-slate-200 mb-1">🎲 6 個面分 3 組</h3>
+                            <p class="text-slate-400 text-sm">正方體的面兩兩平行，分為（<span class="text-sky-400 font-bold">上下</span>、<span class="text-pink-400 font-bold">左右</span>、<span class="text-yellow-600 font-bold">前後</span>）。</p>
                         </div>
                         
-                        <div class="bg-red-50 p-4 rounded-xl border-l-4 border-red-500 fade-in-up d-3 shadow-sm">
-                            <h3 class="text-md font-bold text-red-900 mb-1">🎯 試著切出 5 個面</h3>
-                            <p class="text-gray-600 text-sm">調動滑桿讓切面變成「五邊形」。為了切滿 5 個面，刀片無可避免地徹底貫穿了兩組對立面。</p>
+                        <div class="bg-rose-900/30 p-4 rounded-xl border-l-4 border-rose-500 fade-in-up d-3 shadow-sm">
+                            <h3 class="text-md font-bold text-rose-200 mb-1">🎯 試著切出 5 個面</h3>
+                            <p class="text-slate-400 text-sm">調動滑桿讓切面變成「五邊形」。為了切滿 5 個面，刀片無可避免地徹底貫穿了兩組對立面。</p>
                         </div>
 
-                        <div class="bg-indigo-50 p-4 rounded-xl border-2 border-indigo-300 fade-in-up d-4 shadow-md">
-                            <h3 class="text-lg font-black text-indigo-900 mb-1">🚨 雙重強迫中獎</h3>
-                            <p class="text-gray-700 text-sm">
-                                貫穿上下，強制拉出<strong class="text-cyan-600">藍色平行線</strong>。<br>
-                                貫穿左右，強制拉出<strong class="text-pink-500">粉紅平行線</strong>。<br>
+                        <div class="bg-indigo-900/30 p-4 rounded-xl border-2 border-indigo-500/50 fade-in-up d-4 shadow-md">
+                            <h3 class="text-lg font-black text-indigo-200 mb-1">🚨 雙重強迫中獎</h3>
+                            <p class="text-slate-300 text-sm">
+                                貫穿上下，強制拉出<strong class="text-cyan-400">藍色平行線</strong>。<br>
+                                貫穿左右，強制拉出<strong class="text-pink-400">粉紅平行線</strong>。<br>
                                 👉 <strong>結論：五邊形必定自帶【兩組平行邊】！</strong>
                             </p>
                         </div>
@@ -185,13 +185,13 @@
             </div>
 
             <!-- Slide 5: 五邊形的秘密 -->
-            <div class="slide flex-col min-h-full p-10 bg-white">
-                <h2 class="text-3xl font-bold text-indigo-700 mb-6">第 4 招：看看真正的「正五邊形」</h2>
+            <div class="slide flex-col min-h-full p-10 bg-slate-900">
+                <h2 class="text-3xl font-bold text-indigo-300 mb-6">第 4 招：看看真正的「正五邊形」</h2>
                 
                 <div class="flex flex-1 items-center gap-8">
                     <div class="flex-1 flex justify-center relative fade-in-up d-1">
                         <svg viewBox="-50 -50 300 300" class="w-80 h-80">
-                            <polygon points="100,0 195,69 158,181 42,181 5,69" fill="#fef2f2" stroke="#dc2626" stroke-width="4" stroke-linejoin="round" />
+                            <polygon points="100,0 195,69 158,181 42,181 5,69" fill="#4c0519" stroke="#dc2626" stroke-width="4" stroke-linejoin="round" />
                             <line x1="5" y1="69" x2="-23" y2="-17" stroke="#3b82f6" stroke-width="4" stroke-dasharray="6,6" class="draw-line-slow d-3" />
                             <line x1="195" y1="69" x2="223" y2="-17" stroke="#3b82f6" stroke-width="4" stroke-dasharray="6,6" class="draw-line-slow d-3" />
                             <line x1="42" y1="181" x2="-80" y2="181" stroke="#10b981" stroke-width="4" stroke-dasharray="6,6" class="draw-line-slow d-3" />
@@ -204,11 +204,11 @@
                     </div>
 
                     <div class="flex-1 space-y-6">
-                        <div class="bg-gray-50 p-8 rounded-3xl border border-gray-200 fade-in-up d-2 shadow-sm">
-                            <h3 class="text-2xl font-bold text-red-700 mb-4 flex items-center">🚫 無平行線的圖形</h3>
-                            <p class="text-gray-700 text-lg leading-relaxed">
+                        <div class="bg-slate-800/80 p-8 rounded-3xl border border-slate-700/50 fade-in-up d-2 shadow-sm">
+                            <h3 class="text-2xl font-bold text-rose-300 mb-4 flex items-center">🚫 無平行線的圖形</h3>
+                            <p class="text-slate-300 text-lg leading-relaxed">
                                 在正五邊形中，不管挑選哪兩條邊，只要將它們無限延伸，最後一定會<strong>「相撞交會」</strong>！<br><br>
-                                <span class="font-bold text-red-600">這證明了：真正的正五邊形裡面，絕對沒有任何平行線。</span>
+                                <span class="font-bold text-rose-400">這證明了：真正的正五邊形裡面，絕對沒有任何平行線。</span>
                             </p>
                         </div>
                     </div>
@@ -216,26 +216,26 @@
             </div>
 
             <!-- Slide 6: 大對決 -->
-            <div class="slide flex-col min-h-full p-10 bg-white">
+            <div class="slide flex-col min-h-full p-10 bg-slate-900">
                 <h2 class="text-4xl font-black text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mb-12 fade-in-up">世紀大對決：矛盾出現！</h2>
                 
                 <div class="flex justify-center items-stretch gap-8 mb-12">
-                    <div class="flex-1 bg-blue-50 rounded-3xl p-8 border-4 border-blue-200 flex flex-col items-center text-center fade-in-up d-1 shadow-sm transform transition hover:-translate-y-2">
+                    <div class="flex-1 bg-sky-900/30 rounded-3xl p-8 border-4 border-sky-500/40 flex flex-col items-center text-center fade-in-up d-1 shadow-sm transform transition hover:-translate-y-2">
                         <div class="text-6xl mb-4">🧊</div>
-                        <h3 class="text-2xl font-bold text-blue-800 mb-4">正方體的幾何限制</h3>
-                        <p class="text-xl text-blue-900 font-bold">一旦切過 5 個面，<br>截面<span class="text-red-600 underline">必然產生平行線！</span></p>
+                        <h3 class="text-2xl font-bold text-sky-300 mb-4">正方體的幾何限制</h3>
+                        <p class="text-xl text-sky-200 font-bold">一旦切過 5 個面，<br>截面<span class="text-rose-400 underline">必然產生平行線！</span></p>
                     </div>
                     
                     <div class="flex flex-col justify-center items-center font-black text-6xl text-red-500 fade-in-up d-3 pulse-alert">VS</div>
 
-                    <div class="flex-1 bg-red-50 rounded-3xl p-8 border-4 border-red-200 flex flex-col items-center text-center fade-in-up d-2 shadow-sm transform transition hover:-translate-y-2">
+                    <div class="flex-1 bg-rose-900/30 rounded-3xl p-8 border-4 border-rose-500/30 flex flex-col items-center text-center fade-in-up d-2 shadow-sm transform transition hover:-translate-y-2">
                         <div class="text-6xl mb-4">⭐</div>
-                        <h3 class="text-2xl font-bold text-red-800 mb-4">正五邊形的幾何特性</h3>
-                        <p class="text-xl text-red-900 font-bold">作為正五邊形，<br>內部<span class="text-blue-600 underline">絕對不能有平行線！</span></p>
+                        <h3 class="text-2xl font-bold text-rose-300 mb-4">正五邊形的幾何特性</h3>
+                        <p class="text-xl text-rose-200 font-bold">作為正五邊形，<br>內部<span class="text-sky-400 underline">絕對不能有平行線！</span></p>
                     </div>
                 </div>
                 
-                <div class="bg-gray-800 text-white p-6 rounded-2xl w-full max-w-4xl mx-auto text-center fade-in-up d-5 shadow-2xl">
+                <div class="bg-slate-800 text-white p-6 rounded-2xl w-full max-w-4xl mx-auto text-center fade-in-up d-5 shadow-2xl">
                     <p class="text-2xl font-black tracking-widest text-yellow-300">
                         【 結論：要求完全相反，物理上一刀切絕對不可能發生！ 】
                     </p>
@@ -243,40 +243,40 @@
             </div>
 
             <!-- Slide 7: 3D 六邊形解密 -->
-            <div class="slide flex-col min-h-full p-10 bg-white">
-                <h2 class="text-3xl font-bold text-amber-600 mb-6 flex items-center">
+            <div class="slide flex-col min-h-full p-10 bg-slate-900">
+                <h2 class="text-3xl font-bold text-amber-400 mb-6 flex items-center">
                     <span class="text-4xl mr-3">🏆</span> 加碼解密：那為什麼能切出「正六邊形」？
                 </h2>
                 
                 <div class="flex flex-1 items-stretch gap-8 pb-4">
-                    <div class="flex-1 flex justify-center items-center relative fade-in-up d-1 three-canvas-container rounded-3xl overflow-hidden shadow-inner border border-gray-300">
+                    <div class="flex-1 flex justify-center items-center relative fade-in-up d-1 three-canvas-container rounded-3xl overflow-hidden shadow-inner border border-slate-700">
                         <div id="three-container-hexagon" class="w-full h-full min-h-[350px]"></div>
                         <div class="absolute bottom-4 left-0 w-full text-center pointer-events-none">
-                            <span class="bg-gray-800 text-white px-4 py-2 rounded-full shadow-lg font-bold text-sm">
+                            <span class="bg-slate-800 text-white px-4 py-2 rounded-full shadow-lg font-bold text-sm">
                                 👆 請用滑鼠拖曳旋轉，看完美契合的平行線！
                             </span>
                         </div>
                     </div>
 
                     <div class="flex-1 space-y-6 flex flex-col justify-center">
-                        <div class="bg-amber-50 p-6 rounded-2xl border-l-4 border-amber-500 fade-in-up d-2 shadow-sm">
-                            <h3 class="text-lg font-bold text-amber-900 mb-2 flex items-center">🤏 捏住對角一刀切</h3>
-                            <p class="text-gray-700 text-md">
+                        <div class="bg-amber-900/30 p-6 rounded-2xl border-l-4 border-amber-500 fade-in-up d-2 shadow-sm">
+                            <h3 class="text-lg font-bold text-amber-300 mb-2 flex items-center">🤏 捏住對角一刀切</h3>
+                            <p class="text-slate-300 text-md">
                                 捏住正方體最遠的兩個對角頂點，垂直一刀切下去，刀片會剛好劃過 6 條邊的「正中間」。
                             </p>
                         </div>
                         
-                        <div class="bg-green-50 p-6 rounded-2xl border-l-4 border-green-500 fade-in-up d-3 shadow-sm">
-                            <h3 class="text-lg font-bold text-green-900 mb-2 flex items-center">✨ 誕生黃金正六邊形</h3>
-                            <p class="text-gray-700 text-md">
-                                看見裡面的<strong class="text-amber-600">黃色幾何圖形</strong>了嗎？<br>
+                        <div class="bg-emerald-900/30 p-6 rounded-2xl border-l-4 border-green-500 fade-in-up d-3 shadow-sm">
+                            <h3 class="text-lg font-bold text-emerald-300 mb-2 flex items-center">✨ 誕生黃金正六邊形</h3>
+                            <p class="text-slate-300 text-md">
+                                看見裡面的<strong class="text-amber-400">黃色幾何圖形</strong>了嗎？<br>
                                 它一刀切過了 6 個面，產生了 3 組互相平行的邊。
                             </p>
                         </div>
 
-                        <div class="bg-blue-50 p-6 rounded-2xl border-l-4 border-blue-500 fade-in-up d-4 shadow-sm">
-                            <h3 class="text-lg font-bold text-blue-900 mb-2 flex items-center">🤝 巧合的完美契合</h3>
-                            <p class="text-gray-700 text-md">
+                        <div class="bg-sky-900/30 p-6 rounded-2xl border-l-4 border-sky-500 fade-in-up d-4 shadow-sm">
+                            <h3 class="text-lg font-bold text-sky-200 mb-2 flex items-center">🤝 巧合的完美契合</h3>
+                            <p class="text-slate-300 text-md">
                                 「正六邊形」天生就擁有 3 組平行的對邊！<br>
                                 五邊形因為缺乏平行特性而無法成立，六邊形則恰好符合平行條件，與正方體達成了空間中的完美契合。
                             </p>
@@ -286,14 +286,14 @@
             </div>
 
             <!-- Slide 8: 終極極限 (萬向切刀模擬器) -->
-            <div class="slide flex-col min-h-full p-10 bg-white">
+            <div class="slide flex-col min-h-full p-10 bg-slate-900">
                 <div class="flex justify-between items-end mb-4 relative z-20">
                     <div>
-                        <h2 class="text-3xl font-bold text-indigo-700 mb-2">終極實驗室：你切得出七邊形嗎？</h2>
-                        <p class="text-gray-600 text-sm mt-1">「既然一個面等於一條邊，那我們靠改變刀片角度，能切出七條邊嗎？」<br>請隨意改變下方角度！<strong class="text-indigo-600">（目前為您預設的角度，就是傳說中的完美正六邊形喔！）</strong></p>
+                        <h2 class="text-3xl font-bold text-indigo-300 mb-2">終極實驗室：你切得出七邊形嗎？</h2>
+                        <p class="text-slate-400 text-sm mt-1">「既然一個面等於一條邊，那我們靠改變刀片角度，能切出七條邊嗎？」<br>請隨意改變下方角度！<strong class="text-indigo-400">（目前為您預設的角度，就是傳說中的完美正六邊形喔！）</strong></p>
                     </div>
-                    <div class="bg-gray-800 px-5 py-3 rounded-xl shadow-lg fade-in-up d-1 whitespace-nowrap flex items-center text-white">
-                        <span class="font-bold text-gray-300 mr-3">極限結果：</span>
+                    <div class="bg-slate-800 px-5 py-3 rounded-xl shadow-lg fade-in-up d-1 whitespace-nowrap flex items-center text-white">
+                        <span class="font-bold text-slate-300 mr-3">極限結果：</span>
                         <span id="final-sides-count" class="text-yellow-300 font-black text-3xl whitespace-nowrap tracking-wide">三角形</span>
                     </div>
                 </div>
@@ -301,32 +301,32 @@
                 <div class="flex flex-1 items-stretch gap-6 pb-4 relative">
                     
                     <!-- 3D 畫布容器 (終極切刀) -->
-                    <div class="flex-1 flex flex-col relative fade-in-up d-1 three-canvas-container rounded-3xl overflow-hidden shadow-inner border border-gray-300">
+                    <div class="flex-1 flex flex-col relative fade-in-up d-1 three-canvas-container rounded-3xl overflow-hidden shadow-inner border border-slate-700">
                         <div id="three-container-final" class="w-full h-full min-h-[350px]"></div>
                         
                         <!-- 萬向控制 UI -->
                         <div class="absolute bottom-3 left-1/2 -translate-x-1/2 w-64 z-10">
-                            <div class="space-y-2 w-full bg-white/90 backdrop-blur-md px-4 py-3 rounded-xl shadow-lg border border-indigo-200">
+                            <div class="space-y-2 w-full bg-slate-900/90 backdrop-blur-md px-4 py-3 rounded-xl shadow-lg border border-indigo-500/30">
                                 <div>
-                                    <label class="block text-[11px] font-bold text-gray-700 flex justify-between mb-0.5">
-                                        <span>🔄 X軸傾斜 (前後)</span> <span id="f-val-x" class="text-indigo-600">-35°</span>
+                                    <label class="block text-[11px] font-bold text-slate-300 flex justify-between mb-0.5">
+                                        <span>🔄 X軸傾斜 (前後)</span> <span id="f-val-x" class="text-indigo-400">-35°</span>
                                     </label>
                                     <input type="range" id="f-rot-x" min="-90" max="90" step="1" value="-35" class="w-full">
                                 </div>
                                 <div>
-                                    <label class="block text-[11px] font-bold text-gray-700 flex justify-between mb-0.5">
-                                        <span>🔄 Y軸傾斜 (左右)</span> <span id="f-val-y" class="text-indigo-600">45°</span>
+                                    <label class="block text-[11px] font-bold text-slate-300 flex justify-between mb-0.5">
+                                        <span>🔄 Y軸傾斜 (左右)</span> <span id="f-val-y" class="text-indigo-400">45°</span>
                                     </label>
                                     <input type="range" id="f-rot-y" min="-90" max="90" step="1" value="45" class="w-full">
                                 </div>
                                 <div>
-                                    <label class="block text-[11px] font-bold text-gray-700 flex justify-between mb-0.5">
-                                        <span>🔪 刀片深度</span> <span id="f-val-d" class="text-indigo-600">0.00</span>
+                                    <label class="block text-[11px] font-bold text-slate-300 flex justify-between mb-0.5">
+                                        <span>🔪 刀片深度</span> <span id="f-val-d" class="text-indigo-400">0.00</span>
                                     </label>
                                     <input type="range" id="f-depth" min="-1.5" max="1.5" step="0.05" value="0" class="w-full">
                                 </div>
                                 <div class="pt-1">
-                                    <button id="reset-hex-btn" class="w-full bg-indigo-100 hover:bg-indigo-200 text-indigo-700 font-bold py-1.5 rounded-lg text-[11px] transition-colors shadow-sm">
+                                    <button id="reset-hex-btn" class="w-full bg-indigo-900/50 hover:bg-indigo-800/50 text-indigo-300 font-bold py-1.5 rounded-lg text-[11px] transition-colors shadow-sm">
                                         ✨ 一鍵還原正六邊形
                                     </button>
                                 </div>
@@ -336,16 +336,16 @@
 
                     <!-- 結論面板 -->
                     <div class="w-1/3 flex flex-col justify-center gap-6">
-                        <div class="bg-blue-50 p-6 rounded-3xl border border-blue-200 fade-in-up d-2 shadow-sm hover:shadow-md transition">
-                            <h3 class="text-2xl font-bold text-blue-800 mb-3 flex items-center"><span class="text-3xl mr-2">🧐</span> 發現了嗎？</h3>
-                            <p class="text-gray-700 text-lg leading-relaxed">
-                                左圖中，<strong class="text-blue-700">只要是同顏色的線條，就代表它們處於平行的面上！</strong>
+                        <div class="bg-sky-900/30 p-6 rounded-3xl border border-sky-500/40 fade-in-up d-2 shadow-sm hover:shadow-md transition">
+                            <h3 class="text-2xl font-bold text-sky-300 mb-3 flex items-center"><span class="text-3xl mr-2">🧐</span> 發現了嗎？</h3>
+                            <p class="text-slate-300 text-lg leading-relaxed">
+                                左圖中，<strong class="text-sky-300">只要是同顏色的線條，就代表它們處於平行的面上！</strong>
                             </p>
-                            <p class="text-gray-700 text-lg leading-relaxed mt-2">
-                                正方體總共只有 6 個面。就算你把角度調到最極限的狀態，把 6 個面全部切穿，<span class="font-bold underline text-indigo-700">你也最多只能收集到 6 條邊</span>。
+                            <p class="text-slate-300 text-lg leading-relaxed mt-2">
+                                正方體總共只有 6 個面。就算你把角度調到最極限的狀態，把 6 個面全部切穿，<span class="font-bold underline text-indigo-300">你也最多只能收集到 6 條邊</span>。
                             </p>
                         </div>
-                        <div class="bg-gray-800 p-6 rounded-2xl fade-in-up d-3 shadow-lg text-center transform transition hover:-translate-y-2">
+                        <div class="bg-slate-800 p-6 rounded-2xl fade-in-up d-3 shadow-lg text-center transform transition hover:-translate-y-2">
                             <p class="text-xl font-black text-yellow-300 leading-relaxed tracking-wide">
                                 🛑 不可打破的物理法則<br>
                                 正方體一刀切的極限，<br>最高就是「六邊形」！
@@ -358,10 +358,10 @@
         </div> <!-- /內容區 -->
         
         <!-- Navigation Footer -->
-        <div class="h-16 shrink-0 bg-white border-t border-gray-200 flex justify-between items-center px-6 z-20">
-            <button id="prevBtn" class="px-4 py-2 font-bold text-gray-500 hover:text-indigo-600 transition-colors disabled:opacity-30">← 上一步</button>
+        <div class="h-16 shrink-0 bg-slate-900 border-t border-slate-700/50 flex justify-between items-center px-6 z-20">
+            <button id="prevBtn" class="px-4 py-2 font-bold text-slate-500 hover:text-indigo-400 transition-colors disabled:opacity-30">← 上一步</button>
             <div class="flex gap-2" id="dots"></div>
-            <button id="nextBtn" class="px-4 py-2 font-bold text-white bg-indigo-600 rounded hover:bg-indigo-700 transition-colors shadow">下一步 →</button>
+            <button id="nextBtn" class="px-4 py-2 font-bold text-white bg-indigo-500 rounded hover:bg-indigo-400 transition-colors shadow">下一步 →</button>
         </div>
     </div>
 
@@ -844,7 +844,7 @@
 
         for(let i=0; i<totalSlides; i++) {
             const dot = document.createElement('div');
-            dot.className = 'w-2.5 h-2.5 rounded-full bg-gray-300 transition-colors duration-300';
+            dot.className = 'w-2.5 h-2.5 rounded-full bg-slate-700 transition-colors duration-300';
             dotsContainer.appendChild(dot);
         }
         const dots = dotsContainer.children;
@@ -888,7 +888,7 @@
             });
 
             Array.from(dots).forEach((dot, index) => {
-                dot.className = index === currentSlide ? 'w-3 h-3 rounded-full bg-indigo-600 shadow' : 'w-2.5 h-2.5 rounded-full bg-gray-300';
+                dot.className = index === currentSlide ? 'w-3 h-3 rounded-full bg-indigo-500 shadow' : 'w-2.5 h-2.5 rounded-full bg-slate-700';
             });
 
             prevBtn.disabled = currentSlide === 0;
