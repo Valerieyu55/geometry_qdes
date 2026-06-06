@@ -3232,55 +3232,9 @@
         </div>
     </div>
 
-    <!-- D2 Modal Script -->
+
+
     <script>
-         else {
-                    slide.classList.remove('active');
-                }
-            });
-            
-            document.getElementById('d2-prevBtn').disabled = d2CurrentSlide === 0;
-            
-            const nextBtn = document.getElementById('d2-nextBtn');
-            if (d2CurrentSlide === d2TotalSlides - 1) {
-                nextBtn.innerHTML = '<span>完成推導</span> <i class="fa-solid fa-check"></i>';
-                nextBtn.classList.replace('bg-emerald-600', 'bg-teal-600');
-                nextBtn.classList.replace('hover:bg-emerald-500', 'hover:bg-teal-500');
-                nextBtn.setAttribute('onclick', 'closeD2Modal()');
-            } else {
-                nextBtn.innerHTML = '<span>下一步</span> <i class="fa-solid fa-arrow-right"></i>';
-                nextBtn.classList.replace('bg-teal-600', 'bg-emerald-600');
-                nextBtn.classList.replace('hover:bg-teal-500', 'hover:bg-emerald-500');
-                nextBtn.setAttribute('onclick', 'd2NextSlide()');
-            }
-
-            // update dots
-            const dotsHTML = Array.from({length: d2TotalSlides}).map((_, i) => 
-                `<div class="w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === d2CurrentSlide ? 'bg-emerald-400 w-6 shadow-[0_0_8px_rgba(52,211,153,0.8)]' : 'bg-slate-700 hover:bg-slate-500 cursor-pointer'}" onclick="gotoD2Slide(${i})"></div>`
-            ).join('');
-            document.getElementById('d2-dots').innerHTML = dotsHTML;
-        }
-
-        function gotoD2Slide(index) {
-            d2CurrentSlide = index;
-            updateD2Slide();
-        }
-
-        function d2NextSlide() {
-            if (d2CurrentSlide < d2TotalSlides - 1) {
-                d2CurrentSlide++;
-                updateD2Slide();
-            }
-        }
-
-        function d2PrevSlide() {
-            if (d2CurrentSlide > 0) {
-                d2CurrentSlide--;
-                updateD2Slide();
-            }
-        }
-
-
         function openEulerModal() {
             const modal = document.getElementById('euler-modal');
             const content = document.getElementById('euler-modal-content');
