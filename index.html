@@ -945,74 +945,114 @@
                             </div>
 
                             <!-- Interactive Table -->
-                            <div class="glass-panel rounded-2xl border border-slate-700/50 overflow-hidden">
-                                <div class="p-4 border-b border-slate-700/50 flex items-center gap-3">
-                                    <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
-                                    <p class="text-sm font-bold text-slate-300 tech-font tracking-wide">填入各多面體的 V、E、F，觀察規律</p>
+                            <div class="glass-panel rounded-2xl border border-blue-500/20 overflow-hidden shadow-[0_0_30px_rgba(59,130,246,0.08)] relative z-20">
+                                                                <div class="p-6 border-b border-slate-700/50 flex items-center justify-between">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 border border-blue-400/30 rounded-xl flex justify-center items-center bg-blue-500/10 shadow-[0_0_20px_rgba(59,130,246,0.15)] relative overflow-hidden">
+                                            <div class="absolute inset-0 bg-blue-400/20 mix-blend-overlay"></div>
+                                            <i class="fa-solid fa-dice-d20 text-blue-300/90 text-2xl drop-shadow-[0_0_8px_rgba(147,197,253,0.8)] z-10"></i>
+                                        </div>
+                                        <p class="text-[22px] font-bold text-slate-100 tracking-[0.1em] drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">填入各多面體的 V、E、F，觀察規律</p>
+                                    </div>
+                                    <div class="hidden sm:flex items-center gap-5 opacity-20 text-slate-400">
+                                        <i class="fa-solid fa-cube text-3xl"></i>
+                                        <i class="fa-solid fa-caret-up text-4xl"></i>
+                                        <i class="fa-solid fa-futbol text-3xl"></i>
+                                    </div>
                                 </div>
                                 <div class="overflow-x-auto">
+                                    <svg class="hidden">
+                                      <defs>
+                                        <g id="icon-prism" fill="none" stroke="currentColor" stroke-width="1"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></g>
+                                        <g id="icon-pyramid" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2L2 20h20L12 2z"/><path d="M12 2v20"/><path d="M12 22l8-14-8 14z"/></g>
+                                      </defs>
+                                    </svg>
                                     <table class="w-full text-sm">
                                         <thead>
                                             <tr class="border-b border-slate-700/50">
-                                                <th class="px-5 py-3 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">多面體名稱</th>
-                                                <th class="px-5 py-3 text-center text-xs font-bold text-cyan-400 uppercase tracking-wider">頂點數 V</th>
-                                                <th class="px-5 py-3 text-center text-xs font-bold text-purple-400 uppercase tracking-wider">邊數 E</th>
-                                                <th class="px-5 py-3 text-center text-xs font-bold text-emerald-400 uppercase tracking-wider">面數 F</th>
-                                                <th class="px-5 py-3 text-center text-xs font-bold text-amber-400 uppercase tracking-wider">V − E + F</th>
+                                                <th class="px-8 py-5 text-left font-bold text-slate-300 tracking-[0.1em] w-1/4">多面體名稱</th>
+                                                <th class="px-5 py-5 text-center w-[18%]">
+                                                    <div class="text-sm font-bold text-cyan-400 tracking-[0.15em] mb-2 drop-shadow-[0_0_5px_rgba(34,211,238,0.5)]">頂點數 V</div>
+                                                    <div class="w-1 h-1 bg-cyan-400 rounded-full mx-auto shadow-[0_0_6px_#22d3ee]"></div>
+                                                </th>
+                                                <th class="px-5 py-5 text-center w-[18%]">
+                                                    <div class="text-sm font-bold text-purple-400 tracking-[0.15em] mb-2 drop-shadow-[0_0_5px_rgba(192,132,252,0.5)]">邊數 E</div>
+                                                    <div class="w-1 h-1 bg-purple-400 rounded-full mx-auto shadow-[0_0_6px_#c084fc]"></div>
+                                                </th>
+                                                <th class="px-5 py-5 text-center w-[18%]">
+                                                    <div class="text-sm font-bold text-emerald-400 tracking-[0.15em] mb-2 drop-shadow-[0_0_5px_rgba(52,211,153,0.5)]">面數 F</div>
+                                                    <div class="w-1 h-1 bg-emerald-400 rounded-full mx-auto shadow-[0_0_6px_#34d399]"></div>
+                                                </th>
+                                                <th class="px-5 py-5 text-center w-[18%]">
+                                                    <div class="text-sm font-bold text-amber-400 tracking-[0.15em] mb-2 drop-shadow-[0_0_5px_rgba(251,191,36,0.5)]">V − E + F</div>
+                                                    <div class="w-1 h-1 bg-amber-400 rounded-full mx-auto shadow-[0_0_6px_#fbbf24]"></div>
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody id="euler-table-body">
-                                            <tr class="border-b border-slate-800/60 hover:bg-slate-800/30 transition-colors">
-                                                <td class="px-5 py-3.5 font-medium text-slate-200">三角柱</td>
-                                                <td class="px-5 py-3.5 text-center font-mono"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-cyan-300">6</span></span></td>
-                                                <td class="px-5 py-3.5 text-center font-mono"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-purple-300">9</span></span></td>
-                                                <td class="px-5 py-3.5 text-center font-mono"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-emerald-300">5</span></span></td>
-                                                <td class="px-5 py-3.5 text-center euler-result font-mono font-bold"><span class="text-slate-500">?</span></td>
+                                            <tr class="border-b border-slate-800/60 hover:bg-slate-800/40 transition-colors">
+                                                <td class="px-8 py-4 font-bold text-slate-200 tracking-[0.15em] flex items-center gap-5">
+                                                    <svg class="w-8 h-8 text-slate-400/50" viewBox="0 0 24 24"><use href="#icon-prism"></use></svg><span>三角柱</span>
+                                                </td>
+                                                <td class="px-5 py-4 text-center font-mono text-base"><span class="ans-blank text-cyan-400/80 ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">6</span></span></td>
+                                                <td class="px-5 py-4 text-center font-mono text-base"><span class="ans-blank text-purple-400/80 ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">9</span></span></td>
+                                                <td class="px-5 py-4 text-center font-mono text-base"><span class="ans-blank text-emerald-400/80 ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">5</span></span></td>
+                                                <td class="px-5 py-4 text-center euler-result font-mono text-base font-bold"><span class="text-amber-500/70">?</span></td>
                                             </tr>
-                                            <tr class="border-b border-slate-800/60 hover:bg-slate-800/30 transition-colors">
-                                                <td class="px-5 py-3.5 font-medium text-slate-200">四角柱</td>
-                                                <td class="px-5 py-3.5 text-center font-mono"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-cyan-300">8</span></span></td>
-                                                <td class="px-5 py-3.5 text-center font-mono"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-purple-300">12</span></span></td>
-                                                <td class="px-5 py-3.5 text-center font-mono"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-emerald-300">6</span></span></td>
-                                                <td class="px-5 py-3.5 text-center euler-result font-mono font-bold"><span class="text-slate-500">?</span></td>
+                                            <tr class="border-b border-slate-800/60 hover:bg-slate-800/40 transition-colors">
+                                                <td class="px-8 py-4 font-bold text-slate-200 tracking-[0.15em] flex items-center gap-5">
+                                                    <svg class="w-8 h-8 text-slate-400/50" viewBox="0 0 24 24"><use href="#icon-prism"></use></svg><span>四角柱</span>
+                                                </td>
+                                                <td class="px-5 py-4 text-center font-mono text-base"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-cyan-300">8</span></span></td>
+                                                <td class="px-5 py-4 text-center font-mono text-base"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-purple-300">12</span></span></td>
+                                                <td class="px-5 py-4 text-center font-mono text-base"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-emerald-300">6</span></span></td>
+                                                <td class="px-5 py-4 text-center euler-result font-mono text-base font-bold"><span class="text-amber-500/70">?</span></td>
                                             </tr>
-                                            <tr class="border-b border-slate-800/60 hover:bg-slate-800/30 transition-colors">
-                                                <td class="px-5 py-3.5 font-medium text-slate-200">n角柱</td>
-                                                <td class="px-5 py-3.5 text-center font-mono"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-cyan-300">2n</span></span></td>
-                                                <td class="px-5 py-3.5 text-center font-mono"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-purple-300">3n</span></span></td>
-                                                <td class="px-5 py-3.5 text-center font-mono"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-emerald-300">n+2</span></span></td>
-                                                <td class="px-5 py-3.5 text-center euler-result font-mono font-bold"><span class="text-slate-500">?</span></td>
+                                            <tr class="border-b border-slate-800/60 hover:bg-slate-800/40 transition-colors">
+                                                <td class="px-8 py-4 font-bold text-slate-200 tracking-[0.15em] flex items-center gap-5">
+                                                    <svg class="w-8 h-8 text-slate-400/50" viewBox="0 0 24 24"><use href="#icon-prism"></use></svg><span>n角柱</span>
+                                                </td>
+                                                <td class="px-5 py-4 text-center font-mono text-base"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-cyan-300">2n</span></span></td>
+                                                <td class="px-5 py-4 text-center font-mono text-base"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-purple-300">3n</span></span></td>
+                                                <td class="px-5 py-4 text-center font-mono text-base"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-emerald-300">n+2</span></span></td>
+                                                <td class="px-5 py-4 text-center euler-result font-mono text-base font-bold"><span class="text-amber-500/70">?</span></td>
                                             </tr>
-                                            <tr class="border-b border-slate-800/60 hover:bg-slate-800/30 transition-colors">
-                                                <td class="px-5 py-3.5 font-medium text-slate-200">三角錐</td>
-                                                <td class="px-5 py-3.5 text-center font-mono"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-cyan-300">4</span></span></td>
-                                                <td class="px-5 py-3.5 text-center font-mono"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-purple-300">6</span></span></td>
-                                                <td class="px-5 py-3.5 text-center font-mono"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-emerald-300">4</span></span></td>
-                                                <td class="px-5 py-3.5 text-center euler-result font-mono font-bold"><span class="text-slate-500">?</span></td>
+                                            <tr class="border-b border-slate-800/60 hover:bg-slate-800/40 transition-colors">
+                                                <td class="px-8 py-4 font-bold text-slate-200 tracking-[0.15em] flex items-center gap-5">
+                                                    <svg class="w-8 h-8 text-slate-400/50" viewBox="0 0 24 24"><use href="#icon-pyramid"></use></svg><span>三角錐</span>
+                                                </td>
+                                                <td class="px-5 py-4 text-center font-mono text-base"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-cyan-300">4</span></span></td>
+                                                <td class="px-5 py-4 text-center font-mono text-base"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-purple-300">6</span></span></td>
+                                                <td class="px-5 py-4 text-center font-mono text-base"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-emerald-300">4</span></span></td>
+                                                <td class="px-5 py-4 text-center euler-result font-mono text-base font-bold"><span class="text-amber-500/70">?</span></td>
                                             </tr>
-                                            <tr class="border-b border-slate-800/60 hover:bg-slate-800/30 transition-colors">
-                                                <td class="px-5 py-3.5 font-medium text-slate-200">四角錐</td>
-                                                <td class="px-5 py-3.5 text-center font-mono"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-cyan-300">5</span></span></td>
-                                                <td class="px-5 py-3.5 text-center font-mono"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-purple-300">8</span></span></td>
-                                                <td class="px-5 py-3.5 text-center font-mono"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-emerald-300">5</span></span></td>
-                                                <td class="px-5 py-3.5 text-center euler-result font-mono font-bold"><span class="text-slate-500">?</span></td>
+                                            <tr class="border-b border-slate-800/60 hover:bg-slate-800/40 transition-colors">
+                                                <td class="px-8 py-4 font-bold text-slate-200 tracking-[0.15em] flex items-center gap-5">
+                                                    <svg class="w-8 h-8 text-slate-400/50" viewBox="0 0 24 24"><use href="#icon-pyramid"></use></svg><span>四角錐</span>
+                                                </td>
+                                                <td class="px-5 py-4 text-center font-mono text-base"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-cyan-300">5</span></span></td>
+                                                <td class="px-5 py-4 text-center font-mono text-base"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-purple-300">8</span></span></td>
+                                                <td class="px-5 py-4 text-center font-mono text-base"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-emerald-300">5</span></span></td>
+                                                <td class="px-5 py-4 text-center euler-result font-mono text-base font-bold"><span class="text-amber-500/70">?</span></td>
                                             </tr>
-                                            <tr class="hover:bg-slate-800/30 transition-colors">
-                                                <td class="px-5 py-3.5 font-medium text-slate-200">n角錐</td>
-                                                <td class="px-5 py-3.5 text-center font-mono"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-cyan-300">n+1</span></span></td>
-                                                <td class="px-5 py-3.5 text-center font-mono"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-purple-300">2n</span></span></td>
-                                                <td class="px-5 py-3.5 text-center font-mono"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-emerald-300">n+1</span></span></td>
-                                                <td class="px-5 py-3.5 text-center euler-result font-mono font-bold"><span class="text-slate-500">?</span></td>
+                                            <tr class="hover:bg-slate-800/40 transition-colors">
+                                                <td class="px-8 py-4 font-bold text-slate-200 tracking-[0.15em] flex items-center gap-5">
+                                                    <svg class="w-8 h-8 text-slate-400/50" viewBox="0 0 24 24"><use href="#icon-pyramid"></use></svg><span>n角錐</span>
+                                                </td>
+                                                <td class="px-5 py-4 text-center font-mono text-base"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-cyan-300">n+1</span></span></td>
+                                                <td class="px-5 py-4 text-center font-mono text-base"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-purple-300">2n</span></span></td>
+                                                <td class="px-5 py-4 text-center font-mono text-base"><span class="ans-blank ans-hidden cursor-pointer" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text text-emerald-300">n+1</span></span></td>
+                                                <td class="px-5 py-4 text-center euler-result font-mono text-base font-bold"><span class="text-amber-500/70">?</span></td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="p-4 border-t border-slate-700/50 flex justify-end gap-3">
-                                    <button onclick="revealAllEulerAnswers()" class="px-6 py-2.5 rounded-full bg-slate-800 border border-slate-600 text-slate-300 hover:bg-slate-700 hover:text-white transition-all font-medium text-sm flex items-center gap-2">
-                                        <i class="fa-solid fa-eye text-xs"></i> 一鍵顯示全部答案
+                                <div class="p-6 border-t border-slate-700/50 flex justify-end gap-5">
+                                    <button onclick="revealAllEulerAnswers()" class="px-7 py-3 rounded-xl bg-transparent border border-blue-400/40 text-blue-200 hover:bg-blue-500/10 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] transition-all font-bold tracking-[0.1em] text-[15px] flex items-center gap-3">
+                                        <i class="fa-solid fa-eye text-sm opacity-80"></i> 一鍵顯示全部答案
                                     </button>
-                                    <button onclick="revealEuler()" class="px-6 py-2.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 hover:bg-amber-500/30 hover:shadow-[0_0_15px_rgba(251,191,36,0.3)] transition-all font-medium text-sm flex items-center gap-2">
-                                        <i class="fa-solid fa-calculator text-xs"></i> 計算 V − E + F
+                                    <button onclick="revealEuler()" class="px-7 py-3 rounded-xl bg-gradient-to-b from-amber-500/20 to-amber-700/40 border border-amber-400/60 text-amber-200 hover:from-amber-500/30 hover:to-amber-600/50 hover:shadow-[0_0_25px_rgba(251,191,36,0.5),inset_0_0_15px_rgba(251,191,36,0.3)] transition-all font-bold tracking-[0.1em] text-[15px] flex items-center gap-3 shadow-[0_0_15px_rgba(251,191,36,0.2),inset_0_0_10px_rgba(251,191,36,0.1)]">
+                                        <i class="fa-solid fa-calculator text-sm opacity-80"></i> 計算 V − E + F
                                     </button>
                                 </div>
                             </div>
