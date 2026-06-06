@@ -725,7 +725,6 @@
             const [guess, setGuess] = useState({ V: '', E: '', F: '' });
             const [result, setResult] = useState(null);   // null | 'correct' | 'partial' | 'wrong'
             const [eulerRevealed, setEulerRevealed] = useState(false);
-            const [score, setScore] = useState(0);
             const [isSpinning, setIsSpinning] = useState(true);
             const [showModal, setShowModal] = useState(false);
             const [isPenActive, setIsPenActive] = useState(false);
@@ -748,8 +747,6 @@
                 const exact = gV === solid.vertices && gE === solid.edges && gF === solid.faces;
                 const partial = (gV === solid.vertices) || (gE === solid.edges) || (gF === solid.faces);
                 setResult(exact ? 'correct' : partial ? 'partial' : 'wrong');
-                if (exact) setScore(s => s + 10);
-                else if (partial) setScore(s => s + 3);
                 setPhase('reveal');
                 setCompleted(prev => {
                     const next = new Set(prev);
@@ -950,7 +947,7 @@
                                             <div className="flex items-center gap-3 mb-4">
                                                 <i className={`fa-solid text-3xl ${result === 'correct' ? 'fa-trophy text-amber-400' : result === 'partial' ? 'fa-star-half-stroke text-amber-500' : 'fa-circle-xmark text-red-400'}`}></i>
                                                 <div>
-                                                    <div className="font-black text-xl">{result === 'correct' ? '完美！全部答對！+10分' : result === 'partial' ? '部分答對！+3分' : '繼續練習！'}</div>
+                                                    <div className="font-black text-xl">{result === 'correct' ? '完美！全部答對！' : result === 'partial' ? '部分答對！' : '繼續練習！'}</div>
                                                     <div className="text-xs text-slate-400 font-bold">{result === 'correct' ? '您的空間觀察力極為精準。' : result === 'partial' ? '有些面向已掌握，再試一次會更好。' : '3D 觀察需要練習，下次一定更準確。'}</div>
                                                 </div>
                                             </div>
