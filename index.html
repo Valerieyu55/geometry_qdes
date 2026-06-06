@@ -852,7 +852,7 @@
                                     <p class="text-slate-400 italic" data-i18n="s6d2Q3">（提示：截面的每一條邊，都是切面與正四面體某一個「面」的________。）</p>
                                 </div>
                                 <div class="mt-auto z-10 flex flex-col items-center w-full">
-                                    <button onclick="openExternalView('./debate2.html')" class="w-full py-4 rounded-xl bg-gradient-to-r from-emerald-600/80 to-teal-600/80 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-lg shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)] transition-all flex justify-center items-center gap-3 border border-emerald-400/30 group">
+                                    <button onclick="openD2Modal()" class="w-full py-4 rounded-xl bg-gradient-to-r from-emerald-600/80 to-teal-600/80 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-lg shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)] transition-all flex justify-center items-center gap-3 border border-emerald-400/30 group">
                                         <span class="text-2xl group-hover:rotate-12 transition-transform duration-300">🤔</span>
                                         <span>顯示論證解析：邏輯推導</span>
                                     </button>
@@ -2794,6 +2794,29 @@
                 modal.classList.add('pointer-events-none');
             }, 500);
         }
+
+        function openD2Modal() {
+            const modal = document.getElementById('d2-iframe-modal');
+            const content = document.getElementById('d2-iframe-content');
+            modal.classList.remove('pointer-events-none', 'opacity-0');
+            modal.classList.add('opacity-100');
+            setTimeout(() => {
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            }, 50);
+        }
+
+        function closeD2Modal() {
+            const modal = document.getElementById('d2-iframe-modal');
+            const content = document.getElementById('d2-iframe-content');
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('pointer-events-none');
+            }, 500);
+        }
     </script>
 
     <style id="pkg-styles">
@@ -3264,6 +3287,21 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Debate 2 Iframe Modal -->
+    <div id="d2-iframe-modal" class="fixed inset-0 z-[100] bg-slate-950/90 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-500 flex justify-center items-center p-4 sm:p-8">
+        <div class="w-full max-w-6xl h-[90vh] min-h-[700px] bg-slate-900 border border-emerald-500/30 rounded-2xl shadow-[0_0_50px_rgba(16,185,129,0.2)] overflow-hidden flex flex-col relative transform scale-95 transition-transform duration-500" id="d2-iframe-content">
+            <!-- Close Button -->
+            <button onclick="closeD2Modal()" class="absolute top-4 right-4 z-[110] w-10 h-10 bg-slate-800/80 hover:bg-rose-500/20 border border-slate-600 hover:border-rose-500/50 rounded-full flex items-center justify-center text-slate-300 hover:text-rose-400 transition-colors backdrop-blur-sm shadow-lg">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            
+            <!-- Content Area -->
+            <div class="flex-1 w-full h-full relative">
+                <iframe src="./debate2.html" class="w-full h-full border-0 rounded-2xl"></iframe>
             </div>
         </div>
     </div>
