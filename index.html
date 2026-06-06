@@ -167,7 +167,7 @@
 
     </style>
 </head>
-<body class="text-slate-200 min-h-screen flex flex-col overflow-hidden select-none">
+<body class="text-slate-200 h-screen flex flex-col overflow-hidden select-none">
 
     <header class="glass-panel border-b border-cyan-500/20 px-6 py-3.5 flex justify-between items-center z-20">
         <div class="flex items-center space-x-4">
@@ -242,45 +242,40 @@
                             <span class="text-sm font-medium tracking-wide text-slate-400 group-hover:text-slate-200 flex items-center gap-2"><span>🌐</span> <span data-i18n="termBtn">兩岸數學名詞對照</span></span>
                         </button>
                         
-                        <button onclick="setActiveNav(1)" id="btn-nav-1" class="w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500/15 to-transparent border border-cyan-500/40 text-left transition-all duration-300 neon-glow group">
-                            <span class="tech-font text-xs font-bold text-cyber-cyan bg-cyan-500/10 w-6 h-6 flex items-center justify-center rounded-lg border border-cyan-500/30">01</span>
-                            <span class="text-sm font-medium tracking-wide text-cyan-300" data-i18n="step1">幾何解剖：拆解空間結構</span>
-                        </button>
-                        
                         <button onclick="setActiveNav(2)" id="btn-nav-2" class="w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl bg-slate-950/40 border border-transparent hover:border-slate-700/50 text-left transition-all duration-300 group">
-                            <span class="tech-font text-xs font-bold text-slate-500 bg-slate-900 w-6 h-6 flex items-center justify-center rounded-lg border border-slate-800 group-hover:text-slate-300">02</span>
+                            <span class="tech-font text-xs font-bold text-slate-500 bg-slate-900 w-6 h-6 flex items-center justify-center rounded-lg border border-slate-800 group-hover:text-slate-300">01</span>
                             <span class="text-sm font-medium tracking-wide text-slate-400 group-hover:text-slate-200" data-i18n="step2">動態生成：製造過程的視覺化</span>
                         </button>
                         
                         <button onclick="setActiveNav(3)" id="btn-nav-3" class="w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl bg-slate-950/40 border border-transparent hover:border-slate-700/50 text-left transition-all duration-300 group">
-                            <span class="tech-font text-xs font-bold text-slate-500 bg-slate-900 w-6 h-6 flex items-center justify-center rounded-lg border border-slate-800 group-hover:text-slate-300">03</span>
+                            <span class="tech-font text-xs font-bold text-slate-500 bg-slate-900 w-6 h-6 flex items-center justify-center rounded-lg border border-slate-800 group-hover:text-slate-300">02</span>
                             <span class="text-sm font-medium tracking-wide text-slate-400 group-hover:text-slate-200" data-i18n="step3">柱體與錐體的結構特徵</span>
                         </button>
                         
                         <button onclick="setActiveNav(4)" id="btn-nav-4" class="w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl bg-slate-950/40 border border-transparent hover:border-slate-700/50 text-left transition-all duration-300 group">
-                            <span class="tech-font text-xs font-bold text-slate-500 bg-slate-900 w-6 h-6 flex items-center justify-center rounded-lg border border-slate-800 group-hover:text-slate-300">04</span>
+                            <span class="tech-font text-xs font-bold text-slate-500 bg-slate-900 w-6 h-6 flex items-center justify-center rounded-lg border border-slate-800 group-hover:text-slate-300">03</span>
                             <span class="text-sm font-medium tracking-wide text-slate-400 group-hover:text-slate-200" data-i18n="step4">角柱定義的辯證</span>
                         </button>
                         
                         <button onclick="setActiveNav(6)" id="btn-nav-6" class="w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl bg-slate-950/40 border border-transparent hover:border-slate-700/50 text-left transition-all duration-300 group">
-                            <span class="tech-font text-xs font-bold text-slate-500 bg-slate-900 w-6 h-6 flex items-center justify-center rounded-lg border border-slate-800 group-hover:text-slate-300">05</span>
+                            <span class="tech-font text-xs font-bold text-slate-500 bg-slate-900 w-6 h-6 flex items-center justify-center rounded-lg border border-slate-800 group-hover:text-slate-300">04</span>
                             <span class="text-sm font-medium tracking-wide text-slate-400 group-hover:text-slate-200" data-i18n="step6">進階思辨：空間的極限與工程哲學</span>
                         </button>
 
                         <button onclick="setActiveNav(8)" id="btn-nav-8" class="w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl bg-slate-950/40 border border-transparent hover:border-slate-700/50 text-left transition-all duration-300 group">
-                            <span class="tech-font text-xs font-bold text-slate-500 bg-slate-900 w-6 h-6 flex items-center justify-center rounded-lg border border-slate-800 group-hover:text-slate-300">06</span>
+                            <span class="tech-font text-xs font-bold text-slate-500 bg-slate-900 w-6 h-6 flex items-center justify-center rounded-lg border border-slate-800 group-hover:text-slate-300">05</span>
                             <span class="text-sm font-medium tracking-wide text-slate-400 group-hover:text-slate-200">凸多面體的歐拉定理</span>
                         </button>
                         
                         <button onclick="openExternalView('./platonic.html')" id="btn-nav-7" class="w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl bg-slate-950/40 border border-transparent hover:border-slate-700/50 text-left transition-all duration-300 group">
-                            <span class="tech-font text-xs font-bold text-slate-500 bg-slate-900 w-6 h-6 flex items-center justify-center rounded-lg border border-slate-800 group-hover:text-slate-300">07</span>
+                            <span class="tech-font text-xs font-bold text-slate-500 bg-slate-900 w-6 h-6 flex items-center justify-center rounded-lg border border-slate-800 group-hover:text-slate-300">06</span>
                             <span class="text-sm font-medium tracking-wide text-slate-400 group-hover:text-slate-200">延伸思考：正多面體偵探室</span>
                         </button>
                         
                         <!-- Added Feedback Board (Step 9) -->
                         <div class="pt-2 border-t border-slate-800/50"></div>
                         <button onclick="setActiveNav(9)" id="btn-nav-9" class="w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl bg-slate-950/40 border border-transparent hover:border-slate-700/50 text-left transition-all duration-300 group">
-                            <span class="tech-font text-xs font-bold text-slate-500 bg-slate-900 w-6 h-6 flex items-center justify-center rounded-lg border border-slate-800 group-hover:text-slate-300">08</span>
+                            <span class="tech-font text-xs font-bold text-slate-500 bg-slate-900 w-6 h-6 flex items-center justify-center rounded-lg border border-slate-800 group-hover:text-slate-300">07</span>
                             <span class="text-sm font-medium tracking-wide text-slate-400 group-hover:text-slate-200">我有話要說</span>
                         </button>
                     </nav>
@@ -329,8 +324,8 @@
                                 <div class="flex flex-col gap-2 pb-4">
                                     <!-- Header Row -->
                                     <div class="grid grid-cols-12 gap-4 px-6 py-4 bg-slate-800/80 rounded-2xl border border-slate-700/50 backdrop-blur-md text-xs font-black text-slate-300 uppercase tracking-widest sticky top-0 z-20 shadow-md">
-                                        <div class="col-span-4 flex items-center gap-3">台灣名詞 (TW)</div>
                                         <div class="col-span-4 flex items-center gap-3">大陸名詞 (CN)</div>
+                                        <div class="col-span-4 flex items-center gap-3">台灣名詞 (TW)</div>
                                         <div class="col-span-4 flex items-center gap-3">英文 (EN)</div>
                                     </div>
                                     
@@ -338,50 +333,50 @@
 
 
                                     <div class="grid grid-cols-12 gap-4 px-6 py-4 bg-slate-900/40 hover:bg-gradient-to-r hover:from-cyan-500/10 hover:via-purple-500/5 hover:to-emerald-500/10 rounded-2xl border border-slate-700/30 hover:border-purple-500/40 transition-all duration-300 cursor-default group shadow-sm hover:shadow-[0_4px_20px_rgba(168,85,247,0.15)] hover:-translate-y-0.5">
-                                        <div class="col-span-4 font-bold text-cyan-300 group-hover:text-cyan-200 transition-colors text-base flex items-center">角柱</div>
                                         <div class="col-span-4 text-emerald-400 group-hover:text-emerald-300 transition-colors text-base flex items-center font-medium">棱柱</div>
+                                        <div class="col-span-4 font-bold text-cyan-300 group-hover:text-cyan-200 transition-colors text-base flex items-center">角柱</div>
                                         <div class="col-span-4 text-slate-400 group-hover:text-slate-200 transition-colors font-mono text-sm flex items-center">Prism</div>
                                     </div>
 
                                     <div class="grid grid-cols-12 gap-4 px-6 py-4 bg-slate-900/40 hover:bg-gradient-to-r hover:from-cyan-500/10 hover:via-purple-500/5 hover:to-emerald-500/10 rounded-2xl border border-slate-700/30 hover:border-purple-500/40 transition-all duration-300 cursor-default group shadow-sm hover:shadow-[0_4px_20px_rgba(168,85,247,0.15)] hover:-translate-y-0.5">
-                                        <div class="col-span-4 font-bold text-cyan-300 group-hover:text-cyan-200 transition-colors text-base flex items-center">角錐</div>
                                         <div class="col-span-4 text-emerald-400 group-hover:text-emerald-300 transition-colors text-base flex items-center font-medium">棱锥</div>
+                                        <div class="col-span-4 font-bold text-cyan-300 group-hover:text-cyan-200 transition-colors text-base flex items-center">角錐</div>
                                         <div class="col-span-4 text-slate-400 group-hover:text-slate-200 transition-colors font-mono text-sm flex items-center">Pyramid</div>
                                     </div>
 
                                     <div class="grid grid-cols-12 gap-4 px-6 py-4 bg-slate-900/40 hover:bg-gradient-to-r hover:from-cyan-500/10 hover:via-purple-500/5 hover:to-emerald-500/10 rounded-2xl border border-slate-700/30 hover:border-purple-500/40 transition-all duration-300 cursor-default group shadow-sm hover:shadow-[0_4px_20px_rgba(168,85,247,0.15)] hover:-translate-y-0.5">
-                                        <div class="col-span-4 font-bold text-cyan-300 group-hover:text-cyan-200 transition-colors text-base flex items-center">角錐台 / 截角錐</div>
                                         <div class="col-span-4 text-emerald-400 group-hover:text-emerald-300 transition-colors text-base flex items-center font-medium">棱台</div>
+                                        <div class="col-span-4 font-bold text-cyan-300 group-hover:text-cyan-200 transition-colors text-base flex items-center">角錐台 / 截角錐</div>
                                         <div class="col-span-4 text-slate-400 group-hover:text-slate-200 transition-colors font-mono text-sm flex items-center">Frustum of a pyramid</div>
                                     </div>
 
                                     <div class="grid grid-cols-12 gap-4 px-6 py-4 bg-slate-900/40 hover:bg-gradient-to-r hover:from-cyan-500/10 hover:via-purple-500/5 hover:to-emerald-500/10 rounded-2xl border border-slate-700/30 hover:border-purple-500/40 transition-all duration-300 cursor-default group shadow-sm hover:shadow-[0_4px_20px_rgba(168,85,247,0.15)] hover:-translate-y-0.5">
-                                        <div class="col-span-4 font-bold text-cyan-300 group-hover:text-cyan-200 transition-colors text-base flex items-center">圓錐台 / 截頭圓錐</div>
                                         <div class="col-span-4 text-emerald-400 group-hover:text-emerald-300 transition-colors text-base flex items-center font-medium">圆台</div>
+                                        <div class="col-span-4 font-bold text-cyan-300 group-hover:text-cyan-200 transition-colors text-base flex items-center">圓錐台 / 截頭圓錐</div>
                                         <div class="col-span-4 text-slate-400 group-hover:text-slate-200 transition-colors font-mono text-sm flex items-center">Frustum of a cone</div>
                                     </div>
 
                                     <div class="grid grid-cols-12 gap-4 px-6 py-4 bg-slate-900/40 hover:bg-gradient-to-r hover:from-cyan-500/10 hover:via-purple-500/5 hover:to-emerald-500/10 rounded-2xl border border-slate-700/30 hover:border-purple-500/40 transition-all duration-300 cursor-default group shadow-sm hover:shadow-[0_4px_20px_rgba(168,85,247,0.15)] hover:-translate-y-0.5">
-                                        <div class="col-span-4 font-bold text-cyan-300 group-hover:text-cyan-200 transition-colors text-base flex items-center">歪斜線</div>
                                         <div class="col-span-4 text-emerald-400 group-hover:text-emerald-300 transition-colors text-base flex items-center font-medium">异面直线</div>
+                                        <div class="col-span-4 font-bold text-cyan-300 group-hover:text-cyan-200 transition-colors text-base flex items-center">歪斜線</div>
                                         <div class="col-span-4 text-slate-400 group-hover:text-slate-200 transition-colors font-mono text-sm flex items-center">Skew lines</div>
                                     </div>
 
                                     <div class="grid grid-cols-12 gap-4 px-6 py-4 bg-slate-900/40 hover:bg-gradient-to-r hover:from-cyan-500/10 hover:via-purple-500/5 hover:to-emerald-500/10 rounded-2xl border border-slate-700/30 hover:border-purple-500/40 transition-all duration-300 cursor-default group shadow-sm hover:shadow-[0_4px_20px_rgba(168,85,247,0.15)] hover:-translate-y-0.5">
-                                        <div class="col-span-4 font-bold text-cyan-300 group-hover:text-cyan-200 transition-colors text-base flex items-center">兩面角</div>
                                         <div class="col-span-4 text-emerald-400 group-hover:text-emerald-300 transition-colors text-base flex items-center font-medium">二面角</div>
+                                        <div class="col-span-4 font-bold text-cyan-300 group-hover:text-cyan-200 transition-colors text-base flex items-center">兩面角</div>
                                         <div class="col-span-4 text-slate-400 group-hover:text-slate-200 transition-colors font-mono text-sm flex items-center">Dihedral angle</div>
                                     </div>
 
                                     <div class="grid grid-cols-12 gap-4 px-6 py-4 bg-slate-900/40 hover:bg-gradient-to-r hover:from-cyan-500/10 hover:via-purple-500/5 hover:to-emerald-500/10 rounded-2xl border border-slate-700/30 hover:border-purple-500/40 transition-all duration-300 cursor-default group shadow-sm hover:shadow-[0_4px_20px_rgba(168,85,247,0.15)] hover:-translate-y-0.5">
-                                        <div class="col-span-4 font-bold text-cyan-300 group-hover:text-cyan-200 transition-colors text-base flex items-center">立體圖 / 示意圖</div>
                                         <div class="col-span-4 text-emerald-400 group-hover:text-emerald-300 transition-colors text-base flex items-center font-medium">直观图</div>
+                                        <div class="col-span-4 font-bold text-cyan-300 group-hover:text-cyan-200 transition-colors text-base flex items-center">立體圖 / 示意圖</div>
                                         <div class="col-span-4 text-slate-400 group-hover:text-slate-200 transition-colors font-mono text-sm flex items-center">Perspective drawing</div>
                                     </div>
 
                                     <div class="grid grid-cols-12 gap-4 px-6 py-4 bg-slate-900/40 hover:bg-gradient-to-r hover:from-cyan-500/10 hover:via-purple-500/5 hover:to-emerald-500/10 rounded-2xl border border-slate-700/30 hover:border-purple-500/40 transition-all duration-300 cursor-default group shadow-sm hover:shadow-[0_4px_20px_rgba(168,85,247,0.15)] hover:-translate-y-0.5">
-                                        <div class="col-span-4 font-bold text-cyan-300 group-hover:text-cyan-200 transition-colors text-base flex items-center">投影</div>
                                         <div class="col-span-4 text-emerald-400 group-hover:text-emerald-300 transition-colors text-base flex items-center font-medium">射影</div>
+                                        <div class="col-span-4 font-bold text-cyan-300 group-hover:text-cyan-200 transition-colors text-base flex items-center">投影</div>
                                         <div class="col-span-4 text-slate-400 group-hover:text-slate-200 transition-colors font-mono text-sm flex items-center">Projection</div>
                                     </div>
 
@@ -392,9 +387,21 @@
                         </div>
                     </div>
 
-                    <!-- Step 1 View -->
-                    <div id="view-step1" class="w-full h-full flex flex-col absolute top-0 left-0 transition-opacity duration-500 opacity-0 pointer-events-none hidden">
-                        <!-- Top/Middle Area (Two Columns) -->
+                    <!-- Step 2 View -->
+                    <div id="view-step2" class="w-full h-full flex flex-col absolute top-0 left-0 transition-opacity duration-500 opacity-0 pointer-events-none hidden">
+                        <!-- Top info bar for Step 2 -->
+                        <div class="p-4 flex justify-between items-center relative z-20">
+                            <p class="text-sm text-cyan-300 tracking-wide" data-i18n="step2Intro">透過平面圖形繞軸旋轉，動態建構空間旋轉體。</p>
+                            <div class="flex space-x-2 bg-slate-900/80 p-1 rounded-lg border border-cyan-500/30">
+                                <button onclick="setStep2Mode('poly')" id="btn-mode-poly" class="px-3 py-1.5 rounded text-slate-400 text-xs tech-font hover:text-cyan-300 transition-colors border border-transparent">多面體模式</button>
+                                <button onclick="setStep2Mode('cylinder')" id="btn-mode-cyl" class="px-3 py-1.5 rounded bg-cyan-500/20 text-cyan-300 text-xs tech-font border border-cyan-500/50" data-i18n="modeCylinder">圓柱生成模式</button>
+                                <button onclick="setStep2Mode('cone')" id="btn-mode-cone" class="px-3 py-1.5 rounded text-slate-400 text-xs tech-font hover:text-cyan-300 transition-colors border border-transparent" data-i18n="modeCone">圓錐生成模式</button>
+                                <button onclick="setStep2Mode('nets')" id="btn-mode-nets" class="px-3 py-1.5 rounded text-slate-400 text-xs tech-font hover:text-cyan-300 transition-colors border border-transparent">展開圖鑑模式</button>
+                            </div>
+                        </div>
+
+                        <div id="s2-poly-area" class="flex-1 flex overflow-hidden w-full hidden">
+<!-- Top/Middle Area (Two Columns) -->
                         <div class="flex-1 flex overflow-hidden">
                             <!-- Left Column: Cards -->
                             <div class="w-1/3 min-w-[260px] max-w-[320px] p-6 flex flex-col gap-6 justify-center border-r border-cyan-500/10 bg-slate-900/30 z-20">
@@ -448,20 +455,8 @@
                         </div>
                         
 
-                    </div>
-
-                    <!-- Step 2 View -->
-                    <div id="view-step2" class="w-full h-full flex flex-col absolute top-0 left-0 transition-opacity duration-500 opacity-0 pointer-events-none hidden">
-                        <!-- Top info bar for Step 2 -->
-                        <div class="p-4 flex justify-between items-center relative z-20">
-                            <p class="text-sm text-cyan-300 tracking-wide" data-i18n="step2Intro">透過平面圖形繞軸旋轉，動態建構空間旋轉體。</p>
-                            <div class="flex space-x-2 bg-slate-900/80 p-1 rounded-lg border border-cyan-500/30">
-                                <button onclick="setStep2Mode('cylinder')" id="btn-mode-cyl" class="px-3 py-1.5 rounded bg-cyan-500/20 text-cyan-300 text-xs tech-font border border-cyan-500/50" data-i18n="modeCylinder">圓柱生成模式</button>
-                                <button onclick="setStep2Mode('cone')" id="btn-mode-cone" class="px-3 py-1.5 rounded text-slate-400 text-xs tech-font hover:text-cyan-300 transition-colors border border-transparent" data-i18n="modeCone">圓錐生成模式</button>
-                                <button onclick="setStep2Mode('nets')" id="btn-mode-nets" class="px-3 py-1.5 rounded text-slate-400 text-xs tech-font hover:text-cyan-300 transition-colors border border-transparent">展開圖鑑模式</button>
-                            </div>
-                        </div>
-
+                    
+</div>
                         <!-- 3D Scene Area for Step 2 -->
                         <div id="s2-scene-area" class="flex-1 flex items-center justify-center relative perspective-1000 cursor-pointer select-none">
                             
@@ -532,10 +527,10 @@
                         <!-- Nets Area for Step 2 -->
                         <div id="s2-nets-area" class="flex-1 flex flex-col hidden relative z-10 px-6 pb-6 pt-4 overflow-y-auto overflow-x-hidden">
                             <div class="flex-1 glass-panel rounded-2xl flex flex-col items-center justify-center p-6 relative w-full min-h-fit">
-                                <div class="absolute top-4 left-0 w-full flex gap-3 px-4 flex-wrap justify-center z-[100] pointer-events-none" id="s2-nets-tabs">
+                                <div class="w-full flex gap-3 px-4 flex-wrap justify-center z-[100] mt-2 mb-8" id="s2-nets-tabs">
                                     <!-- Tabs injected via JS -->
                                 </div>
-                                <div id="s2-nets-3d-container" class="w-full flex-1 flex items-center justify-center perspective-1000 cursor-grab relative z-10 min-h-[250px]">
+                                <div id="s2-nets-3d-container" class="w-full flex-1 flex items-center justify-center perspective-1000 cursor-grab relative z-10 min-h-[350px]">
                                     <div id="s2-nets-scene" class="scene" style="transform-style: preserve-3d; transform: rotateX(-15deg) rotateY(-25deg);">
                                        <!-- 3D injected via JS -->
                                     </div>
@@ -1554,7 +1549,7 @@
 
         function renderStep2() {
             showView(2);
-            if (typeof setStep2Mode === 'function') setStep2Mode('cylinder');
+            if (typeof setStep2Mode === 'function') setStep2Mode('poly');
         }
 
         function renderStep3() {
@@ -1945,26 +1940,37 @@
             step2Mode = mode;
             resetStep2Rotation();
             
+            const btnPoly = document.getElementById('btn-mode-poly');
             const btnCyl = document.getElementById('btn-mode-cyl');
             const btnCone = document.getElementById('btn-mode-cone');
             const btnNets = document.getElementById('btn-mode-nets');
+            const polyArea = document.getElementById('s2-poly-area');
             const sceneArea = document.getElementById('s2-scene-area');
             const teacherPanel = document.getElementById('s2-teacher-panel');
             const netsArea = document.getElementById('s2-nets-area');
             
+            if(btnPoly) btnPoly.className = 'px-3 py-1.5 rounded text-slate-400 text-xs tech-font hover:text-cyan-300 transition-colors border border-transparent';
             if(btnCyl) btnCyl.className = 'px-3 py-1.5 rounded text-slate-400 text-xs tech-font hover:text-cyan-300 transition-colors border border-transparent';
             if(btnCone) btnCone.className = 'px-3 py-1.5 rounded text-slate-400 text-xs tech-font hover:text-cyan-300 transition-colors border border-transparent';
             if(btnNets) btnNets.className = 'px-3 py-1.5 rounded text-slate-400 text-xs tech-font hover:text-cyan-300 transition-colors border border-transparent';
             
-            if(mode === 'nets') {
+            if(mode === 'poly') {
+                if(btnPoly) btnPoly.className = 'px-3 py-1.5 rounded bg-cyan-500/20 text-cyan-300 text-xs tech-font border border-cyan-500/50';
+                if(sceneArea) sceneArea.classList.add('hidden');
+                if(teacherPanel) teacherPanel.classList.add('hidden');
+                if(netsArea) netsArea.classList.add('hidden');
+                if(polyArea) polyArea.classList.remove('hidden');
+            } else if(mode === 'nets') {
                 if(btnNets) btnNets.className = 'px-3 py-1.5 rounded bg-cyan-500/20 text-cyan-300 text-xs tech-font border border-cyan-500/50';
                 if(sceneArea) sceneArea.classList.add('hidden');
                 if(teacherPanel) teacherPanel.classList.add('hidden');
+                if(polyArea) polyArea.classList.add('hidden');
                 if(netsArea) netsArea.classList.remove('hidden');
                 initNetsGallery();
             } else {
                 if(sceneArea) sceneArea.classList.remove('hidden');
                 if(teacherPanel) teacherPanel.classList.remove('hidden');
+                if(polyArea) polyArea.classList.add('hidden');
                 if(netsArea) netsArea.classList.add('hidden');
                 
                 if(mode === 'cylinder') {
@@ -2412,7 +2418,7 @@
             });
 
             updateStep4Visuals();
-            setActiveNav(1); // Default initialization "Phase 1 (Direct Perception)"
+            setActiveNav(2); // Default initialization "Phase 1 (Direct Perception)"
         });
 
         // --- Nets Gallery Logic ---
