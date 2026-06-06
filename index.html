@@ -947,12 +947,15 @@
                             <!-- Interactive Table -->
                             <div class="glass-panel rounded-2xl border border-blue-500/20 overflow-hidden shadow-[0_0_30px_rgba(59,130,246,0.08)] relative z-20">
                                                                 <div class="p-6 border-b border-slate-700/50 flex items-center justify-between">
-                                    <div class="flex items-center gap-4">
-                                        <div class="w-12 h-12 border border-blue-400/30 rounded-xl flex justify-center items-center bg-blue-500/10 shadow-[0_0_20px_rgba(59,130,246,0.15)] relative overflow-hidden">
+                                    <div class="flex items-center gap-4 flex-wrap">
+                                        <div class="w-12 h-12 border border-blue-400/30 rounded-xl flex justify-center items-center bg-blue-500/10 shadow-[0_0_20px_rgba(59,130,246,0.15)] relative overflow-hidden shrink-0">
                                             <div class="absolute inset-0 bg-blue-400/20 mix-blend-overlay"></div>
                                             <i class="fa-solid fa-dice-d20 text-blue-300/90 text-2xl drop-shadow-[0_0_8px_rgba(147,197,253,0.8)] z-10"></i>
                                         </div>
                                         <p class="text-[22px] font-bold text-slate-100 tracking-[0.1em] drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">填入各多面體的 V、E、F，觀察規律</p>
+                                        <button onclick="openEulerModal()" class="ml-2 px-4 py-1.5 rounded-lg bg-gradient-to-r from-blue-600/50 to-indigo-600/50 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs shadow-[0_0_15px_rgba(59,130,246,0.2)] hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] transition-all flex items-center gap-2 border border-blue-400/30">
+                                            <i class="fa-solid fa-book-open"></i> 歐拉人物誌
+                                        </button>
                                     </div>
                                     <div class="hidden sm:flex items-center gap-5 opacity-20 text-slate-400">
                                         <i class="fa-solid fa-cube text-3xl"></i>
@@ -1098,12 +1101,7 @@
                                 </div>
                             </div>
 
-                            <!-- Euler Biography Button -->
-                            <div class="flex justify-center mt-8">
-                                <button onclick="openEulerModal()" class="px-8 py-3 rounded-full bg-gradient-to-r from-blue-600/80 to-indigo-600/80 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-sm shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transition-all flex items-center gap-3 border border-blue-400/30">
-                                    <i class="fa-solid fa-book-open"></i> 人物誌：數學家歐拉
-                                </button>
-                            </div>
+
                         </div>
                     </div>
 
@@ -3282,8 +3280,6 @@
             }
         }
 
-        , 500);
-        }
 
         function openEulerModal() {
             const modal = document.getElementById('euler-modal');
