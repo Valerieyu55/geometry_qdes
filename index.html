@@ -26,12 +26,11 @@
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Noto+Sans+TC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Varela+Round&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/earlyaccess/cwtexyen.css" rel="stylesheet">
     <style>
         body { 
-            font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-            font-weight: 600;
-            letter-spacing: 0.03em;
+            font-family: 'Varela Round', 'cwTeXYen', 'jf-openhuninn-1.1', 'YuanTi TC', sans-serif;
             background-color: #060a13;
             background-image: linear-gradient(var(--cyber-grid) 1px, transparent 1px),
                               linear-gradient(90deg, var(--cyber-grid) 1px, transparent 1px);
@@ -39,8 +38,6 @@
             --cyber-grid: rgba(6, 182, 212, 0.03);
         }
         .tech-font { font-family: 'Orbitron', sans-serif; }
-        h1, h2, h3, h4, h5, h6 { font-weight: 800 !important; }
-        button, .btn { font-weight: 700 !important; }
         .glass-panel { 
             background: rgba(10, 18, 36, 0.75); 
             backdrop-filter: blur(16px);
@@ -243,7 +240,7 @@
             
             <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 bg-gradient-to-br from-cyber-cyan to-cyber-purple rounded-lg flex items-center justify-center text-white font-bold tracking-wider tech-font text-base shadow-lg shadow-cyan-500/20">
-                    SG
+                    3D
                 </div>
                 <div>
                     <h1 class="text-base font-bold tracking-widest text-white flex items-center">
@@ -251,9 +248,7 @@
                         <span class="text-xs font-mono px-2 py-0.5 ml-2 rounded bg-cyan-950/80 border border-cyan-500/30 text-cyber-cyan tech-font">CH-08</span>
                     </h1>
                     <p class="text-[10px] text-cyan-400/60 tracking-widest flex items-center gap-2">
-                        <span class="uppercase tech-font" data-i18n="subTitle">Spatial Geometry Visualization System</span>
-                        <span class="w-1 h-1 rounded-full bg-cyan-500/50"></span>
-                        <span class="text-cyan-300/80 font-sans tracking-normal hidden sm:inline">林口康橋國際學校老師製作</span>
+                        <span class="text-cyan-300/80 font-sans tracking-normal">林口康橋國際學校數學老師設計</span>
                     </p>
                 </div>
             </div>
@@ -271,7 +266,7 @@
                 <option value="en">English (EN)</option>
             </select>
             <div class="h-4 w-[1px] bg-slate-700"></div>
-            <span class="text-xs text-slate-500 font-mono bg-slate-950/80 px-2 py-1 rounded border border-slate-800" id="sys-status">SYS_STATUS: ONLINE</span>
+            <span class="text-[10px] text-slate-600 font-mono tracking-wider hidden sm:inline">Design By Valerie Yu</span>
         </div>
     </header>
 
@@ -339,15 +334,21 @@
                         <div class="pt-2 border-t border-slate-800/50"></div>
                         <button onclick="setActiveNav(9)" id="btn-nav-9" class="w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl bg-slate-950/40 border border-transparent hover:border-slate-700/50 text-left transition-all duration-300 group">
                             <span class="tech-font text-xs font-bold text-slate-500 bg-slate-900 w-6 h-6 flex items-center justify-center rounded-lg border border-slate-800 group-hover:text-slate-300">07</span>
-                            <span class="text-sm font-medium tracking-wide text-slate-400 group-hover:text-slate-200">我有話要說</span>
+                            <span class="text-sm font-medium tracking-wide text-slate-400 group-hover:text-slate-200">留言板：學習回饋</span>
                         </button>
                     </nav>
                 </div>
                 
-                <div class="p-4 bg-slate-950/60 rounded-xl border border-purple-500/20 text-xs text-slate-400 leading-relaxed relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-cyber-purple/10 to-transparent pointer-events-none rounded-full blur-md"></div>
-                    ⚡ <span class="text-purple-300 font-bold tech-font">PM_LOG:</span> <span data-i18n="pmTip">側邊欄收合邏輯已建置。系統正式更名為課本核心主題。</span>
-                </div>
+                <!-- External Resource Link -->
+                <a href="https://valerieyu55.github.io/3-1-geometry/index.html" target="_blank" class="mb-4 mx-1 flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-500 hover:text-cyan-400 hover:bg-slate-900/60 border border-transparent hover:border-slate-800 transition-all text-xs group shrink-0">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-book-open opacity-70"></i>
+                        <span class="tracking-wide">空間中的線、平面與形體 數位智慧課本</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square opacity-0 group-hover:opacity-100 transition-opacity text-[10px]"></i>
+                </a>
+
+
             </div>
         </aside>
 
@@ -447,6 +448,7 @@
 
                                 </div>
                             </div>
+
                         </div>
                     </div>
 
@@ -625,10 +627,11 @@
                                 cursor: pointer;
                                 position: relative;
                                 transition: all 0.2s;
+                                white-space: nowrap;
                             }
                             .ans-blank:hover { border-color: #38bdf8; }
                             .ans-text {
-                                font-size: 1.15em;
+                                font-size: 2em;
                                 font-weight: 800;
                                 color: #38bdf8;
                                 transition: opacity 0.3s, filter 0.3s;
@@ -643,7 +646,7 @@
                                 content: '?';
                                 position: absolute;
                                 color: #38bdf8;
-                                font-size: 1.25em;
+                                font-size: 2em;
                                 font-weight: bold;
                                 opacity: 0.9;
                             }
@@ -665,7 +668,6 @@
                                 
                                 <div class="relative z-10 flex items-center justify-between w-full h-full">
                                     <div class="flex items-center gap-4 mx-auto pl-10 pr-4">
-                                        <span class="text-3xl drop-shadow-[0_0_10px_rgba(251,191,36,0.8)]">👉</span>
                                         <h2 class="text-xl font-bold text-slate-100 tracking-[0.1em] drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]" data-i18n="step3Desc">請比較這四個立體圖形，歸納它們的特徵，並填寫生活中的實例</h2>
                                     </div>
                                     <button id="s3-reveal-btn" onclick="toggleS3Answers()" class="shrink-0 flex items-center gap-2 px-6 py-2.5 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 border border-blue-400/50 text-white hover:from-blue-500 hover:to-purple-500 hover:shadow-[0_0_20px_rgba(139,92,246,0.6)] transition-all text-sm font-bold tracking-widest whitespace-nowrap shadow-[0_0_15px_rgba(99,102,241,0.4)]">
@@ -709,13 +711,13 @@
                                                         <span class="text-base tracking-[0.1em]" data-i18n="tPrism">角柱</span>
                                                     </div>
                                                 </td>
-                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium">
+                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium whitespace-nowrap">
                                                     <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">2</span></span> 個平行的 <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">多邊</span></span>形
                                                 </td>
-                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium">
+                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium whitespace-nowrap">
                                                     皆為 <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">平行四邊</span></span>形
                                                 </td>
-                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium" data-i18n="tPrismV">上下底面各有頂點</td>
+                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium whitespace-nowrap" data-i18n="tPrismV">上下底面各有頂點</td>
                                                 <td class="py-6 px-4 text-center">
                                                     <span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">包裝盒</span></span>
                                                 </td>
@@ -728,13 +730,13 @@
                                                         <span class="text-base tracking-[0.1em]" data-i18n="tPyramid">角錐</span>
                                                     </div>
                                                 </td>
-                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium">
+                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium whitespace-nowrap">
                                                     <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">1</span></span> 個 <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">多邊</span></span>形
                                                 </td>
-                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium">
+                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium whitespace-nowrap">
                                                     皆為 <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">三角</span></span>形
                                                 </td>
-                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium" data-i18n="tPyramidV">所有側邊交於一頂點</td>
+                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium whitespace-nowrap" data-i18n="tPyramidV">所有側邊交於一頂點</td>
                                                 <td class="py-6 px-4 text-center">
                                                     <span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">四角錐香水瓶</span></span>
                                                 </td>
@@ -747,13 +749,13 @@
                                                         <span class="text-base tracking-[0.1em]" data-i18n="tCylinder">圓柱</span>
                                                     </div>
                                                 </td>
-                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium">
+                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium whitespace-nowrap">
                                                     <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">2</span></span> 個平行的 <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">圓</span></span>形
                                                 </td>
-                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium leading-relaxed">
+                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium whitespace-nowrap leading-relaxed">
                                                     平滑的曲面<br>（展開為 <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">矩</span></span>形）
                                                 </td>
-                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium" data-i18n="tCylinderV">無頂點</td>
+                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium whitespace-nowrap" data-i18n="tCylinderV">無頂點</td>
                                                 <td class="py-6 px-4 text-center">
                                                     <span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">易開罐</span></span>
                                                 </td>
@@ -766,13 +768,13 @@
                                                         <span class="text-base tracking-[0.1em]" data-i18n="tCone">圓錐</span>
                                                     </div>
                                                 </td>
-                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium">
+                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium whitespace-nowrap">
                                                     <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">1</span></span> 個 <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">圓</span></span>形
                                                 </td>
-                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium leading-relaxed">
+                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium whitespace-nowrap leading-relaxed">
                                                     平滑的曲面<br>（展開為 <span class="ans-blank ans-hidden mx-1" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">扇</span></span>形）
                                                 </td>
-                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium" data-i18n="tConeV">所有母線交於一頂點</td>
+                                                <td class="py-6 px-4 border-r border-blue-500/20 text-center text-slate-300 font-medium whitespace-nowrap" data-i18n="tConeV">所有母線交於一頂點</td>
                                                 <td class="py-6 px-4 text-center">
                                                     <span class="ans-blank ans-hidden" onclick="this.classList.toggle('ans-hidden')"><span class="ans-text">甜筒冰淇淋</span></span>
                                                 </td>
@@ -796,8 +798,48 @@
                                     <div class="text-sm font-bold text-red-400 mb-4 flex items-center gap-2">
                                         <span class="text-lg">❓</span>概念思辨
                                     </div>
+                                    <p class="text-slate-200 text-sm leading-relaxed mb-5">
                                         有兩個面互相平行，其餘各面都是平行四邊形的多面體，一定是角柱嗎？
                                     </p>
+                                    <!-- 標準角柱 - 課本定義 -->
+                                    <div id="wrapper-p98">
+                                        <button
+                                            onclick="const el=document.getElementById('s4-def-box');el.classList.toggle('hidden');this.classList.toggle('border-cyan-400/60');"
+                                            class="w-full flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800/80 border border-cyan-500/30 text-cyan-300 text-sm font-bold hover:bg-cyan-500/15 hover:border-cyan-400/60 transition-all mt-2"
+                                        >
+                                            <i class="fa-solid fa-book-open text-cyan-400"></i>
+                                            課本定義 P.98
+                                            <i class="fa-solid fa-chevron-down text-xs text-cyan-500 ml-auto"></i>
+                                        </button>
+                                        <div id="s4-def-box" class="hidden mt-3 p-4 rounded-xl bg-slate-900/90 border border-cyan-500/20">
+                                            <div class="flex items-start gap-2">
+                                                <span class="shrink-0 w-8 h-8 rounded-lg bg-cyan-500/15 border border-cyan-500/40 flex items-center justify-center text-cyan-400 text-[10px] font-black">P.98</span>
+                                                <p class="text-slate-300 text-sm leading-relaxed">
+                                                    有兩個面互相平行，其餘各面都是平行四邊形，每相鄰兩個四邊形的公共邊都互相平行，由這些面所圍成的多面體叫做<span class="text-cyan-300 font-black">棱柱</span>。
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 偽角柱 - 關鍵證據 -->
+                                    <div id="wrapper-evidence" style="display: none;">
+                                        <button
+                                            onclick="const el=document.getElementById('s4-evidence-box');el.classList.toggle('hidden');this.classList.toggle('border-amber-400/60');"
+                                            class="w-full flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800/80 border border-amber-500/30 text-amber-300 text-sm font-bold hover:bg-amber-500/15 hover:border-amber-400/60 transition-all mt-2"
+                                        >
+                                            <i class="fa-solid fa-magnifying-glass text-amber-400"></i>
+                                            關鍵證據
+                                            <i class="fa-solid fa-chevron-down text-xs text-amber-500 ml-auto"></i>
+                                        </button>
+                                        <div id="s4-evidence-box" class="hidden mt-3 p-4 rounded-xl bg-amber-950/30 border border-amber-500/20">
+                                            <div class="flex items-start gap-2">
+                                                <span class="shrink-0 w-8 h-8 rounded-lg bg-amber-500/15 border border-amber-400/40 flex items-center justify-center text-amber-300 text-sm">🔍</span>
+                                                <p class="text-slate-300 text-sm leading-relaxed">
+                                                    雖然上下底面互相平行，但觀察其側面可以發現，每相鄰兩個平行四邊形的「<span class="text-amber-300 font-bold">公共邊（側稜）</span>」<span class="text-red-400 font-bold">並沒有互相平行</span>，違反了基本定義。
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -935,7 +977,7 @@
                         <div id="s6-panel-d1" class="w-full">
                             <div class="glass-panel rounded-2xl border border-blue-500/20 p-8 flex flex-col relative overflow-hidden group h-fit max-w-4xl mx-auto">
                                 <div class="absolute inset-0 bg-gradient-to-br from-blue-900/10 to-transparent pointer-events-none"></div>
-                                <h3 class="text-xl font-bold text-blue-300 mb-6 flex items-center gap-3 border-b border-blue-500/20 pb-4" data-i18n="s6d1Title">🤔 思辨 1：工業設計的極致化</h3>
+                                <h3 class="text-xl font-bold text-blue-300 mb-6 flex items-center gap-3 border-b border-blue-500/20 pb-4" data-i18n="s6d1Title">思辨 1：工業設計的極致化</h3>
                                 <div class="space-y-6 text-base text-slate-300 leading-relaxed mb-8 z-10">
                                     <p data-i18n="s6d1Q1">在幾何中，相同容積下，圓柱的表面積通常小於長方體（這意味著製造圓柱更省包裝材料）。</p>
                                     <p data-i18n="s6d1Q2">但在現實物流中，絕大多數的快遞紙箱、海運貨櫃卻全部採用長方體（四角柱）。</p>
@@ -954,7 +996,7 @@
                         <div id="s6-panel-d2" class="w-full hidden">
                             <div class="glass-panel rounded-2xl border border-emerald-500/20 p-8 flex flex-col relative overflow-hidden group h-fit max-w-4xl mx-auto">
                                 <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/10 to-transparent pointer-events-none"></div>
-                                <h3 class="text-xl font-bold text-emerald-300 mb-6 flex items-center gap-3 border-b border-emerald-500/20 pb-4" data-i18n="s6d2Title">🤔 思辨 2："降維打擊"的嚴密證明</h3>
+                                <h3 class="text-xl font-bold text-emerald-300 mb-6 flex items-center gap-3 border-b border-emerald-500/20 pb-4" data-i18n="s6d2Title">思辨 2："降維打擊"的嚴密證明</h3>
                                 <div class="space-y-6 text-base text-slate-300 leading-relaxed mb-8 z-10">
                                     <p data-i18n="s6d2Q1">正四面體（三角錐）由 4 個全等的等邊三角形圍成，共有 4 個面、6 條稜、4 個頂點。</p>
                                     <p class="font-bold text-emerald-200 text-lg" data-i18n="s6d2Q2">請以數學邏輯論證：為什麼用一個平面去截正四面體，絕對不可能切出「五邊形」或更多邊的截面？</p>
@@ -977,8 +1019,8 @@
                         <div class="flex items-center gap-4 border-b border-amber-500/30 pb-4 mb-6">
                             <h2 class="text-2xl font-bold text-amber-300 tracking-wide">凸多面體的歐拉定理</h2>
                             <span class="tech-font text-xs text-amber-500/70 border border-amber-500/30 px-2 py-0.5 rounded">V − E + F = 2</span>
-                            <button onclick="openEulerModal()" class="ml-auto px-4 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 text-amber-200 border border-amber-500/30 transition-colors flex items-center gap-2 text-sm shadow-[0_0_15px_rgba(251,191,36,0.1)] hover:shadow-[0_0_20px_rgba(251,191,36,0.3)] cursor-pointer z-10">
-                                <i class="fa-solid fa-book-open"></i> 歐拉人物誌
+                            <button onclick="openEulerModal()" class="ml-auto px-5 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 text-white font-bold border border-amber-400/50 transition-all duration-300 flex items-center gap-2 text-base shadow-[0_0_20px_rgba(245,158,11,0.4)] hover:shadow-[0_0_30px_rgba(245,158,11,0.7)] hover:-translate-y-0.5 cursor-pointer z-10 group tracking-wide">
+                                <i class="fa-solid fa-book-open text-amber-100 group-hover:scale-110 transition-transform"></i> 歐拉人物誌
                             </button>
                         </div>
 
@@ -999,7 +1041,6 @@
                                     <div class="flex items-center gap-4 flex-wrap">
                                         <div class="w-12 h-12 border border-blue-400/30 rounded-xl flex justify-center items-center bg-blue-500/10 shadow-[0_0_20px_rgba(59,130,246,0.15)] relative overflow-hidden shrink-0">
                                             <div class="absolute inset-0 bg-blue-400/20 mix-blend-overlay"></div>
-                                            <i class="fa-solid fa-dice-d20 text-blue-300/90 text-2xl drop-shadow-[0_0_8px_rgba(147,197,253,0.8)] z-10"></i>
                                         </div>
                                         <p class="text-[22px] font-bold text-slate-100 tracking-[0.1em] drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">填入各多面體的 V、E、F，觀察規律</p>
                                     </div>
@@ -1158,11 +1199,11 @@
                             <div class="glass-panel rounded-2xl p-6 mb-6 border border-cyan-500/20 relative overflow-hidden flex justify-between items-center">
                                 <div class="absolute -right-10 -top-10 w-40 h-40 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
                                 <div>
-                                    <h2 class="text-2xl font-bold text-cyan-300 tracking-wide mb-1">我有話要說</h2>
+                                    <h2 class="text-2xl font-bold text-cyan-300 tracking-wide mb-1">留言板：學習回饋</h2>
                                     <p class="text-slate-400 text-sm">分享你的學習心得或提出疑問，老師會親自解答！</p>
                                 </div>
                                 <div ondblclick="toggleTeacherMode()" class="w-12 h-12 rounded-xl bg-cyan-950/80 border border-cyan-500/40 flex items-center justify-center shadow-[0_0_15px_rgba(6,182,212,0.3)] cursor-pointer hover:bg-cyan-900 transition-colors select-none" title="切換老師模式 (隱藏)">
-                                    <span class="text-2xl text-cyan-400 font-bold">08</span>
+                                    <span class="text-2xl text-cyan-400 font-bold">07</span>
                                 </div>
                             </div>
                             
@@ -1391,19 +1432,19 @@
                 step4: '角柱定義的辯證',
                 step5: '交互挑戰：空間圖形的連續轉化',
                 step6: '進階思辨：空間的極限與工程哲學',
-                s6d1Title: '🤔 思辨 1：工業設計的極致化',
+                s6d1Title: '思辨 1：工業設計的極致化',
                 s6d1Q1: '在幾何中，相同容積下，圓柱的表面積通常小於長方體（這意味著製造圓柱更省包裝材料）。',
                 s6d1Q2: '但在現實物流中，絕大多數的快遞紙箱、海運貨櫃卻全部採用長方體（四角柱）。',
                 s6d1Q3: '請嘗試用數學中的「表面積/體積比」，解釋這個商業決策中的矛盾與權衡：',
                 s6d1Btn: '💡 顯示思辨解析',
                 s6d1A: '雖然圓柱節省包裝材料，但在物流運輸中「空間利用率」更為重要。長方體可以達到 100% 的空間密鋪（無縫拼接疊放），而圓柱體堆疊會產生大量無效的縫隙，浪費運輸成本。',
-                s6d2Title: '🤔 思辨 2：“降維打擊”的嚴密證明',
+                s6d2Title: '思辨 2：“降維打擊”的嚴密證明',
                 s6d2Q1: '如果用一個無限大的平面，像切豆腐一樣“一刀切”過一個正方體，截面最多可以是六邊形。',
                 s6d2Q2: '請以數學邏輯論證：為什麼無論你怎麼切，都絕對不可能切出一個「正五邊形」？',
                 s6d2Q3: '（提示：如果一個平面去截兩個相互平行的平面，它的交線互相 ________。）',
                 s6d2Btn: '💡 顯示論證解析',
                 s6d2A: '正方體有 3 對互相平行的面。根據定理「平面與兩平行平面相交，交線必平行」，若切出五邊形，必定至少會切過一對平行面，因此截出的五邊形「必定存在至少一對平行的邊」。但「正五邊形」的任意兩邊都沒有平行，產生矛盾。',
-                step3Desc: '綜合一、二，請比較這四個立體圖形，歸納它們的特徵，並填寫生活中的實例',
+                step3Desc: '請比較這四個立體圖形，歸納它們的特徵，並填寫生活中的實例',
                 tName: '名稱', tBase: '底面特徵', tSide: '側面特徵', tVertex: '頂點特徵', tExample: '生活實例 (舉一例)',
                 tPrism: '角柱', tPrismV: '上下底面各有頂點',
                 tPyramid: '角錐', tPyramidV: '所有側邊交於一頂點',
@@ -1451,13 +1492,13 @@
                 step4: '角柱定义的辩证',
                 step5: '交互挑战：空间图形的连续转化',
                 step6: '进阶思辨：空间的极限与工程哲学',
-                s6d1Title: '🤔 思辨 1：工业设计的极致化',
+                s6d1Title: '思辨 1：工业设计的极致化',
                 s6d1Q1: '在几何中，相同容积下，圆柱的表面积通常小于长方体（这意味着制造圆柱更省包装材料）。',
                 s6d1Q2: '但在现实物流中，绝大多数的快递纸箱、海运货柜却全部采用长方体（四角柱）。',
                 s6d1Q3: '请尝试用数学中的“表面积/体积比”，解释这个商业决策中的矛盾与权衡：',
                 s6d1Btn: '💡 显示思辨解析',
                 s6d1A: '虽然圆柱节省包装材料，但在物流运输中“空间利用率”更为重要。长方体可以达到 100% 的空间密铺（无缝拼接叠放），而圆柱体堆叠会产生大量无效的缝隙，浪费运输成本。',
-                s6d2Title: '🤔 思辨 2：“降维打击”的严密证明',
+                s6d2Title: '思辨 2：“降维打击”的严密证明',
                 s6d2Q1: '如果用一个无限大的平面，像切豆腐一样“一刀切”过一个正方体，截面最多可以是六边形。',
                 s6d2Q2: '请以数学逻辑论证：为什么无论你怎么切，都绝对不可能切出一个“正五边形”？',
                 s6d2Q3: '（提示：如果一个平面去截两个相互平行的平面，它的交线互相 ________。）',
@@ -2241,9 +2282,13 @@
             if(type === 'std') {
                 std.style.display = 'block';
                 fake.style.display = 'none';
+                document.getElementById('wrapper-p98').style.display = 'block';
+                document.getElementById('wrapper-evidence').style.display = 'none';
             } else {
                 std.style.display = 'none';
                 fake.style.display = 'block';
+                document.getElementById('wrapper-p98').style.display = 'none';
+                document.getElementById('wrapper-evidence').style.display = 'block';
             }
         }
 
@@ -3383,7 +3428,7 @@
                     <!-- Avatar/Left Col -->
                     <div class="w-full md:w-1/3 flex flex-col items-center">
                         <div class="w-48 h-48 rounded-full bg-slate-800 border-4 border-blue-400/50 mb-6 flex items-center justify-center overflow-hidden shadow-[0_0_30px_rgba(59,130,246,0.4)]">
-                            <i class="fa-solid fa-user-tie text-8xl text-blue-300/80 mt-4"></i>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Leonhard_Euler.jpg" alt="Leonhard Euler" class="w-full h-full object-cover">
                         </div>
                         <h3 class="text-3xl font-black text-blue-300 tracking-wider text-center">萊昂哈德·歐拉</h3>
                         <p class="text-lg text-blue-400/80 tech-font mt-2 text-center">Leonhard Euler</p>
@@ -3414,6 +3459,27 @@
                                 <p class="text-sm text-emerald-100/80">
                                     這個看似簡單的規律，實際上成為了現代「拓撲學」（Topology）的重要基石。拓撲學被譽為「橡皮泥幾何學」，它告訴我們：如果把一個多面體像氣球一樣吹脹，只要它表面沒有破洞（簡單多面體），它的結構本質永遠不會改變！
                                 </p>
+                            </div>
+                            
+                            <!-- Expandable Info Section -->
+                            <div class="mt-2">
+                                <button onclick="document.getElementById('euler-more-info').classList.toggle('hidden'); this.querySelector('.fa-chevron-down').classList.toggle('rotate-180')" class="w-full flex items-center justify-between p-3 rounded-lg bg-slate-800/40 hover:bg-slate-700/60 text-slate-300 text-sm border border-slate-600/50 transition-all group">
+                                    <span class="flex items-center gap-2 font-medium text-slate-300 group-hover:text-blue-300 transition-colors"><i class="fa-brands fa-wikipedia-w"></i> 更多關於歐拉的生平與貢獻</span>
+                                    <i class="fa-solid fa-chevron-down transition-transform duration-300 text-slate-500 group-hover:text-blue-400"></i>
+                                </button>
+                                <div id="euler-more-info" class="hidden mt-3 p-5 rounded-xl bg-slate-900/50 border border-slate-700/50 shadow-inner text-sm text-slate-400 space-y-4 leading-relaxed">
+                                    <ul class="list-disc list-inside space-y-3">
+                                        <li><strong class="text-slate-200">數學符號的奠基者：</strong>我們今天熟知的函數符號 <i>f(x)</i>、自然對數的底 <i>e</i>、圓周率 <i>&pi;</i>、虛數單位 <i>i</i> 以及求和符號 &Sigma;，都是由歐拉首創或推廣的。</li>
+                                        <li><strong class="text-slate-200">歐拉恆等式：</strong>他發現了被譽為「數學最美公式」的 <i>e<sup>i&pi;</sup> + 1 = 0</i>，將數學中五個最重要的常數以極簡的形式完美結合。</li>
+                                        <li><strong class="text-slate-200">柯尼斯堡七橋問題：</strong>歐拉完美解決了這個問題，證明了一筆畫的條件，並由此開創了「圖論」（Graph Theory）這一全新的數學分支。</li>
+                                        <li><strong class="text-slate-200">跨領域的影響力：</strong>除了純數學，他還在解析力學、流體動力學、光學、天文學甚至是音樂理論上做出了突破性貢獻。</li>
+                                    </ul>
+                                    <div class="pt-4 border-t border-slate-700/50 mt-4 flex justify-end">
+                                        <a href="https://zh.wikipedia.org/zh-tw/%E8%90%8A%E6%98%82%E5%93%88%E5%BE%B7%C2%B7%E6%AD%90%E6%8B%89" target="_blank" class="text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-2 inline-flex font-medium">
+                                            閱讀完整維基百科條目 <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

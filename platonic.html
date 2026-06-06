@@ -11,13 +11,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&family=Space+Grotesk:wght@700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Varela+Round&family=Space+Grotesk:wght@700;800&display=swap"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/earlyaccess/cwtexyen.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
     <style>
         html { font-size: 18px; }
         body {
-            font-family: 'Noto Sans TC', sans-serif;
+            font-family: 'Varela Round', 'cwTeXYen', 'jf-openhuninn-1.1', 'YuanTi TC', sans-serif;
             background: #0c0f1a;
             color: #f1f5f9;
             overflow-x: hidden;
@@ -29,7 +30,7 @@
         }
 
         h3 {
-            font-family: 'Noto Serif TC', serif;
+            font-family: 'Varela Round', 'cwTeXYen', 'jf-openhuninn-1.1', 'YuanTi TC', sans-serif;
         }
 
         .glass {
@@ -157,11 +158,18 @@
             const containerRef = useRef();
             const sceneRef = useRef(null);
             const meshRef = useRef(null);
+            const markerGroupRef = useRef(null);
+            const stateRef = useRef({ isSpinning, isPenActive, markerPoints });
 
+            // Sync state for event listeners without recreating scene
+            useEffect(() => {
+                stateRef.current = { isSpinning, isPenActive, markerPoints };
+            }, [isSpinning, isPenActive, markerPoints]);
+
+            // Setup Scene (ONLY runs when solid changes)
             useEffect(() => {
                 if (!containerRef.current) return;
 
-                // Setup Scene
                 const width = containerRef.current.clientWidth;
                 const height = containerRef.current.clientHeight;
                 const scene = new THREE.Scene();
@@ -209,23 +217,20 @@
 
                 const markerGroup = new THREE.Group();
                 group.add(markerGroup);
+                markerGroupRef.current = markerGroup;
+
+                // Render initial markers
+                stateRef.current.markerPoints.forEach(pt => {
+                    const markerDot = new THREE.Mesh(
+                        new THREE.SphereGeometry(0.12, 16, 16),
+                        new THREE.MeshPhongMaterial({ color: pt.color || 0xff3e3e, emissive: pt.color || 0xff3e3e, emissiveIntensity: 0.5 })
+                    );
+                    markerDot.position.set(pt.x, pt.y, pt.z);
+                    markerGroup.add(markerDot);
+                });
 
                 camera.position.z = 8;
                 sceneRef.current = scene;
-
-                // Sync Markers
-                const updateMarkers = () => {
-                    markerGroup.clear();
-                    markerPoints.forEach(pt => {
-                        const markerDot = new THREE.Mesh(
-                            new THREE.SphereGeometry(0.12, 16, 16),
-                            new THREE.MeshPhongMaterial({ color: pt.color || 0xff3e3e, emissive: pt.color || 0xff3e3e, emissiveIntensity: 0.5 })
-                        );
-                        markerDot.position.set(pt.x, pt.y, pt.z);
-                        markerGroup.add(markerDot);
-                    });
-                };
-                updateMarkers();
 
                 // Raycasting
                 const raycaster = new THREE.Raycaster();
@@ -234,7 +239,7 @@
                 // Animation
                 let frameId;
                 const animate = () => {
-                    if (isSpinning && meshRef.current) {
+                    if (stateRef.current.isSpinning && meshRef.current) {
                         meshRef.current.rotation.y += 0.01;
                         meshRef.current.rotation.x += 0.005;
                     }
@@ -267,7 +272,7 @@
                 };
 
                 const handleUp = (e) => {
-                    if (isPenActive && !moved && meshRef.current) {
+                    if (stateRef.current.isPenActive && !moved && meshRef.current) {
                         // Handle Painting
                         const rect = containerRef.current.getBoundingClientRect();
                         mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
@@ -295,24 +300,24 @@
                                 }
                             }
 
-
-
                             // Check if marker already exists nearby
-                            const existingIdx = markerPoints.findIndex(p =>
+                            const currentMarkers = stateRef.current.markerPoints;
+                            const existingIdx = currentMarkers.findIndex(p =>
                                 new THREE.Vector3(p.x, p.y, p.z).distanceTo(closestPos) < 0.1
                             );
 
                             if (existingIdx >= 0) {
-                                const newPoints = [...markerPoints];
+                                const newPoints = [...currentMarkers];
                                 newPoints.splice(existingIdx, 1);
                                 setMarkerPoints(newPoints);
                             } else {
-                                setMarkerPoints([...markerPoints, { x: closestPos.x, y: closestPos.y, z: closestPos.z, color: '#f43f5e' }]);
+                                setMarkerPoints([...currentMarkers, { x: closestPos.x, y: closestPos.y, z: closestPos.z, color: '#f43f5e' }]);
                             }
                         }
                     }
                     isDragging = false;
                 };
+
                 // Resize Observer to handle sidebar toggling and window resize
                 const handleResize = () => {
                     if (!containerRef.current) return;
@@ -343,7 +348,22 @@
                     geom.dispose();
                     material.dispose();
                 };
-            }, [solid, isSpinning, isPenActive, markerPoints]);
+            }, [solid.id]);
+
+            // Update markers visually when state changes, without destroying the scene
+            useEffect(() => {
+                if (markerGroupRef.current) {
+                    markerGroupRef.current.clear();
+                    markerPoints.forEach(pt => {
+                        const markerDot = new THREE.Mesh(
+                            new THREE.SphereGeometry(0.12, 16, 16),
+                            new THREE.MeshPhongMaterial({ color: pt.color || 0xff3e3e, emissive: pt.color || 0xff3e3e, emissiveIntensity: 0.5 })
+                        );
+                        markerDot.position.set(pt.x, pt.y, pt.z);
+                        markerGroupRef.current.add(markerDot);
+                    });
+                }
+            }, [markerPoints]);
 
             return <div ref={containerRef} className="w-full h-full overflow-hidden cursor-grab active:cursor-grabbing" style={{ minHeight: '240px' }} />;
         };
@@ -778,7 +798,7 @@
                             <div className="flex items-center gap-3">
                                 {completed.size < SOLIDS.length ? (
                                     <div 
-                                        className="hidden md:flex bg-amber-500/10 border border-amber-500/30 px-3 py-1.5 rounded-lg items-center gap-2 shadow-[0_0_10px_rgba(245,158,11,0.1)] cursor-pointer hover:bg-amber-500/20 transition-colors"
+                                        className="hidden md:flex bg-amber-500/15 border-2 border-amber-500/50 px-5 py-3 rounded-2xl items-center gap-3 shadow-[0_0_20px_rgba(245,158,11,0.25)] cursor-pointer hover:bg-amber-500/25 transition-all hover:scale-105"
                                         onDoubleClick={() => {
                                             const pwd = window.prompt('請輸入教師密碼以一鍵解鎖：');
                                             if (pwd === 'kcislk') {
@@ -789,22 +809,22 @@
                                         }}
                                         title="連點兩下輸入密碼解鎖"
                                     >
-                                        <div className="w-7 h-7 rounded-full bg-amber-500/20 flex items-center justify-center border border-amber-400/50">
-                                            <i className="fa-solid fa-lock text-amber-400 text-xs"></i>
+                                        <div className="w-10 h-10 rounded-full bg-amber-500/30 flex items-center justify-center border-2 border-amber-400/70">
+                                            <i className="fa-solid fa-lock text-amber-400 text-base"></i>
                                         </div>
-                                        <div className="text-[10px]">
-                                            <div className="font-black text-amber-300 tracking-wide mb-0.5">神秘知識點</div>
-                                            <div className="text-slate-300">完成<span className="text-amber-400 font-bold mx-1">全部題目</span>即可開啟！</div>
+                                        <div>
+                                            <div className="font-black text-amber-300 tracking-wide text-sm mb-0.5">神秘知識點</div>
+                                            <div className="text-slate-300 text-sm">完成<span className="text-amber-400 font-bold mx-1">全部題目</span>即可開啟！</div>
                                         </div>
                                     </div>
                                 ) : (
-                                    <div className="hidden md:flex bg-emerald-500/10 border border-emerald-500/30 px-3 py-1.5 rounded-lg items-center gap-2 shadow-[0_0_10px_rgba(16,185,129,0.1)] fade-in">
-                                        <div className="w-7 h-7 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-400/50">
-                                            <i className="fa-solid fa-unlock text-emerald-400 text-xs"></i>
+                                    <div className="hidden md:flex bg-emerald-500/15 border-2 border-emerald-500/50 px-5 py-3 rounded-2xl items-center gap-3 shadow-[0_0_20px_rgba(16,185,129,0.25)] fade-in">
+                                        <div className="w-10 h-10 rounded-full bg-emerald-500/30 flex items-center justify-center border-2 border-emerald-400/70">
+                                            <i className="fa-solid fa-unlock text-emerald-400 text-base"></i>
                                         </div>
-                                        <div className="text-[10px]">
-                                            <div className="font-black text-emerald-300 tracking-wide mb-0.5">解鎖成功</div>
-                                            <div className="text-slate-300">柏拉圖立體的奧秘已在下方開啟</div>
+                                        <div>
+                                            <div className="font-black text-emerald-300 tracking-wide text-sm mb-0.5">解鎖成功</div>
+                                            <div className="text-slate-300 text-sm">柏拉圖立體的奧秘已在下方開啟</div>
                                         </div>
                                     </div>
                                 )}
