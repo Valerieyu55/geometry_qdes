@@ -777,7 +777,18 @@
                             </div>
                             <div className="flex items-center gap-3">
                                 {completed.size < SOLIDS.length ? (
-                                    <div className="hidden md:flex bg-amber-500/10 border border-amber-500/30 px-3 py-1.5 rounded-lg items-center gap-2 shadow-[0_0_10px_rgba(245,158,11,0.1)]">
+                                    <div 
+                                        className="hidden md:flex bg-amber-500/10 border border-amber-500/30 px-3 py-1.5 rounded-lg items-center gap-2 shadow-[0_0_10px_rgba(245,158,11,0.1)] cursor-pointer hover:bg-amber-500/20 transition-colors"
+                                        onDoubleClick={() => {
+                                            const pwd = window.prompt('請輸入教師密碼以一鍵解鎖：');
+                                            if (pwd === 'kcislk') {
+                                                setCompleted(new Set(SOLIDS.map((_, i) => i)));
+                                            } else if (pwd !== null) {
+                                                alert('密碼錯誤！');
+                                            }
+                                        }}
+                                        title="連點兩下輸入密碼解鎖"
+                                    >
                                         <div className="w-7 h-7 rounded-full bg-amber-500/20 flex items-center justify-center border border-amber-400/50">
                                             <i className="fa-solid fa-lock text-amber-400 text-xs"></i>
                                         </div>
