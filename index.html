@@ -852,7 +852,7 @@
                                     <p class="text-slate-400 italic" data-i18n="s6d2Q3">（提示：截面的每一條邊，都是切面與正四面體某一個「面」的________。）</p>
                                 </div>
                                 <div class="mt-auto z-10 flex flex-col items-center w-full">
-                                    <button onclick="openD2Modal()" class="w-full py-4 rounded-xl bg-gradient-to-r from-emerald-600/80 to-teal-600/80 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-lg shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)] transition-all flex justify-center items-center gap-3 border border-emerald-400/30 group">
+                                    <button onclick="openExternalView('./debate2.html')" class="w-full py-4 rounded-xl bg-gradient-to-r from-emerald-600/80 to-teal-600/80 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-lg shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)] transition-all flex justify-center items-center gap-3 border border-emerald-400/30 group">
                                         <span class="text-2xl group-hover:rotate-12 transition-transform duration-300">🤔</span>
                                         <span>顯示論證解析：邏輯推導</span>
                                     </button>
@@ -3078,14 +3078,7 @@
 
     <!-- D2 Modal Script -->
     <script>
-        let d2CurrentSlide = 0;
-        const d2TotalSlides = 4;
-
-        function updateD2Slide() {
-            document.querySelectorAll('.d2-slide').forEach((slide, index) => {
-                if (index === d2CurrentSlide) {
-                    slide.classList.add('active');
-                } else {
+         else {
                     slide.classList.remove('active');
                 }
             });
@@ -3131,28 +3124,7 @@
             }
         }
 
-        function openD2Modal() {
-            d2CurrentSlide = 0;
-            updateD2Slide();
-            const modal = document.getElementById('d2-modal');
-            const content = document.getElementById('d2-modal-content');
-            modal.classList.remove('pointer-events-none');
-            modal.classList.remove('opacity-0');
-            setTimeout(() => {
-                content.classList.remove('scale-95');
-                content.classList.add('scale-100');
-            }, 10);
-        }
-
-        function closeD2Modal() {
-            const modal = document.getElementById('d2-modal');
-            const content = document.getElementById('d2-modal-content');
-            content.classList.remove('scale-100');
-            content.classList.add('scale-95');
-            modal.classList.add('opacity-0');
-            setTimeout(() => {
-                modal.classList.add('pointer-events-none');
-            }, 500);
+        , 500);
         }
 
         function openEulerModal() {
@@ -3242,197 +3214,7 @@
     </style>
 
     <!-- D2 Modal -->
-    <div id="d2-modal" class="fixed inset-0 z-[100] bg-slate-950/90 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-500 flex justify-center items-center p-4 sm:p-8">
-        <div class="w-full max-w-5xl h-[85vh] min-h-[650px] bg-slate-900/95 border border-emerald-500/30 rounded-2xl shadow-[0_0_50px_rgba(16,185,129,0.2)] overflow-hidden flex flex-col relative transform scale-95 transition-transform duration-500" id="d2-modal-content">
-            <!-- Close Button -->
-            <button onclick="closeD2Modal()" class="absolute top-4 right-4 z-[110] w-10 h-10 bg-slate-800/80 hover:bg-red-500/20 border border-slate-600 hover:border-red-500/50 rounded-full flex items-center justify-center text-slate-300 hover:text-red-400 transition-colors backdrop-blur-sm">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-            
-            <!-- Content Area -->
-            <div class="flex-1 overflow-y-auto relative bg-transparent overflow-x-hidden">
-                <!-- Slide 0: Cover -->
-                <div id="d2-slide-0" class="d2-slide active flex-col justify-center items-center min-h-full p-12 text-center bg-gradient-to-br from-slate-900 via-emerald-950/40 to-slate-900 relative">
-                    <div class="w-24 h-24 mb-6 rounded-2xl bg-emerald-600/80 border border-emerald-400/50 flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.5)] transform transition hover:scale-105 relative z-10">
-                        <span class="text-5xl drop-shadow-md">🤔</span>
-                    </div>
-                    <h1 class="text-5xl font-black text-white mb-6 tracking-tight drop-shadow-lg relative z-10">降維打擊的嚴密證明</h1>
-                    <h2 class="text-2xl text-emerald-300 font-bold mb-8 relative z-10">為什麼正四面體的截面，絕對切不出「五邊形」？</h2>
-                    <div class="flex gap-2 justify-center mt-4 relative z-10">
-                        <span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold border border-blue-500/30">邏輯推理</span>
-                        <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold border border-emerald-500/30">空間幾何</span>
-                        <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold border border-amber-500/30">計數論證</span>
-                    </div>
-                </div>
-
-                <!-- Slide 1 -->
-                <div id="d2-slide-1" class="d2-slide flex-col min-h-full p-10 bg-transparent">
-                    <h2 class="text-3xl font-bold text-emerald-300 mb-6">1. 觀察正四面體的結構</h2>
-                    <p class="text-slate-300 mb-6 text-lg leading-relaxed">正四面體（三角錐）是最簡單的多面體。<br><strong class="text-emerald-200 text-xl border-b border-emerald-500/50 pb-1">它由 4 個全等的等邊三角形圍成，共有 4 個面、6 條稜、4 個頂點。</strong></p>
-                    <div class="flex-1 flex flex-col justify-center items-center pb-8 gap-8">
-                        <div class="bg-slate-800/80 rounded-xl p-8 border border-slate-700/50 shadow-lg text-center max-w-2xl w-full">
-                            <div class="text-6xl mb-4">🔺</div>
-                            <h3 class="text-xl font-bold text-slate-100 mb-4">正四面體的面數特徵</h3>
-                            <p class="text-slate-400 text-base leading-loose">
-                                正四面體總共只有 <strong class="text-cyan-300 text-lg">4 個面</strong>。<br>
-                                這是所有多面體中面數最少的（多面體至少 4 個面）。<br>
-                                <strong class="text-amber-300">關鍵問題：截面的邊數，與被切過的面數有什麼關係？</strong>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 2 -->
-                <div id="d2-slide-2" class="d2-slide flex-col min-h-full p-10 bg-transparent">
-                    <h2 class="text-3xl font-bold text-emerald-300 mb-4">2. 截面的邊數上限</h2>
-                    
-                    <!-- Animation Area -->
-                    <div class="flex gap-6 mb-4 items-center">
-                        <!-- Tetrahedron SVG Animation -->
-                        <div class="flex flex-col items-center">
-                            <div class="text-xs text-slate-400 mb-2 font-bold tracking-widest uppercase">正四面體的 4 個面</div>
-                            <svg id="d2-tetra-svg" viewBox="0 0 240 210" class="w-52 h-48" xmlns="http://www.w3.org/2000/svg">
-                                <!--
-                                  Tetrahedron vertices:
-                                  A (top): (120, 18)
-                                  B (bottom-left): (38, 185)
-                                  C (bottom-right): (202, 185)
-                                  D (back): (120, 100)
-                                -->
-                                <!-- Hidden edges (dashed) -->
-                                <line x1="38" y1="185" x2="120" y2="100" stroke="rgba(148,163,184,0.35)" stroke-width="1.5" stroke-dasharray="5,3"/>
-                                <line x1="202" y1="185" x2="120" y2="100" stroke="rgba(148,163,184,0.35)" stroke-width="1.5" stroke-dasharray="5,3"/>
-
-                                <!-- Face 4 (bottom BCD) - hidden -->
-                                <polygon id="d2f-f4" points="38,185 202,185 120,100"
-                                    fill="rgba(100,116,139,0.06)" stroke="rgba(148,163,184,0.25)" stroke-width="1" stroke-dasharray="5,3"/>
-
-                                <!-- Face 2 (left ABD) -->
-                                <polygon id="d2f-f2" points="120,18 38,185 120,100"
-                                    fill="rgba(100,116,139,0.15)" stroke="rgb(148,163,184)" stroke-width="1.5"/>
-
-                                <!-- Face 3 (right ACD) -->
-                                <polygon id="d2f-f3" points="120,18 202,185 120,100"
-                                    fill="rgba(100,116,139,0.12)" stroke="rgb(148,163,184)" stroke-width="1.5"/>
-
-                                <!-- Face 1 (front ABC) -->
-                                <polygon id="d2f-f1" points="120,18 38,185 202,185"
-                                    fill="rgba(100,116,139,0.25)" stroke="rgb(148,163,184)" stroke-width="1.5"/>
-
-                                <!-- Cross-section quadrilateral (midpoints of AB, AC, BD, CD) -->
-                                <polygon id="d2-quad" points="79,101 161,101 161,142 79,142"
-                                    fill="rgba(56,189,248,0)" stroke="rgba(56,189,248,0)"
-                                    stroke-width="2.5" stroke-linejoin="round"/>
-
-                                <!-- Label -->
-                                <text id="d2-section-label" x="120" y="205" text-anchor="middle"
-                                    font-size="10" fill="rgba(56,189,248,0)" font-family="monospace" font-weight="bold">截面最多 = 四邊形</text>
-
-                                <!-- Badges -->
-                                <text id="d2-badge-1" x="120" y="135" text-anchor="middle" font-size="12" fill="rgba(251,191,36,0)" font-weight="bold">①</text>
-                                <text id="d2-badge-2" x="85" y="105" text-anchor="middle" font-size="12" fill="rgba(251,191,36,0)" font-weight="bold">②</text>
-                                <text id="d2-badge-3" x="155" y="105" text-anchor="middle" font-size="12" fill="rgba(251,191,36,0)" font-weight="bold">③</text>
-                                <text id="d2-badge-4" x="120" y="162" text-anchor="middle" font-size="12" fill="rgba(251,191,36,0)" font-weight="bold">④</text>
-                            </svg>
-                            <button onclick="d2PlayTetraAnim()" class="mt-2 px-4 py-1.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold hover:bg-amber-500/30 transition-all flex items-center gap-2">
-                                <i class="fa-solid fa-play text-[10px]"></i> 播放動畫
-                            </button>
-                        </div>
-
-                        <!-- Right: Two text cards stacked -->
-                        <div class="flex-1 flex flex-col gap-4">
-                            <div class="bg-slate-800/60 rounded-xl border border-slate-700/50 p-5 relative overflow-hidden">
-                                <div class="absolute -right-3 -bottom-3 text-7xl opacity-10">🔪</div>
-                                <h3 class="text-base font-bold text-amber-300 mb-2">截面的邊從哪裡來？</h3>
-                                <p class="text-slate-300 text-sm leading-relaxed">
-                                    當一個平面切過正四面體時，它與每一個「面」最多產生<strong class="text-white">一條交線</strong>。這條交線就是截面多邊形的一條「邊」。
-                                </p>
-                            </div>
-                            <div class="bg-slate-800/60 rounded-xl border border-slate-700/50 p-5 relative overflow-hidden">
-                                <div class="absolute -right-3 -bottom-3 text-7xl opacity-10">🧮</div>
-                                <h3 class="text-base font-bold text-amber-300 mb-2">面數就是邊數的天花板</h3>
-                                <p class="text-slate-300 text-sm leading-relaxed">
-                                    正四面體只有 <strong class="text-cyan-300">4 個面</strong>。<br>每個面最多貢獻 1 條邊，所以截面最多只有 <strong class="text-amber-300 underline decoration-amber-500">4 條邊</strong>（四邊形）。
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-emerald-900/20 border-l-4 border-emerald-500 text-emerald-200 p-5 rounded-r-lg shadow-[inset_0_0_20px_rgba(16,185,129,0.1)]">
-                        <div class="font-bold text-base mb-1">💡 關鍵結論：</div>
-                        <p class="text-slate-300 text-sm">截面的邊數 ≤ 正四面體的面數 = <strong class="text-white border-b border-emerald-400">4</strong>。五邊形需要 5 條邊，但正四面體只有 4 個面，<strong class="text-white">根本不夠切出第 5 條邊</strong>！</p>
-                    </div>
-                </div>
-
-                <!-- Slide 3 -->
-                <div id="d2-slide-3" class="d2-slide flex-col min-h-full p-10 bg-transparent">
-                    <h2 class="text-3xl font-bold text-emerald-300 mb-6">3. 不可能的五邊形</h2>
-                    <div class="flex-1 flex items-center justify-center gap-8 pb-4">
-                        <div class="w-1/2 d2-slide-up">
-                            <h3 class="text-2xl font-bold text-slate-100 mb-6 flex items-center gap-3">
-                                <span class="text-rose-400">⭐</span> 計數論證
-                            </h3>
-                            <p class="text-slate-400 text-lg leading-loose mb-6">
-                                如果截面是五邊形，就代表截面有 5 條邊。而截面的每條邊，都來自切面與正四面體某個面的交線。
-                            </p>
-                            <div class="bg-rose-950/30 border-l-4 border-rose-500 p-5 rounded-r-xl shadow-lg">
-                                <p class="text-slate-300 text-lg leading-loose font-medium">
-                                    5 條邊需要切過 5 個面，<br><strong class="text-rose-400 text-2xl tracking-wide">但正四面體只有 4 個面！</strong>
-                                </p>
-                            </div>
-                            <p class="text-slate-500 text-sm mt-6 pl-4 border-l-2 border-slate-700">
-                                （延伸：同理，任何 n 面體的截面，最多只能是 n 邊形。）
-                            </p>
-                        </div>
-                        <div class="w-1/2 flex justify-center d2-slide-up d2-delay-1">
-                            <div class="bg-slate-800/80 rounded-3xl p-8 border border-slate-700/80 text-center shadow-[0_0_40px_rgba(0,0,0,0.6)] w-full max-w-md relative overflow-hidden">
-                                <div class="absolute top-0 right-0 w-32 h-32 bg-rose-500/10 blur-3xl rounded-full"></div>
-                                <div class="absolute bottom-0 left-0 w-32 h-32 bg-cyan-500/10 blur-3xl rounded-full"></div>
-                                
-                                <div class="text-5xl mb-6 font-black text-rose-500 tracking-widest animate-pulse">不可能 ⚡</div>
-                                <div class="space-y-4 text-left relative z-10">
-                                    <div class="bg-slate-900/90 rounded-xl p-5 border border-slate-700 shadow-inner">
-                                        <div class="text-sm text-slate-400 mb-1">五邊形需要：</div>
-                                        <div class="text-rose-400 font-bold text-lg">切過 5 個面</div>
-                                    </div>
-                                    <div class="flex justify-center text-slate-500"><i class="fa-solid fa-bolt text-xl text-rose-500/50"></i></div>
-                                    <div class="bg-slate-900/90 rounded-xl p-5 border border-slate-700 shadow-inner">
-                                        <div class="text-sm text-slate-400 mb-1">正四面體只有：</div>
-                                        <div class="text-emerald-400 font-bold text-lg">4 個面（不夠！）</div>
-                                    </div>
-                                </div>
-                                <div class="mt-6 p-4 bg-cyan-950/30 border border-cyan-500/20 rounded-xl text-left">
-                                    <div class="text-xs text-cyan-400 font-bold mb-2">📐 截面可以是什麼？</div>
-                                    <div class="flex gap-2 flex-wrap">
-                                        <span class="px-2 py-1 bg-cyan-500/10 text-cyan-300 text-xs rounded border border-cyan-500/20">三角形（切 3 面）</span>
-                                        <span class="px-2 py-1 bg-amber-500/10 text-amber-300 text-xs rounded border border-amber-500/20">四邊形（切 4 面）</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-auto bg-slate-900/90 rounded-xl p-6 border border-slate-700 text-center shadow-[0_0_30px_rgba(0,0,0,0.5)] d2-slide-up d2-delay-2">
-                        <h3 class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-400 tracking-widest mb-2">Q.E.D. 證明完畢</h3>
-                        <p class="text-emerald-200/80 text-base font-medium">正四面體只有 4 個面，截面最多 4 條邊。五邊形（或更多邊）的截面，絕對不可能出現！</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Navigation -->
-            <div class="h-16 shrink-0 bg-slate-950/90 backdrop-blur-md border-t border-emerald-500/30 flex justify-between items-center px-6 z-20 relative">
-                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-[1px] bg-gradient-to-r from-transparent via-emerald-400 to-transparent shadow-[0_0_10px_rgba(16,185,129,0.8)]"></div>
-                <button id="d2-prevBtn" onclick="d2PrevSlide()" class="px-5 py-2 rounded-lg font-bold text-slate-400 hover:text-emerald-300 hover:bg-emerald-500/10 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-slate-400 transition-colors flex gap-2 items-center text-sm" disabled>
-                    <i class="fa-solid fa-arrow-left"></i> <span>上一步</span>
-                </button>
-                <div class="flex gap-2.5" id="d2-dots">
-                    <!-- Dots generated by JS -->
-                </div>
-                <button id="d2-nextBtn" onclick="d2NextSlide()" class="px-5 py-2 rounded-lg font-bold text-white bg-emerald-600 hover:bg-emerald-500 shadow-[0_0_20px_rgba(16,185,129,0.4)] transition-all flex gap-2 items-center text-sm">
-                    <span>下一步</span> <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </div>
-        </div>
-    </div>
+    
     <!-- Euler Modal -->
     <div id="euler-modal" class="fixed inset-0 z-[100] bg-slate-950/90 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-500 flex justify-center items-center p-4 sm:p-8">
         <div class="w-full max-w-4xl max-h-[90vh] bg-slate-900/95 border border-blue-500/30 rounded-2xl shadow-[0_0_50px_rgba(59,130,246,0.2)] overflow-hidden flex flex-col relative transform scale-95 transition-transform duration-500" id="euler-modal-content">
