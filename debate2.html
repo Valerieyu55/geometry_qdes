@@ -197,10 +197,6 @@
                             <line x1="195" y1="69" x2="223" y2="-17" stroke="#3b82f6" stroke-width="4" stroke-dasharray="6,6" class="draw-line-slow d-3" />
                             <line x1="42" y1="181" x2="-80" y2="181" stroke="#10b981" stroke-width="4" stroke-dasharray="6,6" class="draw-line-slow d-3" />
                             <line x1="100" y1="0" x2="-14" y2="83" stroke="#10b981" stroke-width="4" stroke-dasharray="6,6" class="draw-line-slow d-3" />
-                            
-                            <circle cx="100" cy="-94" r="10" fill="none" stroke="#f59e0b" stroke-width="0" class="fade-in d-6" style="animation: explode 0.5s ease-out forwards 3s;"/>
-                            <text x="100" y="-120" font-size="24" text-anchor="middle" font-weight="bold" fill="#f59e0b" class="fade-in d-6">相撞！</text>
-                            <text x="-60" y="160" font-size="24" text-anchor="middle" font-weight="bold" fill="#10b981" class="fade-in d-6">相撞！</text>
                         </svg>
                     </div>
 
@@ -418,7 +414,7 @@
             // 畫一個貫穿上下面的斜刀片
             const normal = new THREE.Vector3(0.4, 0.3, 1).normalize(); 
             const planeGeo = new THREE.PlaneGeometry(6, 6);
-            const planeMat = new THREE.MeshBasicMaterial({ color: 0xfca5a5, transparent: true, opacity: 0.3, side: THREE.DoubleSide });
+            const planeMat = new THREE.MeshBasicMaterial({ color: 0xfca5a5, transparent: true, opacity: 0.3, side: THREE.DoubleSide, depthWrite: false });
             const pMesh = new THREE.Mesh(planeGeo, planeMat);
             pMesh.lookAt(normal);
             tScene.add(pMesh);
@@ -479,7 +475,7 @@
                 );
             }
             shapeGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(vertices), 3));
-            tScene.add(new THREE.Mesh(shapeGeo, new THREE.MeshBasicMaterial({ color: 0xef4444, transparent: true, opacity: 0.35, side: THREE.DoubleSide })));
+            tScene.add(new THREE.Mesh(shapeGeo, new THREE.MeshBasicMaterial({ color: 0xef4444, transparent: true, opacity: 0.35, side: THREE.DoubleSide, depthWrite: false })));
 
             isTrackInit = true;
         }
@@ -564,7 +560,7 @@
                 );
             }
             shapeGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(vertices), 3));
-            c5CutGroup.add(new THREE.Mesh(shapeGeo, new THREE.MeshBasicMaterial({ color: 0xef4444, transparent: true, opacity: 0.3, side: THREE.DoubleSide })));
+            c5CutGroup.add(new THREE.Mesh(shapeGeo, new THREE.MeshBasicMaterial({ color: 0xef4444, transparent: true, opacity: 0.3, side: THREE.DoubleSide, depthWrite: false })));
         }
 
         function initCut53D() {
@@ -592,7 +588,7 @@
             c5Scene.add(new THREE.LineSegments(new THREE.EdgesGeometry(boxGeo), new THREE.LineBasicMaterial({ color: 0x64748b, linewidth: 2 })));
 
             const planeGeo = new THREE.PlaneGeometry(6, 6);
-            c5KnifeMesh = new THREE.Mesh(planeGeo, new THREE.MeshBasicMaterial({ color: 0xfca5a5, transparent: true, opacity: 0.25, side: THREE.DoubleSide }));
+            c5KnifeMesh = new THREE.Mesh(planeGeo, new THREE.MeshBasicMaterial({ color: 0xfca5a5, transparent: true, opacity: 0.25, side: THREE.DoubleSide, depthWrite: false }));
             const normal = new THREE.Vector3(1, 1, 2).normalize();
             c5KnifeMesh.lookAt(normal); // 精準對齊法向量
             c5Scene.add(c5KnifeMesh);
@@ -626,13 +622,13 @@
 
             const boxGeo = new THREE.BoxGeometry(2, 2, 2);
             hScene.add(new THREE.LineSegments(new THREE.EdgesGeometry(boxGeo), new THREE.LineBasicMaterial({ color: 0x818cf8, linewidth: 2 })));
-            hScene.add(new THREE.Mesh(boxGeo, new THREE.MeshBasicMaterial({ color: 0xbfdbfe, transparent: true, opacity: 0.1 })));
+            hScene.add(new THREE.Mesh(boxGeo, new THREE.MeshBasicMaterial({ color: 0xbfdbfe, transparent: true, opacity: 0.1, depthWrite: false })));
 
             const hexGeo = new THREE.BufferGeometry();
             const vertices = new Float32Array([ 1, -1, 0, 1, 0, -1, 0, 1, -1, -1, 1, 0, -1, 0, 1, 0, -1, 1 ]);
             hexGeo.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
             hexGeo.setIndex([ 0, 1, 2, 0, 2, 3, 0, 3, 4, 0, 4, 5 ]);
-            hScene.add(new THREE.Mesh(hexGeo, new THREE.MeshBasicMaterial({ color: 0xf59e0b, side: THREE.DoubleSide, transparent: true, opacity: 0.75 })));
+            hScene.add(new THREE.Mesh(hexGeo, new THREE.MeshBasicMaterial({ color: 0xf59e0b, side: THREE.DoubleSide, transparent: true, opacity: 0.75, depthWrite: false })));
             hScene.add(new THREE.LineSegments(new THREE.EdgesGeometry(hexGeo), new THREE.LineBasicMaterial({ color: 0xb45309, linewidth: 3 })));
 
             const greenMat = new THREE.MeshBasicMaterial({ color: 0x10b981 });
@@ -740,7 +736,7 @@
                 );
             }
             shapeGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(vertices), 3));
-            fCutGroup.add(new THREE.Mesh(shapeGeo, new THREE.MeshBasicMaterial({ color: 0xf59e0b, transparent: true, opacity: 0.4, side: THREE.DoubleSide })));
+            fCutGroup.add(new THREE.Mesh(shapeGeo, new THREE.MeshBasicMaterial({ color: 0xf59e0b, transparent: true, opacity: 0.4, side: THREE.DoubleSide, depthWrite: false })));
         }
 
         function initFinalCut3D() {
@@ -770,7 +766,7 @@
             fScene.add(new THREE.LineSegments(new THREE.EdgesGeometry(boxGeo), new THREE.LineBasicMaterial({ color: 0x64748b, linewidth: 2 })));
 
             const planeGeo = new THREE.PlaneGeometry(6, 6);
-            fKnifeMesh = new THREE.Mesh(planeGeo, new THREE.MeshBasicMaterial({ color: 0xfca5a5, transparent: true, opacity: 0.35, side: THREE.DoubleSide }));
+            fKnifeMesh = new THREE.Mesh(planeGeo, new THREE.MeshBasicMaterial({ color: 0xfca5a5, transparent: true, opacity: 0.35, side: THREE.DoubleSide, depthWrite: false }));
             fScene.add(fKnifeMesh);
             fKnifeMesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(planeGeo), new THREE.LineBasicMaterial({ color: 0xef4444, linewidth: 2 })));
 

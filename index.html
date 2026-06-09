@@ -824,21 +824,12 @@
                                     <!-- 偽角柱 - 關鍵證據 -->
                                     <div id="wrapper-evidence" style="display: none;">
                                         <button
-                                            onclick="const el=document.getElementById('s4-evidence-box');el.classList.toggle('hidden');this.classList.toggle('border-amber-400/60');"
-                                            class="w-full flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800/80 border border-amber-500/30 text-amber-300 text-sm font-bold hover:bg-amber-500/15 hover:border-amber-400/60 transition-all mt-2"
+                                            onclick="openEvidenceModal()"
+                                            class="w-full flex items-center justify-center gap-3 px-4 py-3.5 rounded-xl bg-amber-500/20 border border-amber-500/50 text-amber-400 text-base font-bold hover:bg-amber-500/30 hover:shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all mt-4"
                                         >
-                                            <i class="fa-solid fa-magnifying-glass text-amber-400"></i>
-                                            關鍵證據
-                                            <i class="fa-solid fa-chevron-down text-xs text-amber-500 ml-auto"></i>
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                            放大檢視關鍵證據
                                         </button>
-                                        <div id="s4-evidence-box" class="hidden mt-3 p-4 rounded-xl bg-amber-950/30 border border-amber-500/20">
-                                            <div class="flex items-start gap-2">
-                                                <span class="shrink-0 w-8 h-8 rounded-lg bg-amber-500/15 border border-amber-400/40 flex items-center justify-center text-amber-300 text-sm">🔍</span>
-                                                <p class="text-slate-300 text-sm leading-relaxed">
-                                                    雖然上下底面互相平行，但觀察其側面可以發現，每相鄰兩個平行四邊形的「<span class="text-amber-300 font-bold">公共邊（側稜）</span>」<span class="text-red-400 font-bold">並沒有互相平行</span>，違反了基本定義。
-                                                </p>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -981,7 +972,7 @@
                                 <div class="space-y-6 text-base text-slate-300 leading-relaxed mb-8 z-10">
                                     <p data-i18n="s6d1Q1">在幾何中，相同容積下，圓柱的表面積通常小於長方體（這意味著製造圓柱更省包裝材料）。</p>
                                     <p data-i18n="s6d1Q2">但在現實物流中，絕大多數的快遞紙箱、海運貨櫃卻全部採用長方體（四角柱）。</p>
-                                    <p class="font-bold text-blue-200 text-lg" data-i18n="s6d1Q3">請嘗試用數學中的「表面積/體積比」，解釋這個商業決策中的矛盾與權衡：</p>
+                                    <p class="font-bold text-blue-200 text-lg" data-i18n="s6d1Q3">請嘗試用數學中的「表面積比與體積比」，解釋這個商業決策中的矛盾與權衡：</p>
                                 </div>
                                 <div class="mt-auto z-10 flex flex-col items-center w-full">
                                     <button onclick="openPkgModal()" class="w-full py-4 rounded-xl bg-gradient-to-r from-blue-600/80 to-indigo-600/80 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-lg shadow-[0_0_20px_rgba(79,70,229,0.3)] hover:shadow-[0_0_30px_rgba(79,70,229,0.6)] transition-all flex justify-center items-center gap-3 border border-indigo-400/30 group">
@@ -1039,9 +1030,6 @@
                             <div class="glass-panel rounded-2xl border border-blue-500/20 overflow-hidden shadow-[0_0_30px_rgba(59,130,246,0.08)] relative z-20">
                                                                 <div class="p-6 border-b border-slate-700/50 flex items-center justify-between">
                                     <div class="flex items-center gap-4 flex-wrap">
-                                        <div class="w-12 h-12 border border-blue-400/30 rounded-xl flex justify-center items-center bg-blue-500/10 shadow-[0_0_20px_rgba(59,130,246,0.15)] relative overflow-hidden shrink-0">
-                                            <div class="absolute inset-0 bg-blue-400/20 mix-blend-overlay"></div>
-                                        </div>
                                         <p class="text-[22px] font-bold text-slate-100 tracking-[0.1em] drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">填入各多面體的 V、E、F，觀察規律</p>
                                     </div>
                                     <div class="hidden sm:flex items-center gap-5 opacity-20 text-slate-400">
@@ -1435,7 +1423,7 @@
                 s6d1Title: '思辨 1：工業設計的極致化',
                 s6d1Q1: '在幾何中，相同容積下，圓柱的表面積通常小於長方體（這意味著製造圓柱更省包裝材料）。',
                 s6d1Q2: '但在現實物流中，絕大多數的快遞紙箱、海運貨櫃卻全部採用長方體（四角柱）。',
-                s6d1Q3: '請嘗試用數學中的「表面積/體積比」，解釋這個商業決策中的矛盾與權衡：',
+                s6d1Q3: '請嘗試用數學中的「表面積比與體積比」，解釋這個商業決策中的矛盾與權衡：',
                 s6d1Btn: '💡 顯示思辨解析',
                 s6d1A: '雖然圓柱節省包裝材料，但在物流運輸中「空間利用率」更為重要。長方體可以達到 100% 的空間密鋪（無縫拼接疊放），而圓柱體堆疊會產生大量無效的縫隙，浪費運輸成本。',
                 s6d2Title: '思辨 2：“降維打擊”的嚴密證明',
@@ -3041,6 +3029,28 @@
                 modal.classList.add('pointer-events-none');
             }, 500);
         }
+        function openEvidenceModal() {
+            const modal = document.getElementById('evidence-modal');
+            const content = document.getElementById('evidence-modal-content');
+            modal.classList.remove('pointer-events-none', 'opacity-0');
+            modal.classList.add('opacity-100');
+            setTimeout(() => {
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            }, 50);
+        }
+
+        function closeEvidenceModal() {
+            const modal = document.getElementById('evidence-modal');
+            const content = document.getElementById('evidence-modal-content');
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('pointer-events-none');
+            }, 500);
+        }
     </script>
 
     <style id="pkg-styles">
@@ -3484,6 +3494,27 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Evidence Modal -->
+    <div id="evidence-modal" class="fixed inset-0 z-[100] bg-slate-950/90 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-500 flex justify-center items-center p-4 sm:p-8">
+        <div class="w-full max-w-4xl max-h-[90vh] bg-slate-900/95 border border-amber-500/30 rounded-2xl shadow-[0_0_50px_rgba(245,158,11,0.2)] overflow-hidden flex flex-col relative transform scale-95 transition-transform duration-500" id="evidence-modal-content">
+            <!-- Close Button -->
+            <button onclick="closeEvidenceModal()" class="absolute top-4 right-4 z-[110] w-10 h-10 bg-slate-800/80 hover:bg-rose-500/20 border border-slate-600 hover:border-rose-500/50 rounded-full flex items-center justify-center text-slate-300 hover:text-rose-400 transition-colors backdrop-blur-sm shadow-lg">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <!-- Header -->
+            <div class="px-8 py-6 border-b border-amber-500/20 bg-slate-900/50 flex items-center gap-4">
+                <span class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-400/50 flex items-center justify-center text-amber-300 text-2xl shadow-[0_0_15px_rgba(245,158,11,0.2)]">🔍</span>
+                <h3 class="text-2xl font-black text-amber-400 tracking-wider">關鍵證據分析</h3>
+            </div>
+            <!-- Body -->
+            <div class="flex-1 p-8 sm:p-12 overflow-y-auto flex items-center justify-center bg-gradient-to-b from-amber-950/30 to-transparent">
+                <p class="text-slate-200 text-xl sm:text-2xl leading-relaxed tracking-wide text-center">
+                    雖然上下底面互相平行，但觀察其側面可以發現，每相鄰兩個平行四邊形的「<span class="text-amber-400 font-bold px-2 border-b-2 border-amber-400">公共邊（側稜）</span>」<span class="text-red-400 font-bold px-2 border-b-2 border-red-400">並沒有互相平行</span>，違反了基本定義。
+                </p>
             </div>
         </div>
     </div>
