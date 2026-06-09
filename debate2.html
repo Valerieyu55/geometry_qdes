@@ -408,7 +408,7 @@
 
             // 畫正方體
             const boxGeo = new THREE.BoxGeometry(2, 2, 2);
-            tScene.add(new THREE.Mesh(boxGeo, new THREE.MeshBasicMaterial({ color: 0x94a3b8, transparent: true, opacity: 0.1, depthWrite: false })));
+            // tScene.add(new THREE.Mesh(boxGeo, new THREE.MeshBasicMaterial({ color: 0x94a3b8, transparent: true, opacity: 0.1, depthWrite: false })));
             tScene.add(new THREE.LineSegments(new THREE.EdgesGeometry(boxGeo), new THREE.LineBasicMaterial({ color: 0x64748b, linewidth: 2 })));
 
             // 畫一個貫穿上下面的斜刀片
@@ -584,7 +584,7 @@
             c5Controls.autoRotate = false; 
 
             const boxGeo = new THREE.BoxGeometry(2, 2, 2);
-            c5Scene.add(new THREE.Mesh(boxGeo, new THREE.MeshBasicMaterial({ color: 0x94a3b8, transparent: true, opacity: 0.1, depthWrite: false })));
+            // c5Scene.add(new THREE.Mesh(boxGeo, new THREE.MeshBasicMaterial({ color: 0x94a3b8, transparent: true, opacity: 0.1, depthWrite: false })));
             c5Scene.add(new THREE.LineSegments(new THREE.EdgesGeometry(boxGeo), new THREE.LineBasicMaterial({ color: 0x64748b, linewidth: 2 })));
 
             const planeGeo = new THREE.PlaneGeometry(6, 6);
@@ -622,7 +622,7 @@
 
             const boxGeo = new THREE.BoxGeometry(2, 2, 2);
             hScene.add(new THREE.LineSegments(new THREE.EdgesGeometry(boxGeo), new THREE.LineBasicMaterial({ color: 0x818cf8, linewidth: 2 })));
-            hScene.add(new THREE.Mesh(boxGeo, new THREE.MeshBasicMaterial({ color: 0xbfdbfe, transparent: true, opacity: 0.1, depthWrite: false })));
+            // hScene.add(new THREE.Mesh(boxGeo, new THREE.MeshBasicMaterial({ color: 0xbfdbfe, transparent: true, opacity: 0.1, depthWrite: false })));
 
             const hexGeo = new THREE.BufferGeometry();
             const vertices = new Float32Array([ 1, -1, 0, 1, 0, -1, 0, 1, -1, -1, 1, 0, -1, 0, 1, 0, -1, 1 ]);
@@ -762,7 +762,7 @@
             fControls.update();
 
             const boxGeo = new THREE.BoxGeometry(2, 2, 2);
-            fScene.add(new THREE.Mesh(boxGeo, new THREE.MeshBasicMaterial({ color: 0x94a3b8, transparent: true, opacity: 0.1, depthWrite: false })));
+            // fScene.add(new THREE.Mesh(boxGeo, new THREE.MeshBasicMaterial({ color: 0x94a3b8, transparent: true, opacity: 0.1, depthWrite: false })));
             fScene.add(new THREE.LineSegments(new THREE.EdgesGeometry(boxGeo), new THREE.LineBasicMaterial({ color: 0x64748b, linewidth: 2 })));
 
             const planeGeo = new THREE.PlaneGeometry(6, 6);
