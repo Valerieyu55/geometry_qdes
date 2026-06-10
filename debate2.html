@@ -151,18 +151,17 @@
                     <div class="flex-1 flex justify-center items-center relative fade-in-up d-1 three-canvas-container rounded-3xl overflow-hidden shadow-inner border border-slate-700">
                         <div id="three-container-cut5" class="w-full h-full min-h-[350px]"></div>
                         
-                        <!-- 互動滑桿 UI (縮小置中) -->
-                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 w-56 z-10 flex flex-col items-center">
-                            <div class="w-full bg-slate-900/90 backdrop-blur-sm px-4 py-2 rounded-xl shadow-lg border border-indigo-500/30">
-                                <label class="block text-xs font-bold text-slate-300 mb-2 text-center">
-                                    🔪 推拉刀片 (改變深度)
-                                </label>
-                                <input type="range" id="knife-slider" min="-1.5" max="1.5" step="0.02" value="1.2" class="w-full">
-                            </div>
-                        </div>
+
                     </div>
 
                     <div class="w-1/3 space-y-4 flex flex-col justify-center">
+                        <!-- 互動滑桿 UI -->
+                        <div class="bg-slate-800 p-4 rounded-xl shadow-lg border border-indigo-500/30 fade-in-up d-1">
+                            <label class="block text-sm font-bold text-slate-300 mb-2 text-center">
+                                🔪 推拉刀片 (改變深度)
+                            </label>
+                            <input type="range" id="knife-slider" min="-1.5" max="1.5" step="0.02" value="1.2" class="w-full">
+                        </div>
                         <div class="bg-slate-800/80 p-4 rounded-xl border-l-4 border-slate-600 fade-in-up d-2 shadow-sm">
                             <h3 class="text-md font-bold text-slate-200 mb-1">🎲 6 個面分 3 組</h3>
                             <p class="text-slate-400 text-sm">正方體的面兩兩平行，分為（<span class="text-sky-400 font-bold">上下</span>、<span class="text-pink-400 font-bold">左右</span>、<span class="text-yellow-600 font-bold">前後</span>）。</p>
@@ -301,38 +300,39 @@
                     <div class="flex-1 flex flex-col relative fade-in-up d-1 three-canvas-container rounded-3xl overflow-hidden shadow-inner border border-slate-700">
                         <div id="three-container-final" class="w-full h-full min-h-[350px]"></div>
                         
+
+                    </div>
+
+                    <!-- 結論面板 -->
+                    <div class="w-1/3 flex flex-col justify-center gap-4">
                         <!-- 萬向控制 UI -->
-                        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 w-64 z-10">
-                            <div class="space-y-2 w-full bg-slate-900/90 backdrop-blur-md px-4 py-3 rounded-xl shadow-lg border border-indigo-500/30">
+                        <div class="bg-slate-800 p-5 rounded-2xl shadow-lg border border-indigo-500/30 fade-in-up d-1">
+                            <div class="space-y-3">
                                 <div>
-                                    <label class="block text-[11px] font-bold text-slate-300 flex justify-between mb-0.5">
+                                    <label class="block text-xs font-bold text-slate-300 flex justify-between mb-1">
                                         <span>🔄 X軸傾斜 (前後)</span> <span id="f-val-x" class="text-indigo-400">-35°</span>
                                     </label>
                                     <input type="range" id="f-rot-x" min="-90" max="90" step="1" value="-35" class="w-full">
                                 </div>
                                 <div>
-                                    <label class="block text-[11px] font-bold text-slate-300 flex justify-between mb-0.5">
+                                    <label class="block text-xs font-bold text-slate-300 flex justify-between mb-1">
                                         <span>🔄 Y軸傾斜 (左右)</span> <span id="f-val-y" class="text-indigo-400">45°</span>
                                     </label>
                                     <input type="range" id="f-rot-y" min="-90" max="90" step="1" value="45" class="w-full">
                                 </div>
                                 <div>
-                                    <label class="block text-[11px] font-bold text-slate-300 flex justify-between mb-0.5">
+                                    <label class="block text-xs font-bold text-slate-300 flex justify-between mb-1">
                                         <span>🔪 刀片深度</span> <span id="f-val-d" class="text-indigo-400">0.00</span>
                                     </label>
                                     <input type="range" id="f-depth" min="-1.5" max="1.5" step="0.05" value="0" class="w-full">
                                 </div>
-                                <div class="pt-1">
-                                    <button id="reset-hex-btn" class="w-full bg-indigo-900/50 hover:bg-indigo-800/50 text-indigo-300 font-bold py-1.5 rounded-lg text-[11px] transition-colors shadow-sm">
+                                <div class="pt-2">
+                                    <button id="reset-hex-btn" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2 rounded-lg text-[13px] transition-colors shadow-md">
                                         ✨ 一鍵還原正六邊形
                                     </button>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- 結論面板 -->
-                    <div class="w-1/3 flex flex-col justify-center gap-6">
                         <div class="bg-sky-900/30 p-6 rounded-3xl border border-sky-500/40 fade-in-up d-2 shadow-sm hover:shadow-md transition">
                             <h3 class="text-2xl font-bold text-sky-300 mb-3 flex items-center"><span class="text-3xl mr-2">🧐</span> 發現了嗎？</h3>
                             <p class="text-slate-300 text-lg leading-relaxed">
