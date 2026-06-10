@@ -1148,7 +1148,7 @@
                                     </table>
                                 </div>
                                 <div class="p-6 border-t border-slate-700/50 flex justify-end gap-5">
-                                    <button onclick="revealAllEulerAnswers()" class="px-7 py-3 rounded-xl bg-transparent border border-blue-400/40 text-blue-200 hover:bg-blue-500/10 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] transition-all font-bold tracking-[0.1em] text-[15px] flex items-center gap-3">
+                                    <button id="btn-reveal-all" onclick="revealAllEulerAnswers()" class="px-7 py-3 rounded-xl bg-transparent border border-blue-400/40 text-blue-200 hover:bg-blue-500/10 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] transition-all font-bold tracking-[0.1em] text-[15px] flex items-center gap-3">
                                         <i class="fa-solid fa-eye text-sm opacity-80"></i> 一鍵顯示全部答案
                                     </button>
                                     <button onclick="revealEuler()" class="px-7 py-3 rounded-xl bg-gradient-to-b from-amber-500/20 to-amber-700/40 border border-amber-400/60 text-amber-200 hover:from-amber-500/30 hover:to-amber-600/50 hover:shadow-[0_0_25px_rgba(251,191,36,0.5),inset_0_0_15px_rgba(251,191,36,0.3)] transition-all font-bold tracking-[0.1em] text-[15px] flex items-center gap-3 shadow-[0_0_15px_rgba(251,191,36,0.2),inset_0_0_10px_rgba(251,191,36,0.1)]">
@@ -1940,13 +1940,29 @@
             }
         }
 
+        let isEulerRevealed = false;
+
         function revealAllEulerAnswers() {
-            // Reveal V, E, F blanks
-            document.querySelectorAll('#view-step8 .ans-blank.ans-hidden').forEach(blank => {
-                blank.classList.remove('ans-hidden');
-            });
-            // Automatically calculate the final result column
-            revealEuler();
+            const btn = document.getElementById('btn-reveal-all');
+            
+            if (!isEulerRevealed) {
+                // Reveal V, E, F blanks
+                document.querySelectorAll('#view-step8 .ans-blank').forEach(blank => {
+                    blank.classList.remove('ans-hidden');
+                });
+                // Automatically calculate the final result column
+                revealEuler();
+                isEulerRevealed = true;
+                if(btn) btn.innerHTML = '<i class="fa-solid fa-eye-slash text-sm opacity-80"></i> 一鍵隱藏全部答案';
+            } else {
+                // Hide V, E, F blanks
+                document.querySelectorAll('#view-step8 .ans-blank').forEach(blank => {
+                    blank.classList.add('ans-hidden');
+                });
+                hideEuler();
+                isEulerRevealed = false;
+                if(btn) btn.innerHTML = '<i class="fa-solid fa-eye text-sm opacity-80"></i> 一鍵顯示全部答案';
+            }
         }
 
         function revealEuler() {
@@ -1966,6 +1982,22 @@
                     disc.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }
             }, 400);
+        }
+
+        function hideEuler() {
+            const rows = document.querySelectorAll('#euler-table-body tr');
+            rows.forEach(row => {
+                const cell = row.querySelector('.euler-result');
+                if (cell) {
+                    cell.innerHTML = `<span class="text-amber-500/70">?</span>`;
+                }
+            });
+            // Animate discovery box close
+            const disc = document.getElementById('euler-discovery');
+            if (disc) {
+                disc.classList.add('max-h-0', 'opacity-0');
+                disc.classList.remove('max-h-[600px]', 'opacity-100');
+            }
         }
 
         function toggleReveal(id, btn) {
