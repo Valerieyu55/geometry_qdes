@@ -123,8 +123,7 @@
             position: absolute;
             background: rgba(6, 182, 212, 0.08);
             border: 1px solid rgba(6, 182, 212, 0.3);
-            backdrop-filter: blur(3px);
-            -webkit-backdrop-filter: blur(3px);
+            /* backdrop-filter removed to prevent Safari 3D bug */
             transition: all 0.5s ease;
             box-shadow: inset 0 0 10px rgba(6, 182, 212, 0.1);
         }
@@ -162,15 +161,13 @@
             background: rgba(6, 182, 212, 0.5) !important;
             box-shadow: 0 0 40px 15px rgba(6, 182, 212, 0.7), inset 0 0 20px rgba(255, 255, 255, 0.5) !important;
             border: 2px solid #a5f3fc !important;
-            backdrop-filter: blur(0px) !important; /* remove blur for pure light */
-            -webkit-backdrop-filter: blur(0px) !important;
+            /* backdrop-filter removed */
         }
         .highlight-side .side {
             background: rgba(168, 85, 247, 0.4) !important;
             box-shadow: inset 0 0 30px rgba(168, 85, 247, 0.8) !important;
             border-color: #d8b4fe !important;
-            backdrop-filter: blur(0px) !important;
-            -webkit-backdrop-filter: blur(0px) !important;
+            /* backdrop-filter removed */
         }
         .highlight-side .cylinder .side {
             border-top: 1px solid #d8b4fe !important;
@@ -190,8 +187,7 @@
             height: 80px;
             background: rgba(6, 182, 212, 0.08);
             border: 1px solid rgba(6, 182, 212, 0.4);
-            backdrop-filter: blur(2px);
-            -webkit-backdrop-filter: blur(2px);
+            /* backdrop-filter removed */
         }
         .cuboid-half .front  { transform: rotateY(  0deg) translateZ(60px); }
         .cuboid-half .right  { transform: rotateY( 90deg) translateZ(60px); }
