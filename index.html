@@ -1864,6 +1864,30 @@
                 const initial = fb.name.charAt(0);
                 const safeContent = fb.content.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, '<br>');
                 
+                let teacherReplyHtml = '';
+                if (fb.teacherReply) {
+                    teacherReplyHtml = `
+                        <div class="mt-3 pl-3 border-l-2 border-indigo-500/50 bg-indigo-900/20 p-2.5 rounded-r-lg">
+                            <div class="flex items-center gap-2 mb-1">
+                                <div class="w-5 h-5 rounded-full bg-indigo-500 text-white flex items-center justify-center text-[10px] font-bold shadow-[0_0_10px_rgba(99,102,241,0.5)]"><i class="fa-solid fa-chalkboard-user"></i></div>
+                                <span class="text-[11px] font-bold text-indigo-300 tracking-wider">老師的回覆</span>
+                            </div>
+                            <p class="text-indigo-200/90 text-sm leading-relaxed">${fb.teacherReply.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, '<br>')}</p>
+                        </div>
+                    `;
+                }
+
+                let replyBtnHtml = '';
+                if (isTeacherMode && !fb.isPrivate) {
+                    replyBtnHtml = `
+                        <div class="mt-2 text-right">
+                            <button onclick="replyToFeedback(${i})" class="text-[11px] px-2 py-1 rounded bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/20 hover:text-indigo-300 transition-colors">
+                                <i class="fa-solid fa-reply"></i> ${fb.teacherReply ? '修改回覆' : '回覆留言'}
+                            </button>
+                        </div>
+                    `;
+                }
+
                 const html = `
                     <div class="bg-slate-800/40 border ${borderColor} rounded-xl p-4 transition-all duration-300">
                         <div class="flex justify-between items-center mb-2">
@@ -1876,6 +1900,8 @@
                             <span class="px-2 py-0.5 rounded text-[10px] border ${badgeClass}">${badgeText}</span>
                         </div>
                         <p class="text-slate-300 text-sm leading-relaxed ${fb.isPrivate ? 'italic text-amber-200/80' : ''}">${safeContent}</p>
+                        ${teacherReplyHtml}
+                        ${replyBtnHtml}
                     </div>
                 `;
                 list.insertAdjacentHTML('beforeend', html);
@@ -1883,6 +1909,24 @@
             
             if (visibleCount === 0) {
                 list.innerHTML = '<div class="text-center text-slate-500 py-8 text-sm">目前還沒有留言，來搶頭香吧！</div>';
+            }
+        }
+
+        function replyToFeedback(index) {
+            if (!isTeacherMode) return;
+            const fb = feedbackData[index];
+            const currentReply = fb.teacherReply || '';
+            const reply = prompt(`請輸入對 ${fb.name} 的回覆 (留空將刪除回覆)：`, currentReply);
+            
+            if (reply !== null) {
+                if (reply.trim() === '') {
+                    delete fb.teacherReply;
+                } else {
+                    fb.teacherReply = reply.trim();
+                }
+                localStorage.setItem('geometry_feedback', JSON.stringify(feedbackData));
+                renderFeedback();
+                showToast('回覆已更新！');
             }
         }
 
