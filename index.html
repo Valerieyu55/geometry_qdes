@@ -28,60 +28,6 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Varela+Round&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/earlyaccess/cwtexyen.css" rel="stylesheet">
-    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-database-compat.js"></script>
-    <script>
-        // TODO: 將這裡替換為您的 Firebase 專案設定
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-            databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT_ID.appspot.com",
-            messagingSenderId: "YOUR_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
-
-        document.addEventListener('DOMContentLoaded', () => {
-            if (firebaseConfig.apiKey === "YOUR_API_KEY") return; // 尚未設定
-            
-            if (!firebase.apps.length) {
-                firebase.initializeApp(firebaseConfig);
-            }
-            const db = firebase.database();
-
-            // 1. 累積人次
-            const totalRef = db.ref('stats/totalVisits');
-            const isNewVisit = !sessionStorage.getItem('visited_geometry');
-            if (isNewVisit) {
-                totalRef.transaction((current_value) => {
-                    return (current_value || 0) + 1;
-                });
-                sessionStorage.setItem('visited_geometry', 'true');
-            }
-            totalRef.on('value', (snap) => {
-                const el = document.getElementById('total-visits-display');
-                if (el) el.innerText = snap.val() || 0;
-            });
-
-            // 2. 線上人數
-            const connectionsRef = db.ref('stats/onlineUsers');
-            const connectedRef = db.ref('.info/connected');
-
-            connectedRef.on('value', (snap) => {
-                if (snap.val() === true) {
-                    const conRef = connectionsRef.push();
-                    conRef.onDisconnect().remove();
-                    conRef.set(true);
-                }
-            });
-
-            connectionsRef.on('value', (snap) => {
-                const el = document.getElementById('online-count-display');
-                if (el) el.innerText = snap.numChildren();
-            });
-        });
-    </script>
     <style>
         body { 
             font-family: 'Varela Round', 'cwTeXYen', 'jf-openhuninn-1.1', 'YuanTi TC', sans-serif;
@@ -398,28 +344,6 @@
                     <i class="fa-solid fa-arrow-up-right-from-square opacity-0 group-hover:opacity-100 transition-opacity text-[10px]"></i>
                 </a>
 
-                <!-- 即時監控儀表板 -->
-                <div class="mb-4 mx-1 p-3 rounded-lg bg-slate-900/60 border border-cyan-500/20 text-xs flex flex-col gap-2 shrink-0 relative overflow-hidden group/stats">
-                    <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-transparent pointer-events-none group-hover/stats:from-cyan-500/10 transition-colors"></div>
-                    <div class="text-[10px] text-cyan-500/70 font-bold uppercase tracking-widest mb-1 tech-font flex items-center justify-between">
-                        <span><i class="fa-solid fa-satellite-dish mr-1"></i> SYSTEM STATS</span>
-                        <span class="text-[8px] bg-slate-800 px-1 rounded text-slate-500">FIREBASE</span>
-                    </div>
-                    <div class="flex justify-between items-center relative z-10">
-                        <span class="text-slate-400 flex items-center gap-2">
-                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_5px_#34d399]"></span>
-                            線上人數
-                        </span>
-                        <span class="text-emerald-400 font-mono font-bold tech-font" id="online-count-display">--</span>
-                    </div>
-                    <div class="flex justify-between items-center relative z-10">
-                        <span class="text-slate-400 flex items-center gap-2">
-                            <i class="fa-solid fa-eye text-[10px] text-cyan-400/70 w-1.5 ml-0.5"></i>
-                            累積人次
-                        </span>
-                        <span class="text-cyan-400 font-mono font-bold tech-font" id="total-visits-display">--</span>
-                    </div>
-                </div>
 
 
             </div>
